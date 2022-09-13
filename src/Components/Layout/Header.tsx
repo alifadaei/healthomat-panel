@@ -6,9 +6,9 @@ import { useAppSelector } from "../../hooks/useSelector";
 import Profile from "./Profile";
 
 const Header = () => {
-  const isAuth = useAppSelector((state) => state.authSlice.isAuthenticated);
+  const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
   return (
-    <header className="z-20 fixed top-0 w-full bg-white border-b border-b-gray-100">
+    <header className="z-10 fixed top-0 w-full bg-white border-b border-b-gray-100">
       <Wrapper className="mx-auto px-6 py-1 flex justify-between items-center flex-row-reverse">
         <Link
           to={"/"}

@@ -1,20 +1,21 @@
 import Card from "../UI/Card/Card";
 import Modal from "../UI/Modal/Modal";
-import { RootState } from "../../store/store";
-import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "./sidebarSlice";
+import { useDispatch } from "react-redux";
 import React from "react";
+import { useAppSelector } from "../../hooks/useSelector";
+import { closeModalSidebar } from "./sidebarSlice";
 
 const Sidebar = ({ children }: { children: React.ReactElement }) => {
-  const modalOpen = useSelector(
-    (state: RootState) => state.sidebarModal.modalOpen
-  );
   const dispatch = useDispatch();
-
-  const isMobile = window.innerWidth < 1024;
-  if (isMobile)
+  const { physicalSidebarOpen, modalSidebarOpen } = useAppSelector(
+    (state) => state.sidebar
+  );
+  if (!physicalSidebarOpen)
     return (
-      <Modal isOpen={modalOpen} onBackdropClick={() => dispatch(closeModal())}>
+      <Modal
+        isOpen={modalSidebarOpen}
+        onBackdropClick={() => dispatch(closeModalSidebar())}
+      >
         {children}
       </Modal>
     );

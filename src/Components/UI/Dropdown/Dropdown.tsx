@@ -5,7 +5,7 @@ const Dropdown = ({
 }: {
   positionRem: number;
   show: boolean;
-  children: JSX.Element;
+  children: React.ReactElement;
 }) => {
   if (show)
     return (

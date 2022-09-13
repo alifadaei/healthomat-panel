@@ -1,30 +1,51 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 export interface SidebarState {
-  modalOpen: boolean;
+  physicalSidebarOpen: boolean;
+  modalSidebarOpen: boolean;
 }
 
+export const setPhycicalSidebarStat = () => {
+  return window.innerWidth > 1024;
+};
+
 const initialState: SidebarState = {
-    modalOpen: false,
-  }
+  physicalSidebarOpen: false,
+  modalSidebarOpen: false,
+};
 
 export const sidebarSlice = createSlice({
-  name: 'sidebar',
+  name: "sidebar",
   initialState,
   reducers: {
-    closeModal: (state) => {
-        state.modalOpen = false;
-        console.log('closemodal')
+    closeModalSidebar: (state) => {
+      state.modalSidebarOpen = false;
     },
-    openModal: (state)=>{
-        state.modalOpen = true;
-        console.log('openmodal')
+    openModalSidebar: (state) => {
+      state.modalSidebarOpen = true;
+    },
+    closePhysicalSidebar: (state) => {
+      state.physicalSidebarOpen = false;
     },
 
+    openPhysicalSidebar: (state) => {
+      state.physicalSidebarOpen = true;
+      state.modalSidebarOpen = false;
+    },
+
+    setPhsyicalSidebarOpen: (state, action: PayloadAction<boolean>) => {
+      state.physicalSidebarOpen = action.payload;
+    },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const {closeModal, openModal} = sidebarSlice.actions
+export const {
+  closeModalSidebar,
+  closePhysicalSidebar,
+  openModalSidebar,
+  openPhysicalSidebar,
+  setPhsyicalSidebarOpen,
+} = sidebarSlice.actions;
 
-export default sidebarSlice.reducer
+export default sidebarSlice.reducer;

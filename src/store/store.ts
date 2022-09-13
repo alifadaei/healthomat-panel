@@ -4,8 +4,8 @@ import sidebarSlice from "../Components/Layout/sidebarSlice";
 
 export const store = configureStore({
   reducer: {
-    sidebarModal: sidebarSlice,
-    authSlice: authSlice,
+    sidebar: sidebarSlice,
+    auth: authSlice,
   },
 });
 

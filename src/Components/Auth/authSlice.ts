@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 export interface AuthState {
   isAuthenticated: boolean;
+  name: string | null;
 }
 
 const initialState: AuthState = {
   isAuthenticated: true,
+  name: "علی فدائی منش",
 };
 
 export const authSlice = createSlice({
@@ -17,6 +19,9 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false;
+    },
+    setName: (state, action: PayloadAction<string>) => {
+      state.name = action.payload;
     },
   },
 });
