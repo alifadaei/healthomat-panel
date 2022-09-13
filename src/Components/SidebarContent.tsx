@@ -14,7 +14,7 @@ const SidebarContent = () => {
       {!physicalSidebarOpen && (
         <Icon
           icon={IconList.Close}
-          className="absolute top-0 end-2 cursor-pointer text-lg"
+          className="absolute top-0 end-2 cursor-pointer text-lg p-3"
           onClick={() => dispatch(closeModalSidebar())}
         />
       )}
