@@ -21,7 +21,7 @@ const Sidebar = ({ children }: { children: React.ReactElement }) => {
     );
   else
     return (
-      <Card className="ms-3 w-[11rem] bg-white border overflow-hidden">
+      <Card className=" w-[15rem] bg-white border overflow-hidden h-fit">
         {children}
       </Card>
     );

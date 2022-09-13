@@ -4,15 +4,12 @@ import Footer from "./Components/Layout/Footer";
 import Header from "./Components/Layout/Header";
 import Sidebar from "./Components/Layout/Sidebar";
 import {
-  openModalSidebar,
   setPhsyicalSidebarOpen,
   setPhycicalSidebarStat,
 } from "./Components/Layout/sidebarSlice";
 import SidebarContent from "./Components/SidebarContent";
-import Button from "./Components/UI/Button/Button";
-import Icon, { IconList } from "./Components/UI/Icon/Icon";
+import Card from "./Components/UI/Card/Card";
 import Wrapper from "./Components/UI/Wrapper/Wrapper";
-import { useAppSelector } from "./hooks/useSelector";
 
 function App() {
   useEffect(() => {
@@ -20,27 +17,18 @@ function App() {
   }, []);
 
   const dispatch = useDispatch();
-  const showModalSidebarBtn = !useAppSelector(
-    (state) => state.sidebar.physicalSidebarOpen
-  );
+
   return (
     <>
       <Header />
-      <main className="mt-[5rem] min-h-screen">
-        <Wrapper className="mx-auto">
-          {showModalSidebarBtn && (
-            <Button
-              className="px-3 py-2 ms-3"
-              onClick={() => dispatch(openModalSidebar())}
-            >
-              <Icon icon={IconList.Hamburger} />
-            </Button>
-          )}
-          <Sidebar>
-            <SidebarContent />
-          </Sidebar>
-        </Wrapper>
-      </main>
+      <Wrapper className="mt-[5rem] mx-auto relative flex px-3 mb-4">
+        <Sidebar>
+          <SidebarContent />
+        </Sidebar>
+        <Card className="bg-white ms-3 border w-full p-4">
+          <p></p>
+        </Card>
+      </Wrapper>
       <Footer />
     </>
   );

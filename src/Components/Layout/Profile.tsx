@@ -7,42 +7,18 @@ import Icon from "../UI/Icon/Icon";
 const Profile = () => {
   const userName = useAppSelector((state) => state.auth.name);
 
-  const [showDropdown, setShowDropdown] = useState(false);
-  useEffect(() => {
-    window.addEventListener("click", () => {
-      setShowDropdown(false);
-    });
-  }, []);
-  const handleToggleDropdown = (e: React.MouseEvent<HTMLImageElement>) => {
-    e.stopPropagation();
-    setShowDropdown((state) => !state);
-  };
   return (
-    <div className="flex flex-col items-center sm:ms-5 md:ms-8">
+    <div className="flex flex-col items-center py-3">
       <img
         src={man}
         alt="man"
-        className="w-14 sm:w-10 rounded-full border border-primary-100 cursor-pointer"
-        onClick={handleToggleDropdown}
+        className="w-14 rounded-full border border-primary-100 cursor-pointer"
       />
       <div className="relative text-xs">
-        <Dropdown positionRem={-3} show={showDropdown}>
-          <div className="text-center">
-            <div className="my-2">{userName}</div>
-            <hr />
-            <div className="w-[6rem]">
-              {profile_content.map((item, i) => (
-                <div
-                  key={i}
-                  className="py-2 flex p-2 items-center hover:bg-gray-100"
-                >
-                  <Icon className="me-2 text-sm" icon={item.icon} />
-                  {item.name}
-                </div>
-              ))}
-            </div>
-          </div>
-        </Dropdown>
+        <div className="text-center">
+          <div className="my-2 font-bold">{userName}</div>
+          <div className="w-[6rem]"></div>
+        </div>
       </div>
     </div>
   );
