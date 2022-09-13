@@ -10,20 +10,31 @@ import {
   BsShare,
   BsEye,
   BsPerson,
+  BsClipboardData,
 } from "react-icons/bs";
+
 import {
   IoLocationSharp,
   IoClose,
   IoChevronDown,
   IoFilterOutline,
+  IoExitOutline,
+  IoSettingsOutline,
 } from "react-icons/io5";
 import { TiLocationOutline } from "react-icons/ti";
+import { FaBaby } from "react-icons/fa";
+import { BiCalendarCheck, BiTimeFive, BiHeart } from "react-icons/bi";
 
 import { GoSearch } from "react-icons/go";
 import { AiOutlinePhone, AiOutlineStar, AiFillStar } from "react-icons/ai";
 
+import { MdOutlineDashboard } from "react-icons/md";
+
 import { HiOutlineMenu } from "react-icons/hi";
 export enum IconList {
+  Settings,
+  Exit,
+  Calendar,
   Hamburger,
   checkMark,
   Instagram,
@@ -44,6 +55,11 @@ export enum IconList {
   Close,
   StarFilled,
   StarOutline,
+  Dashboard,
+  Baby,
+  Clock,
+  ClipBoard,
+  Heart,
 }
 
 type IconProps = {
@@ -57,6 +73,22 @@ const Icon = (props: IconProps): React.ReactElement => {
   const { icon, className, style, onClick } = props;
   const renderIcon = () => {
     switch (icon) {
+      case IconList.Settings:
+        return <IoSettingsOutline />;
+      case IconList.Exit:
+        return <IoExitOutline />;
+      case IconList.Heart:
+        return <BiHeart />;
+      case IconList.ClipBoard:
+        return <BsClipboardData />;
+      case IconList.Clock:
+        return <BiTimeFive />;
+      case IconList.Baby:
+        return <FaBaby />;
+      case IconList.Calendar:
+        return <BiCalendarCheck />;
+      case IconList.Dashboard:
+        return <MdOutlineDashboard />;
       case IconList.StarFilled:
         return <AiFillStar />;
       case IconList.StarOutline:

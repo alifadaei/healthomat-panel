@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import FadeAnimation from "../../Animation/FadeAnimation";
 import Icon, { IconList } from "../../Icon/Icon";
 

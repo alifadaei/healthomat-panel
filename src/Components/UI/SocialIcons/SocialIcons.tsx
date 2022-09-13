@@ -1,6 +1,5 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import Icon, { IconList } from "../Icon/Icon";
-
 interface SocialIconsProps {
   icons: { link: string; name: string; icon: IconList }[];
   className?: string;
@@ -10,7 +9,7 @@ const SocialIcons = ({ icons, className }: SocialIconsProps) => {
   return (
     <div className={`flex text-primary ${className}`}>
       {icons.map((icon, index) => (
-        <Link key={index} href={icon.link}>
+        <Link key={index} to={icon.link}>
           <a>
             <Icon
               icon={icon.icon}

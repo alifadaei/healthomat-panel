@@ -1,4 +1,3 @@
-import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 interface TooltipProps {
@@ -7,14 +6,7 @@ interface TooltipProps {
 }
 
 const Tooltip = ({ selector, children }: TooltipProps) => {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-    return () => setIsMounted(false);
-  }, [selector]);
-  return isMounted
-    ? createPortal(children, document.querySelector(selector) as Element)
-    : null;
+  return createPortal(children, document.querySelector(selector) as Element);
 };
 
 export default Tooltip;

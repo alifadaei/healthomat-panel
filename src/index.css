@@ -6,9 +6,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap");
 @font-face {
   font-family: "Cookie";
-  src: url("/fonts/Cookie/Cookie-Regular.woff2") format("woff2"),
-    url("/fonts/Cookie/Cookie-Regular.woff") format("woff"),
-    url("/fonts/Cookie/Cookie-Regular.ttf") format("ttf");
+  src: url("./assets/fonts/Cookie/Cookie-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Cookie/Cookie-Regular.woff") format("woff"),
+    url("./assets/fonts/Cookie/Cookie-Regular.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -16,42 +16,46 @@
 
 @font-face {
   font-family: "Iransans";
-  src: url("/fonts/Iransans/IRANSansWeb(FaNum).woff2") format("woff2");
+  src: url("./assets/fonts/Iransans/IRANSansWeb(FaNum).woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Iransans";
-  src: url("/fonts/Iransans/IRANSansWeb(FaNum)_Black.woff2") format("woff2");
+  src: url("./assets/fonts/Iransans/IRANSansWeb(FaNum)_Black.woff2")
+    format("woff2");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Iransans";
-  src: url("/fonts/Iransans/IRANSansWeb(FaNum)_Bold.woff2") format("woff2");
+  src: url("./assets/fonts/Iransans/IRANSansWeb(FaNum)_Bold.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Iransans";
-  src: url("/fonts/Iransans/IRANSansWeb(FaNum)_Light.woff2") format("woff2");
+  src: url("./assets/fonts/Iransans/IRANSansWeb(FaNum)_Light.woff2")
+    format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Iransans";
-  src: url("/fonts/Iransans/IRANSansWeb(FaNum)_Medium.woff2") format("woff2");
+  src: url("./assets/fonts/Iransans/IRANSansWeb(FaNum)_Medium.woff2")
+    format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Iransans";
-  src: url("/fonts/Iransans/IRANSansWeb(FaNum)_UltraLight.woff2")
+  src: url("./assets/fonts/Iransans/IRANSansWeb(FaNum)_UltraLight.woff2")
     format("woff2");
   font-weight: 200;
   font-style: normal;
@@ -60,10 +64,10 @@
 
 @font-face {
   font-family: "Helvetica";
-  src: url("/fonts/Helvetica/Helvetica.eot");
-  src: local("☺"), url("/fonts/Helvetica/Helvetica.woff") format("woff"),
-    url("/fonts/Helvetica/Helvetica.ttf") format("truetype"),
-    url("/fonts/Helvetica/Helvetica.svg") format("svg");
+  src: url("./assets/fonts/Helvetica/Helvetica.eot");
+  src: local("☺"), url("./assets/fonts/Helvetica/Helvetica.woff") format("woff"),
+    url("./assets/fonts/Helvetica/Helvetica.ttf") format("truetype"),
+    url("./assets/fonts/Helvetica/Helvetica.svg") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -72,11 +76,10 @@
   font-family: dana;
   font-style: normal;
   font-weight: bold;
-  src: url("/fonts/dana/bold/dana-fanum-bold.otf");
-  src: url("/fonts/dana/bold/dana-fanum-bold.otf?#iefix")
-      format("embedded-opentype"),
-    url("/fonts/dana/bold/dana-fanum-bold.woff2") format("woff2"),
-    url("/fonts/dana/bold/dana-fanum-bold.woff") format("woff");
+  src: url("./assets/fonts/dana/bold/dana-fanum-bold.woff2") format("woff2"),
+    url("./assets/fonts/dana/bold/dana-fanum-bold.ttf") format("ttf"),
+    url("./assets/fonts/dana/bold/dana-fanum-bold.eot") format("eot"),
+    url("./assets/fonts/dana/bold/dana-fanum-bold.woff") format("woff");
   font-display: swap;
 }
 
@@ -84,11 +87,8 @@
   font-family: dana;
   font-style: normal;
   font-weight: 500;
-  src: url("/fonts/dana/medium/dana-fanum-medium.otf");
-  src: url("/fonts/dana/medium/dana-fanum-medium.otf?#iefix")
-      format("embedded-opentype"),
-    url("/fonts/dana/medium/dana-fanum-medium.woff2") format("woff2"),
-    url("/fonts/dana/medium/dana-fanum-medium.woff") format("woff");
+  src: url("./assets/fonts/dana/medium/dana-fanum-medium.woff2") format("woff2"),
+    url("./assets/fonts/dana/medium/dana-fanum-medium.woff") format("woff");
   font-display: swap;
 }
 
@@ -96,11 +96,8 @@
   font-family: dana;
   font-style: normal;
   font-weight: 300;
-  src: url("/fonts/dana/light/dana-fanum-light.otf");
-  src: url("/fonts/dana/light/dana-fanum-light.otf?#iefix")
-      format("embedded-opentype"),
-    url("/fonts/dana/light/dana-fanum-light.woff2") format("woff2"),
-    url("/fonts/dana/light/dana-fanum-light.woff") format("woff");
+  src: url("./assets/fonts/dana/light/dana-fanum-light.woff2") format("woff2"),
+    url("./assets/fonts/dana/light/dana-fanum-light.woff") format("woff");
   font-display: swap;
 }
 
@@ -108,11 +105,9 @@
   font-family: dana;
   font-style: normal;
   font-weight: normal;
-  src: url("/fonts/dana/regular/dana-fanum-regular.otf");
-  src: url("/fonts/dana/regular/dana-fanum-regular.otf?#iefix")
-      format("embedded-opentype"),
-    url("/fonts/dana/regular/dana-fanum-regular.woff2") format("woff2"),
-    url("/fonts/dana/regular/dana-fanum-regular.woff") format("woff");
+  src: url("./assets/fonts/dana/regular/dana-fanum-regular.woff2")
+      format("woff2"),
+    url("./assets/fonts/dana/regular/dana-fanum-regular.woff") format("woff");
   font-display: swap;
 }
 
