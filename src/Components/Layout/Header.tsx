@@ -3,7 +3,7 @@ import Button from "../UI/Button/Button";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import { useAppSelector } from "../../hooks/useSelector";
-import { openModalSidebar } from "./sidebarSlice";
+import { openDrawerSidebar } from "./sidebarSlice";
 import { useDispatch } from "react-redux";
 import Icon, { IconList } from "../UI/Icon/Icon";
 
@@ -25,8 +25,8 @@ const Header = () => {
           <Button className="p-2 px-5">ورود</Button>
         ) : (
           <Button
-            className="px-4 py-2 ms-3 text-lg"
-            onClick={() => dispatch(openModalSidebar())}
+            className="px-4 py-2 ms-3 text-lg cursor-pointer"
+            onClick={() => dispatch(openDrawerSidebar())}
           >
             <Icon icon={IconList.Hamburger} />
           </Button>

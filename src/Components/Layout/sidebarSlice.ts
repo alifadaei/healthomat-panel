@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 export interface SidebarState {
   physicalSidebarOpen: boolean;
-  modalSidebarOpen: boolean;
+  drawerSidebarOpen: boolean;
 }
 
 export const setPhycicalSidebarStat = () => {
@@ -11,18 +11,18 @@ export const setPhycicalSidebarStat = () => {
 
 const initialState: SidebarState = {
   physicalSidebarOpen: false,
-  modalSidebarOpen: false,
+  drawerSidebarOpen: false,
 };
 
 export const sidebarSlice = createSlice({
   name: "sidebar",
   initialState,
   reducers: {
-    closeModalSidebar: (state) => {
-      state.modalSidebarOpen = false;
+    closeDrawerSidebar: (state) => {
+      state.drawerSidebarOpen = false;
     },
-    openModalSidebar: (state) => {
-      state.modalSidebarOpen = true;
+    openDrawerSidebar: (state) => {
+      state.drawerSidebarOpen = true;
     },
     closePhysicalSidebar: (state) => {
       state.physicalSidebarOpen = false;
@@ -30,7 +30,7 @@ export const sidebarSlice = createSlice({
 
     openPhysicalSidebar: (state) => {
       state.physicalSidebarOpen = true;
-      state.modalSidebarOpen = false;
+      state.drawerSidebarOpen = false;
     },
 
     setPhsyicalSidebarOpen: (state, action: PayloadAction<boolean>) => {
@@ -41,11 +41,11 @@ export const sidebarSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  closeModalSidebar,
   closePhysicalSidebar,
-  openModalSidebar,
   openPhysicalSidebar,
   setPhsyicalSidebarOpen,
+  closeDrawerSidebar,
+  openDrawerSidebar,
 } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

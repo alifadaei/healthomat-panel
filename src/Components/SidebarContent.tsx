@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../hooks/useSelector";
 import { bottom_icons, sidebarContentPatient } from "../utils/sidebar-content";
 import Profile from "./Layout/Profile";
-import { closeModalSidebar } from "./Layout/sidebarSlice";
+import { closeDrawerSidebar } from "./Layout/sidebarSlice";
 import Icon, { IconList } from "./UI/Icon/Icon";
 const SidebarContent = () => {
   const physicalSidebarOpen = useAppSelector(
@@ -15,7 +15,7 @@ const SidebarContent = () => {
         <Icon
           icon={IconList.Close}
           className="absolute top-0 end-2 cursor-pointer text-lg p-3"
-          onClick={() => dispatch(closeModalSidebar())}
+          onClick={() => dispatch(closeDrawerSidebar())}
         />
       )}
       <Profile />

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Transition } from "react-transition-group";
 import Tooltip from "../Tooltip/Tooltip";
 import ModalBackdrop from "./ModalBackdrop";
 import ModalOverlay from "./ModalOverlay";
@@ -28,20 +27,14 @@ const Modal = ({
   // console.log(children);
   return (
     <Tooltip selector="#overlays">
-      <Transition timeout={300} in={isOpen} mountOnEnter unmountOnExit>
-        {(state) => {
-          return (
-            <div
-              className={`fixed top-0 end-0 w-full h-full flex justify-center items-start z-20 overflow-auto px-2 pt-10`}
-            >
-              <ModalOverlay modalSize={modalSize} state={state}>
-                {children}
-              </ModalOverlay>
-              <ModalBackdrop state={state} onClose={onBackdropClick} />
-            </div>
-          );
-        }}
-      </Transition>
+      <div
+        className={`fixed top-0 end-0 w-full h-full flex justify-center items-start z-20 overflow-auto px-2 pt-10`}
+      >
+        <ModalOverlay modalSize={modalSize} state="Enter">
+          {children}
+        </ModalOverlay>
+        <ModalBackdrop state="Enter" onClose={onBackdropClick} />
+      </div>
     </Tooltip>
   );
 };

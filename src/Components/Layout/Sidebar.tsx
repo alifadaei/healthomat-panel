@@ -1,23 +1,23 @@
 import Card from "../UI/Card/Card";
-import Modal from "../UI/Modal/Modal";
 import { useDispatch } from "react-redux";
 import React from "react";
 import { useAppSelector } from "../../hooks/useSelector";
-import { closeModalSidebar } from "./sidebarSlice";
+import { closeDrawerSidebar } from "./sidebarSlice";
+import Drawer from "../UI/Drawer/Drawer";
 
 const Sidebar = ({ children }: { children: React.ReactElement }) => {
   const dispatch = useDispatch();
-  const { physicalSidebarOpen, modalSidebarOpen } = useAppSelector(
+  const { physicalSidebarOpen, drawerSidebarOpen } = useAppSelector(
     (state) => state.sidebar
   );
   if (!physicalSidebarOpen)
     return (
-      <Modal
-        isOpen={modalSidebarOpen}
-        onBackdropClick={() => dispatch(closeModalSidebar())}
+      <Drawer
+        isOpen={drawerSidebarOpen}
+        onBackdropClick={() => dispatch(closeDrawerSidebar())}
       >
         {children}
-      </Modal>
+      </Drawer>
     );
   else
     return (
