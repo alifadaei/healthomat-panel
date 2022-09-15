@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import useRTL from "../../../hooks/useRTL";
 
 const DrawerContent = ({
@@ -8,9 +9,16 @@ const DrawerContent = ({
   children: React.ReactElement;
 }) => {
   const isRTL = useRTL();
+  const ref = useRef<HTMLDivElement>(null);
+  const [elemWidth, setWidth] = useState(250);
+  useEffect(() => {
+    if (ref.current) {
+      setWidth(ref.current.scrollWidth);
+    }
+  }, [ref.current]);
   const style = {
-    right: isRTL ? (state === "Enter" ? 0 : -250) : "",
-    left: !isRTL ? (state === "Enter" ? 0 : -250) : "",
+    right: isRTL ? (state === "Enter" ? 0 : -elemWidth) : "",
+    left: !isRTL ? (state === "Enter" ? 0 : -elemWidth) : "",
   };
 
   return (
