@@ -24,7 +24,7 @@ const Drawer = ({ children, isOpen, onBackdropClick }: DrawerProps) => {
   if (mount)
     return (
       <Tooltip selector="#overlays">
-        <div className={`absolute top-0 end-0 w-full h-full z-20`}>
+        <div className={`absolute top-0 start-0 w-full h-full z-20`}>
           <DrawerContent state={state}>{children}</DrawerContent>
           <ModalBackdrop state={state} onClose={onBackdropClick} />
         </div>
