@@ -1,0 +1,99 @@
+/*============= Bounce key frames ============= */
+
+@keyframes enterBounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  80% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes exitBounce {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+/*============= Bounce animations ============= */
+.enterBounce {
+  animation-duration: 500ms;
+  animation-name: enterBounce;
+  animation-iteration-count: forward;
+}
+
+.exitBounce {
+  animation-duration: 500ms;
+  animation-name: exitBounce;
+  animation-iteration-count: forward;
+}
+
+/*============= Ripple animations ============= */
+
+.ripple-button {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.ripple-button > .ripple {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  display: block;
+  content: "";
+  border-radius: 9999px;
+  opacity: 1;
+  animation: 0.9s ease 1 forwards ripple-effect;
+}
+/*============= Bounce key frames ============= */
+@keyframes ripple-effect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(10);
+    opacity: 0.375;
+  }
+  100% {
+    transform: scale(35);
+    opacity: 0;
+  }
+}
+
+.ripple-button > .content {
+  position: relative;
+  z-index: 2;
+}
+
+/* =============== logo bounce =========== */
+@keyframes logo-bounce {
+  0% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+}
+
+.logoBounce {
+  animation-duration: 2000ms;
+  animation-name: logo-bounce;
+  animation-iteration-count: infinite;
+}
