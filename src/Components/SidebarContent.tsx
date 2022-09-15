@@ -9,7 +9,7 @@ const SidebarContent = () => {
   const physicalSidebarOpen = useAppSelector(
     (state) => state.sidebar.physicalSidebarOpen
   );
-  const { t, i18n } = useTranslation("sidebar");
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   return (
     <div className=" text-gray-800 relative">
