@@ -14,11 +14,11 @@ const LanguageSelect = () => {
     updatePageDirection();
   };
   return (
-    <div className="border-s ps-4 me-4 cursor-pointer">
+    <div className="border-x px-2 me-2 cursor-pointer flex items-center">
       <div onClick={handleClick} className="flex items-center">
         <span className="text-gray-500">{lng}</span>
         <img
-          className="rounded w-7 h-5 ms-3"
+          className="rounded w-7 h-5 ms-2 me-1"
           src={languages.find((item) => item.name === lng)!.icon}
           alt={lng}
         />
