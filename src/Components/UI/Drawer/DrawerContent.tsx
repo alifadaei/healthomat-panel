@@ -9,8 +9,8 @@ const DrawerContent = ({
 }) => {
   const isRTL = useRTL();
   const style = {
-    right: isRTL ? (state === "Enter" ? 0 : -200) : "",
-    left: !isRTL ? (state === "Enter" ? 0 : -200) : "",
+    right: isRTL ? (state === "Enter" ? 0 : -250) : "",
+    left: !isRTL ? (state === "Enter" ? 0 : -250) : "",
   };
 
   return (

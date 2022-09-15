@@ -14,8 +14,8 @@ const LanguageSelect = () => {
     updatePageDirection();
   };
   return (
-    <div className="border-x px-2 me-2 cursor-pointer flex items-center">
-      <div onClick={handleClick} className="flex items-center">
+    <div className=" me-2 cursor-pointer flex items-center">
+      <div onClick={handleClick} className="flex items-center border-x px-2">
         <span className="text-gray-500">{lng}</span>
         <img
           className="rounded w-7 h-5 ms-2 me-1"
@@ -23,8 +23,8 @@ const LanguageSelect = () => {
           alt={lng}
         />
       </div>
-      <div className="relative mt-1">
-        <Dropdown positionRem={isRTL ? -2 : 0} show={dropdownOpen}>
+      <div className="relative mt-8">
+        <Dropdown positionRem={isRTL ? -5 : 0} show={dropdownOpen}>
           <div className="w-[6rem]">
             {languages.map((item, key) => (
               <div
