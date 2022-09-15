@@ -8,9 +8,8 @@ i18n
   .use(LanguageDetector)
   .use(Backend)
   .init({
-    debug: true,
+    fallbackLng: "en",
     ns: ["sidebar"],
-    lng: "en",
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
