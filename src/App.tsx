@@ -10,10 +10,13 @@ import {
 import SidebarContent from "./Components/SidebarContent";
 import Card from "./Components/UI/Card/Card";
 import Wrapper from "./Components/UI/Wrapper/Wrapper";
+import { updatePageDirection } from "./functions/language";
+import "./i18next";
 
 function App() {
   useEffect(() => {
     dispatch(setPhsyicalSidebarOpen(setPhycicalSidebarStat()));
+    updatePageDirection();
   }, []);
 
   const dispatch = useDispatch();

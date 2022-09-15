@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../hooks/useSelector";
 import { bottom_icons, sidebarContentPatient } from "../utils/sidebar-content";
@@ -8,6 +9,7 @@ const SidebarContent = () => {
   const physicalSidebarOpen = useAppSelector(
     (state) => state.sidebar.physicalSidebarOpen
   );
+  const { t, i18n } = useTranslation("sidebar");
   const dispatch = useDispatch();
   return (
     <div className=" text-gray-800 relative">
@@ -20,17 +22,20 @@ const SidebarContent = () => {
       )}
       <Profile />
       <hr />
-      {sidebarContentPatient.map((item) => (
-        <div className="flex items-center py-[.9rem] ps-1 sm:ps-7  hover:bg-gray-100 cursor-pointer">
+      {sidebarContentPatient.map((item, key) => (
+        <div
+          key={key}
+          className="flex items-center py-[.9rem] ps-1 sm:ps-7  hover:bg-gray-100 cursor-pointer"
+        >
           <Icon icon={item.icon} className="text-2xl" />
-          <span className="ms-2 sm:ms-4 text-sm">{item.name}</span>
+          <span className="ms-2 sm:ms-4 text-sm">{t(item.name)}</span>
         </div>
       ))}
       <hr />
       <div className="flex mx-auto justify-center gap-x-4 text-lg my-4">
-        {bottom_icons.map((item, i) => (
+        {bottom_icons.map((item, key) => (
           <Icon
-            key={i}
+            key={key}
             icon={item.icon}
             className="hover:border-gray-100 border-2 border-white p-2 transition cursor-pointer"
           />
