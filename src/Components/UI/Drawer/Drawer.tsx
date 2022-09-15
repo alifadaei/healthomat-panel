@@ -10,27 +10,34 @@ import DrawerContent from "./DrawerContent";
  */
 
 type DrawerProps = {
+  targetSelector: string;
   children: JSX.Element;
   isOpen: boolean;
   onBackdropClick: () => void;
 };
-const Drawer = ({ children, isOpen, onBackdropClick }: DrawerProps) => {
+const Drawer = ({
+  targetSelector,
+  children,
+  isOpen,
+  onBackdropClick,
+}: DrawerProps) => {
   useEffect(() => {
     if (isOpen) document.body.classList.add("overflow-hidden");
     else document.body.classList.remove("overflow-hidden");
   }, [isOpen]);
-  const { state, mount } = useTransition(400, isOpen);
-  // console.log(children);
-  if (mount)
-    return (
-      <Tooltip selector="#overlays">
-        <div className={`absolute top-0 start-0 w-full h-full z-20`}>
-          <DrawerContent state={state}>{children}</DrawerContent>
-          <ModalBackdrop state={state} onClose={onBackdropClick} />
-        </div>
-      </Tooltip>
-    );
-  else return null;
+  const { state } = useTransition(400, isOpen);
+  return (
+    <Tooltip selector={targetSelector}>
+      <div
+        className={`absolute top-0 start-0 w-full h-full ${
+          isOpen ? "z-20" : ""
+        }`}
+      >
+        <DrawerContent state={state}>{children}</DrawerContent>
+        {isOpen && <ModalBackdrop state={state} onClose={onBackdropClick} />}
+      </div>
+    </Tooltip>
+  );
 };
 
 export default Drawer;
