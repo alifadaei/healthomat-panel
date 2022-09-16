@@ -13,7 +13,6 @@ const Sidebar = ({ children }: { children: React.ReactElement }) => {
   if (!physicalSidebarOpen)
     return (
       <Drawer
-        targetSelector="#sidebar"
         isOpen={drawerSidebarOpen}
         onBackdropClick={() => dispatch(closeDrawerSidebar())}
       >
