@@ -13,6 +13,7 @@ import Preloader from "./Components/UI/Preloader/Preloader";
 import Wrapper from "./Components/UI/Wrapper/Wrapper";
 import { updatePageDirection } from "./functions/language";
 import "./i18next";
+import { languages } from "./utils/languages";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -20,6 +21,10 @@ function App() {
     dispatch(setPhsyicalSidebarOpen(setPhycicalSidebarStat()));
     updatePageDirection();
     setLoaded(true);
+    const savedLng = localStorage.getItem("i18nextLng");
+    if (!languages.find((item) => item.name === savedLng)) {
+      localStorage.setItem("i18nextLng", "en");
+    }
   }, []);
 
   const dispatch = useDispatch();

@@ -9,7 +9,8 @@ i18n
   .use(Backend)
   .init({
     fallbackLng: "en",
-    ns: ["sidebar"],
+    debug: true,
+    ns: ["sidebar", "footer"],
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
