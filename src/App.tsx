@@ -21,12 +21,12 @@ function App() {
     dispatch(setPhsyicalSidebarOpen(setPhycicalSidebarStat()));
     updatePageDirection();
     setLoaded(true);
-    const savedLng = localStorage.getItem("i18nextLng");
-    if (!languages.find((item) => item.name === savedLng)) {
-      localStorage.setItem("i18nextLng", "en");
-    }
   }, []);
 
+  const savedLng = localStorage.getItem("i18nextLng");
+  if (!languages.find((item) => item.name === savedLng)) {
+    localStorage.setItem("i18nextLng", "en");
+  }
   const dispatch = useDispatch();
 
   return (
