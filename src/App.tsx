@@ -16,11 +16,9 @@ import "./i18next";
 import { languages } from "./utils/languages";
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     dispatch(setPhsyicalSidebarOpen(setPhycicalSidebarStat()));
     updatePageDirection();
-    setLoaded(true);
   }, []);
 
   const savedLng = localStorage.getItem("i18nextLng");
@@ -31,21 +29,16 @@ function App() {
 
   return (
     <>
-      {loaded && (
-        <>
-          <Header />
-          <Wrapper className="mt-[5rem] mx-auto relative flex px-3 mb-4">
-            <Sidebar>
-              <SidebarContent />
-            </Sidebar>
-            <Card className="bg-white ms-3 border w-full p-4">
-              <p></p>
-            </Card>
-          </Wrapper>
-          <Footer />
-        </>
-      )}
-      <Preloader isOpen={!loaded} />
+      <Header />
+      <Wrapper className="mt-[5rem] mx-auto relative flex px-3 mb-4">
+        <Sidebar>
+          <SidebarContent />
+        </Sidebar>
+        <Card className="bg-white ms-3 border w-full p-4">
+          <p></p>
+        </Card>
+      </Wrapper>
+      <Footer />
     </>
   );
 }

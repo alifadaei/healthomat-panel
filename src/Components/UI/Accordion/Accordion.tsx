@@ -24,6 +24,7 @@ const Accordion = ({
   const [openAccordion, setOpenAccordion] = useState(
     typeof defaultOpen !== "undefined" ? defaultOpen : false
   );
+
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
   useEffect(() => {

@@ -17,29 +17,28 @@ const Header = () => {
   return (
     <header className="z-10 fixed top-0 w-full bg-white border-b border-b-gray-100">
       <Wrapper className="mx-auto px-6 py-1 flex justify-between items-center flex-row">
-        <Link
-          to={"/"}
-          className="flex flex-row gap-x-2 justify-center items-center text-primary "
-        >
-          <img src={Logo} className=" w-7 sm:w-10" />
-          <h1 className="font-cookie text-[1.8rem] sm:text-[2.5rem] ">
-            Healthomat
-          </h1>
-        </Link>
-
-        <div className="flex items-center">
-          <LanguageSelect />
+        <div className="flex items-center justify-between">
           {!isAuth ? (
-            <Button className="p-2 px-5">ورود</Button>
+            <Button className="p-2 px-5 me-2">ورود</Button>
           ) : (
             <Button
-              className="px-4 py-2 ms-3 text-lg cursor-pointer"
+              className="px-4 py-2 me-5 text-lg cursor-pointer"
               onClick={() => dispatch(openDrawerSidebar())}
             >
               <Icon icon={IconList.Hamburger} />
             </Button>
           )}
+          <Link
+            to={"/"}
+            className="flex flex-row gap-x-2 justify-center items-center text-primary "
+          >
+            <img src={Logo} className=" w-7 sm:w-10" />
+            <h1 className="font-cookie text-[1.8rem] sm:text-[2.5rem] ">
+              Healthomat
+            </h1>
+          </Link>
         </div>
+        <LanguageSelect />
       </Wrapper>
     </header>
   );

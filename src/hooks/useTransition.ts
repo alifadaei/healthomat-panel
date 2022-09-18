@@ -3,15 +3,21 @@ export type TransitionState = "Enter" | "Exit";
 const useTransition = (duration: number, open: boolean) => {
   const [state, setState] = useState<TransitionState>("Exit");
   const [mount, setMount] = useState(false);
+  const [enterTimeout, setEnterTO] = useState<ReturnType<typeof setTimeout>>();
+  const [exitTimeout, setExitTO] = useState<ReturnType<typeof setTimeout>>();
   useEffect(() => {
     if (open) {
       setMount(true);
-      setTimeout(() => setState("Enter"), 50);
+      if (enterTimeout) clearTimeout(enterTimeout);
+      setEnterTO(setTimeout(() => setState("Enter"), 50));
     } else {
       setState("Exit");
-      setTimeout(() => {
-        setMount(false);
-      }, duration);
+      if (exitTimeout) clearTimeout(exitTimeout);
+      setExitTO(
+        setTimeout(() => {
+          setMount(false);
+        }, duration)
+      );
     }
   }, [open]);
 

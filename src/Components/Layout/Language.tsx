@@ -14,7 +14,7 @@ const LanguageSelect = () => {
     updatePageDirection();
   };
   return (
-    <div className=" me-2 cursor-pointer flex items-center">
+    <div className="cursor-pointer flex items-center">
       <div onClick={handleClick} className="flex items-center border-x px-2">
         <span className="text-gray-500">{lng}</span>
         <img
