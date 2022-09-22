@@ -10,13 +10,10 @@ import LanguageSelect from "./Language";
 
 const Header = () => {
   const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
-  const isMobile = !useAppSelector(
-    (state) => state.sidebar.physicalSidebarOpen
-  );
   const dispatch = useDispatch();
   return (
     <header className="z-10 fixed top-0 w-full bg-white border-b border-b-gray-100">
-      <Wrapper className="mx-auto px-6 py-1 flex justify-between items-center flex-row">
+      <Wrapper className="mx-auto px-6 py-1 flex justify-between items-center">
         <div className="flex items-center justify-between">
           {!isAuth ? (
             <Button className="p-2 px-5 me-2">ورود</Button>
@@ -32,7 +29,7 @@ const Header = () => {
             to={"/"}
             className="flex flex-row gap-x-2 justify-center items-center text-primary "
           >
-            <img src={Logo} className=" w-7 sm:w-10" />
+            <img src={Logo} className=" w-7 sm:w-10" alt="logo" />
             <h1 className="font-cookie text-[1.8rem] sm:text-[2.5rem] ">
               Healthomat
             </h1>
