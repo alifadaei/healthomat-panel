@@ -5,7 +5,7 @@ import { profile_content } from "../../utils/profile-dropdown";
 import Dropdown from "../UI/Dropdown/Dropdown";
 import Icon from "../UI/Icon/Icon";
 const Profile = () => {
-  const userName = useAppSelector((state) => state.auth.name);
+  const { firstName, lastName } = useAppSelector((state) => state.auth);
 
   return (
     <div className="flex flex-col items-center py-3">
@@ -16,7 +16,7 @@ const Profile = () => {
       />
       <div className="relative text-xs">
         <div className="text-center">
-          <div className="my-2 font-bold">{userName}</div>
+          <div className="my-2 font-bold">{firstName + " " + lastName}</div>
           <div className="w-[6rem]"></div>
         </div>
       </div>

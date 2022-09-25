@@ -1,0 +1,21 @@
+{
+  "header": {
+    "name": "Healthomat",
+    "enter": "Log in"
+  },
+  "footer": {
+    "right": "Healthomat® 2022 | All rights reserved "
+  },
+  "sidebar": {
+    "enter": "Enter",
+    "exit": "Exit",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "appointments": "My Appointments",
+    "babies": "My Babies",
+    "reminder": "Appointment Reminder",
+    "cities": "My Cities",
+    "lab_results": "Lab Results",
+    "health_calculator": "Health Calculator"
+  }
+}

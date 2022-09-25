@@ -1,0 +1,18 @@
+.font-nunito.font-nunito:dir(ltr) {
+  font-family: "Nunito Sans", sans-serif;
+}
+.font-openSans.font-openSans:dir(ltr) {
+  font-family: "Open Sans", sans-serif;
+}
+.font-dana.font-dana:dir(rtl) {
+  font-family: "dana";
+}
+.font-iransans.font-iransans:dir(rtl) {
+  font-family: "Iransans";
+}
+.font-playfair.font-playfair:dir(ltr) {
+  font-family: "Playfair Display", serif;
+}
+.font-cookie.font-cookie {
+  font-family: "Cookie", serif;
+}

@@ -9,13 +9,7 @@ module.exports = {
       xs: "425px",
       ...defaultTheme.screens,
     },
-    fontFamily: {
-      dana: "dana",
-      iransans: "Iransans",
-      helvetica: "Helvetica",
-      poppins: "Poppins",
-      cookie: "'Cookie', cursive",
-    },
+    fontFamily: {},
     extend: {
       colors: {
         back: "#f9f9f9",

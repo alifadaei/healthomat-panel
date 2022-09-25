@@ -1,17 +1,17 @@
 import { IconList } from "../Components/UI/Icon/Icon";
 export const sidebarContentPatient = [
-  { name: "dashboard", icon: IconList.Dashboard },
-  { name: "profile", icon: IconList.Person },
-  { name: "appointments", icon: IconList.Calendar },
-  { name: "babies", icon: IconList.Baby },
-  { name: "reminder", icon: IconList.Clock },
-  { name: "cities", icon: IconList.PinOutline },
-  { name: "lab_results", icon: IconList.ClipBoard },
-  { name: "health_calculator", icon: IconList.Heart },
+  { name: "sidebar.dashboard", icon: IconList.Dashboard },
+  { name: "sidebar.profile", icon: IconList.Person },
+  { name: "sidebar.appointments", icon: IconList.Calendar },
+  { name: "sidebar.babies", icon: IconList.Baby },
+  { name: "sidebar.reminder", icon: IconList.Clock },
+  { name: "sidebar.cities", icon: IconList.PinOutline },
+  { name: "sidebar.lab_results", icon: IconList.ClipBoard },
+  { name: "sidebar.health_calculator", icon: IconList.Heart },
 ];
 
 export const bottom_icons = [
-  { name: "exit", icon: IconList.Exit },
-  { name: "settings", icon: IconList.Settings },
-  { name: "profile", icon: IconList.Person },
+  { name: "sidebar.exit", icon: IconList.Exit },
+  { name: "sidebar.settings", icon: IconList.Settings },
+  { name: "sidebar.profile", icon: IconList.Person },
 ];

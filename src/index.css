@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 @import "./styles/animations.css";
+@import "./styles/fonts.css";
 /*============= font define ============= */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap");
+
 @font-face {
   font-family: "Cookie";
   src: url("./assets/fonts/Cookie/Cookie-Regular.woff2") format("woff2"),
@@ -124,7 +125,7 @@ a {
 
 @layer components {
   body {
-    @apply bg-back font-iransans font-light;
+    @apply bg-back;
   }
   main {
     min-height: 80vh;
@@ -133,6 +134,12 @@ a {
   a,
   button {
     cursor: pointer;
+  }
+  *:dir(rtl) {
+    font-family: Iransans, Tahoma;
+  }
+  *:dir(ltr) {
+    font-family: "Open Sans", sans-serif;
   }
 }
 

@@ -1,0 +1,107 @@
+Date : 2022-09-25 11:07:46
+Directory : c:\Users\afada\Desktop\healthomat-panel\src
+Total : 48 files,  9430 codes, 37 comments, 169 blanks, all 9636 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| XML              |          3 |      7,911 |          0 |          1 |      7,912 |
+| TypeScript React |         29 |      1,090 |         14 |        101 |      1,205 |
+| PostCSS          |          2 |        244 |         18 |         33 |        295 |
+| TypeScript       |         14 |        185 |          5 |         34 |        224 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                         | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                            |         48 |      9,430 |         37 |        169 |      9,636 |
+| Components                                                                                   |         29 |      1,097 |         16 |        107 |      1,220 |
+| Components\Auth                                                                              |          1 |         27 |          1 |          5 |         33 |
+| Components\Layout                                                                            |          6 |        198 |          1 |         20 |        219 |
+| Components\UI                                                                                |         21 |        825 |         14 |         81 |        920 |
+| Components\UI\Accordion                                                                      |          1 |         72 |          2 |          7 |         81 |
+| Components\UI\Animation                                                                      |          1 |         27 |          0 |          3 |         30 |
+| Components\UI\Button                                                                         |          1 |         62 |          0 |          6 |         68 |
+| Components\UI\Card                                                                           |          1 |         18 |          0 |          2 |         20 |
+| Components\UI\CheckBoxes                                                                     |          1 |         35 |          0 |          5 |         40 |
+| Components\UI\Drawer                                                                         |          2 |         65 |          5 |          6 |         76 |
+| Components\UI\Dropdown                                                                       |          1 |         21 |          0 |          1 |         22 |
+| Components\UI\FormElements                                                                   |          2 |         61 |          0 |          6 |         67 |
+| Components\UI\FormElements\CheckBox                                                          |          1 |         25 |          0 |          4 |         29 |
+| Components\UI\FormElements\Input                                                             |          1 |         36 |          0 |          2 |         38 |
+| Components\UI\Icon                                                                           |          1 |        136 |          0 |          9 |        145 |
+| Components\UI\Modal                                                                          |          3 |         95 |          5 |          8 |        108 |
+| Components\UI\OnOFF                                                                          |          1 |         30 |          0 |          4 |         34 |
+| Components\UI\Preloader                                                                      |          1 |         17 |          0 |          1 |         18 |
+| Components\UI\RatingStars                                                                    |          1 |         19 |          0 |          4 |         23 |
+| Components\UI\SearchOption                                                                   |          1 |        122 |          2 |          9 |        133 |
+| Components\UI\SocialIcons                                                                    |          1 |         23 |          0 |          3 |         26 |
+| Components\UI\Tooltip                                                                        |          1 |          9 |          0 |          4 |         13 |
+| Components\UI\Wrapper                                                                        |          1 |         13 |          0 |          3 |         16 |
+| assets                                                                                       |          3 |      7,911 |          0 |          1 |      7,912 |
+| assets\fonts                                                                                 |          1 |      7,909 |          0 |          1 |      7,910 |
+| assets\fonts\Helvetica                                                                       |          1 |      7,909 |          0 |          1 |      7,910 |
+| assets\img                                                                                   |          2 |          2 |          0 |          0 |          2 |
+| functions                                                                                    |          1 |          4 |          0 |          1 |          5 |
+| hooks                                                                                        |          4 |         55 |          0 |          7 |         62 |
+| store                                                                                        |          1 |         11 |          2 |          3 |         16 |
+| styles                                                                                       |          1 |         84 |          5 |         11 |        100 |
+| utils                                                                                        |          4 |         28 |          0 |          6 |         34 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                     | language         | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\Users\afada\Desktop\healthomat-panel\src\App.tsx                                          | TypeScript React |         41 |          0 |          5 |         46 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\Auth\authSlice.ts                     | TypeScript       |         27 |          1 |          5 |         33 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\Layout\Footer.tsx                     | TypeScript React |         15 |          0 |          3 |         18 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\Layout\Header.tsx                     | TypeScript React |         42 |          0 |          2 |         44 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\Layout\Language.tsx                   | TypeScript React |         45 |          0 |          1 |         46 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\Layout\Profile.tsx                    | TypeScript React |         25 |          0 |          3 |         28 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\Layout\Sidebar.tsx                    | TypeScript React |         28 |          0 |          3 |         31 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\Layout\sidebarSlice.ts                | TypeScript       |         43 |          1 |          8 |         52 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\SidebarContent.tsx                    | TypeScript React |         47 |          0 |          1 |         48 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Accordion\Accordion.tsx            | TypeScript React |         72 |          2 |          7 |         81 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Animation\FadeAnimation.tsx        | TypeScript React |         27 |          0 |          3 |         30 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Button\Button.tsx                  | TypeScript React |         62 |          0 |          6 |         68 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Card\Card.tsx                      | TypeScript React |         18 |          0 |          2 |         20 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\CheckBoxes\CheckBoxes.tsx          | TypeScript React |         35 |          0 |          5 |         40 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Drawer\Drawer.tsx                  | TypeScript React |         34 |          5 |          3 |         42 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Drawer\DrawerContent.tsx           | TypeScript React |         31 |          0 |          3 |         34 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Dropdown\Dropdown.tsx              | TypeScript React |         21 |          0 |          1 |         22 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\FormElements\CheckBox\CheckBox.tsx | TypeScript React |         25 |          0 |          4 |         29 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\FormElements\Input\Input.tsx       | TypeScript React |         36 |          0 |          2 |         38 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Icon\Icon.tsx                      | TypeScript React |        136 |          0 |          9 |        145 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Modal\Modal.tsx                    | TypeScript React |         44 |          5 |          3 |         52 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Modal\ModalBackdrop.tsx            | TypeScript React |         17 |          0 |          2 |         19 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Modal\ModalOverlay.tsx             | TypeScript React |         34 |          0 |          3 |         37 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\OnOFF\OnOFF.tsx                    | TypeScript React |         30 |          0 |          4 |         34 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Preloader\Preloader.tsx            | TypeScript React |         17 |          0 |          1 |         18 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\RatingStars\RatingStars.tsx        | TypeScript React |         19 |          0 |          4 |         23 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\SearchOption\SearchOption.tsx      | TypeScript React |        122 |          2 |          9 |        133 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\SocialIcons\SocialIcons.tsx        | TypeScript React |         23 |          0 |          3 |         26 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Tooltip\Tooltip.tsx                | TypeScript React |          9 |          0 |          4 |         13 |
+| c:\Users\afada\Desktop\healthomat-panel\src\Components\UI\Wrapper\Wrapper.tsx                | TypeScript React |         13 |          0 |          3 |         16 |
+| c:\Users\afada\Desktop\healthomat-panel\src\assets\fonts\Helvetica\Helvetica.svg             | XML              |      7,909 |          0 |          1 |      7,910 |
+| c:\Users\afada\Desktop\healthomat-panel\src\assets\img\doctor-default.svg                    | XML              |          1 |          0 |          0 |          1 |
+| c:\Users\afada\Desktop\healthomat-panel\src\assets\img\logo.svg                              | XML              |          1 |          0 |          0 |          1 |
+| c:\Users\afada\Desktop\healthomat-panel\src\functions\language.ts                            | TypeScript       |          4 |          0 |          1 |          5 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useDropdown.ts                             | TypeScript       |         16 |          0 |          2 |         18 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useRTL.ts                                  | TypeScript       |         11 |          0 |          2 |         13 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useSelector.ts                             | TypeScript       |          3 |          0 |          1 |          4 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useTransition.ts                           | TypeScript       |         25 |          0 |          2 |         27 |
+| c:\Users\afada\Desktop\healthomat-panel\src\i18next.ts                                       | TypeScript       |         17 |          0 |          3 |         20 |
+| c:\Users\afada\Desktop\healthomat-panel\src\index.css                                        | PostCSS          |        160 |         13 |         22 |        195 |
+| c:\Users\afada\Desktop\healthomat-panel\src\index.tsx                                        | TypeScript React |         22 |          0 |          2 |         24 |
+| c:\Users\afada\Desktop\healthomat-panel\src\react-app-env.d.ts                               | TypeScript       |          0 |          1 |          1 |          2 |
+| c:\Users\afada\Desktop\healthomat-panel\src\store\store.ts                                   | TypeScript       |         11 |          2 |          3 |         16 |
+| c:\Users\afada\Desktop\healthomat-panel\src\styles\animations.css                            | PostCSS          |         84 |          5 |         11 |        100 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\lab-tests.ts                               | TypeScript       |          1 |          0 |          1 |          2 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\languages.ts                               | TypeScript       |          6 |          0 |          2 |          8 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\profile-dropdown.ts                        | TypeScript       |          5 |          0 |          1 |          6 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\sidebar-content.ts                         | TypeScript       |         16 |          0 |          2 |         18 |
+| Total                                                                                        |                  |      9,430 |         37 |        169 |      9,636 |
++----------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

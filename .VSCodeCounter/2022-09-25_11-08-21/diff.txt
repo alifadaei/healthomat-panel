@@ -1,0 +1,56 @@
+Date : 2022-09-25 11:08:21
+Directory : c:\Users\afada\Desktop\healthomat-panel\src\Components
+Total : 19 files,  -8333 codes, -21 comments, -62 blanks, all -8416 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| TypeScript React |          2 |        -63 |          0 |         -7 |        -70 |
+| TypeScript       |         12 |       -115 |         -3 |        -21 |       -139 |
+| PostCSS          |          2 |       -244 |        -18 |        -33 |       -295 |
+| XML              |          3 |     -7,911 |          0 |         -1 |     -7,912 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                             | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                |         19 |     -8,333 |        -21 |        -62 |     -8,416 |
+| ..                                                                               |         19 |     -8,333 |        -21 |        -62 |     -8,416 |
+| ..\assets                                                                        |          3 |     -7,911 |          0 |         -1 |     -7,912 |
+| ..\assets\fonts                                                                  |          1 |     -7,909 |          0 |         -1 |     -7,910 |
+| ..\assets\fonts\Helvetica                                                        |          1 |     -7,909 |          0 |         -1 |     -7,910 |
+| ..\assets\img                                                                    |          2 |         -2 |          0 |          0 |         -2 |
+| ..\functions                                                                     |          1 |         -4 |          0 |         -1 |         -5 |
+| ..\hooks                                                                         |          4 |        -55 |          0 |         -7 |        -62 |
+| ..\store                                                                         |          1 |        -11 |         -2 |         -3 |        -16 |
+| ..\styles                                                                        |          1 |        -84 |         -5 |        -11 |       -100 |
+| ..\utils                                                                         |          4 |        -28 |          0 |         -6 |        -34 |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                         | language         | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\Users\afada\Desktop\healthomat-panel\src\App.tsx                              | TypeScript React |        -41 |          0 |         -5 |        -46 |
+| c:\Users\afada\Desktop\healthomat-panel\src\assets\fonts\Helvetica\Helvetica.svg | XML              |     -7,909 |          0 |         -1 |     -7,910 |
+| c:\Users\afada\Desktop\healthomat-panel\src\assets\img\doctor-default.svg        | XML              |         -1 |          0 |          0 |         -1 |
+| c:\Users\afada\Desktop\healthomat-panel\src\assets\img\logo.svg                  | XML              |         -1 |          0 |          0 |         -1 |
+| c:\Users\afada\Desktop\healthomat-panel\src\functions\language.ts                | TypeScript       |         -4 |          0 |         -1 |         -5 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useDropdown.ts                 | TypeScript       |        -16 |          0 |         -2 |        -18 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useRTL.ts                      | TypeScript       |        -11 |          0 |         -2 |        -13 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useSelector.ts                 | TypeScript       |         -3 |          0 |         -1 |         -4 |
+| c:\Users\afada\Desktop\healthomat-panel\src\hooks\useTransition.ts               | TypeScript       |        -25 |          0 |         -2 |        -27 |
+| c:\Users\afada\Desktop\healthomat-panel\src\i18next.ts                           | TypeScript       |        -17 |          0 |         -3 |        -20 |
+| c:\Users\afada\Desktop\healthomat-panel\src\index.css                            | PostCSS          |       -160 |        -13 |        -22 |       -195 |
+| c:\Users\afada\Desktop\healthomat-panel\src\index.tsx                            | TypeScript React |        -22 |          0 |         -2 |        -24 |
+| c:\Users\afada\Desktop\healthomat-panel\src\react-app-env.d.ts                   | TypeScript       |          0 |         -1 |         -1 |         -2 |
+| c:\Users\afada\Desktop\healthomat-panel\src\store\store.ts                       | TypeScript       |        -11 |         -2 |         -3 |        -16 |
+| c:\Users\afada\Desktop\healthomat-panel\src\styles\animations.css                | PostCSS          |        -84 |         -5 |        -11 |       -100 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\lab-tests.ts                   | TypeScript       |         -1 |          0 |         -1 |         -2 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\languages.ts                   | TypeScript       |         -6 |          0 |         -2 |         -8 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\profile-dropdown.ts            | TypeScript       |         -5 |          0 |         -1 |         -6 |
+| c:\Users\afada\Desktop\healthomat-panel\src\utils\sidebar-content.ts             | TypeScript       |        -16 |          0 |         -2 |        -18 |
+| Total                                                                            |                  |     -8,333 |        -21 |        -62 |     -8,416 |
++----------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
