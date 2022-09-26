@@ -11,7 +11,7 @@ const Dropdown = ({
     return (
       <div
         style={{ right: `${positionRem}rem` }}
-        className="z-50 absolute top-0  bg-white rounded-lg border"
+        className="z-50 absolute top-0  bg-white rounded-lg border overflow-hidden"
       >
         {children}
       </div>

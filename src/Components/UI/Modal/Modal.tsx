@@ -27,7 +27,7 @@ const Modal = ({
     if (isOpen) document.body.classList.add("overflow-hidden");
     else document.body.classList.remove("overflow-hidden");
   }, [isOpen]);
-  const { mount } = useTransition(300, isOpen);
+  const { mount, state } = useTransition(300, isOpen);
   if (mount)
     return (
       <Tooltip selector="#overlays">
@@ -36,10 +36,10 @@ const Modal = ({
             raw ? "items-center" : "items-start"
           } z-20 overflow-auto px-2 pt-10`}
         >
-          <ModalOverlay raw={raw} modalSize={modalSize} state="Enter">
+          <ModalOverlay raw={raw} modalSize={modalSize} state={state}>
             {children}
           </ModalOverlay>
-          <ModalBackdrop state="Enter" onClose={onBackdropClick} />
+          <ModalBackdrop state={state} onClose={onBackdropClick} />
         </div>
       </Tooltip>
     );

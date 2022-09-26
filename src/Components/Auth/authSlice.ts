@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { API_ROUTES } from "../../utils/API_Routes";
+
+export type AuthState = "YES" | "NO" | "?";
+export type UserRole = "Patient" | "Doctor" | "ADMIN";
 export interface AuthType {
-  isAuthenticated: boolean;
+  role: UserRole;
+  isAuthenticated: AuthState;
   firstName: string;
   lastName: string;
   email: string;
@@ -11,7 +16,8 @@ export interface AuthType {
 }
 
 const initialState: AuthType = {
-  isAuthenticated: false,
+  isAuthenticated: "?",
+  role: "Patient",
   username: "",
   firstName: "",
   lastName: "",
@@ -24,10 +30,11 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (
+    setUserInfo: (
       state,
       action: PayloadAction<{
         firstName: string;
+        role: UserRole;
         lastName: string;
         username: string;
         email: string;
@@ -35,7 +42,7 @@ export const authSlice = createSlice({
         id: string;
       }>
     ) => {
-      const { firstName, lastName, username, email, phone, id } =
+      const { firstName, lastName, username, email, phone, id, role } =
         action.payload;
       state.email = email;
       state.firstName = firstName;
@@ -43,17 +50,21 @@ export const authSlice = createSlice({
       state.username = username;
       state.phone = phone;
       state.id = id;
-      state.isAuthenticated = true;
+      state.role = role;
     },
     logout: (state) => {
-      state.isAuthenticated = false;
+      state.isAuthenticated = "NO";
       localStorage.removeItem("token");
       localStorage.removeItem("id");
+      window.location.replace(API_ROUTES.Pull_Token);
+    },
+    login: (state) => {
+      state.isAuthenticated = "YES";
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login, logout } = authSlice.actions;
+export const { logout, setUserInfo, login } = authSlice.actions;
 
 export default authSlice.reducer;
