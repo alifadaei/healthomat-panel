@@ -3,7 +3,7 @@ import Button from "../UI/Button/Button";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import { useAppSelector } from "../../hooks/useSelector";
-import { openDrawerSidebar } from "./sidebarSlice";
+import { openDrawerSidebar } from "./Sidebar/sidebarSlice";
 import { useDispatch } from "react-redux";
 import Icon, { IconList } from "../UI/Icon/Icon";
 import LanguageSelect from "./Language";
@@ -33,10 +33,10 @@ const Header = () => {
         >
           <img src={Logo} className=" w-7 sm:w-10" alt="logo" />
           <h1
-            className={`sm:ps-2 ${
+            className={` ${
               lng === "fa"
-                ? "font-dana font-bold text-[.9rem] xs:text-[1.3rem] "
-                : "font-cookie text-[1.6rem] sm:text-[2rem] font-medium"
+                ? "font-dana font-bold text-[.8rem] xs:text-[1.3rem] "
+                : "font-cookie text-[1.5rem] 2xs:text-[2rem] sm:text-[2.6rem] leading-5 font-medium"
             } `}
           >
             {t("header.name")}

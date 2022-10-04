@@ -5,7 +5,7 @@ const Footer = () => {
   const { t } = useTranslation("common");
   return (
     <footer className="bg-white">
-      <Wrapper className="mx-auto flex justify-center items-center font-poppins py-3">
+      <Wrapper className="mx-auto flex justify-center items-center font-poppins py-3 px-3">
         <p className="font-dana text-sm text-bold text-gray-500">
           {t("footer.right")}
         </p>

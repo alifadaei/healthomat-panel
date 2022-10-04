@@ -1,7 +1,6 @@
-import { setUserInfo, logout, UserRole, login } from "./authSlice";
+import { setUserInfo, UserRole, login } from "./authSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../hooks/useSelector";
 import { API_ROUTES } from "../../utils/API_Routes";
 
 type ResType = {
@@ -17,7 +16,6 @@ type ResType = {
 };
 
 const GetUser = () => {
-  const auth = useAppSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -34,27 +32,30 @@ const GetUser = () => {
       fetch(API_ROUTES.API.GetCurrentUser, {
         headers: { Authorization: "Bearer " + localToken },
       })
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.ok) return res.json();
+          else throw Error("Problem!");
+        })
         .then((res: ResType) => {
-          if (res.succeeded) {
-            const authPayload = {
-              role: res.data.group,
-              email: "",
-              firstName: res.data.firstName,
-              lastName: res.data.lastName,
-              id: res.data.objectId,
-              username: res.data.username,
-              phone: "",
-            };
-            dispatch(setUserInfo(authPayload));
-            dispatch(login());
-          } else {
-            window.location.replace(API_ROUTES.Pull_Token);
-            dispatch(logout());
-          }
+          const authPayload = {
+            role: res.data.group,
+            email: "",
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            id: res.data.objectId,
+            username: res.data.username,
+            phone: "",
+          };
+          dispatch(setUserInfo(authPayload));
+          dispatch(login());
+        })
+        .catch((e) => {
+          console.log(e);
         });
-    } else dispatch(logout());
-  }, [auth]);
+    } else {
+      window.location.replace(API_ROUTES.Pull_Token);
+    }
+  }, []);
   return null;
 };
 export default GetUser;

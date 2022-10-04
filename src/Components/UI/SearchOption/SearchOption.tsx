@@ -69,9 +69,6 @@ const SearchOption = ({
         ref={inputRef}
         className="py-2 border rounded-xl ps-2 my-2"
         type="text"
-        id={`${name}id`}
-        name={name}
-        hideLabel
         placeholder={`جستجوی ${name}`}
       />
 

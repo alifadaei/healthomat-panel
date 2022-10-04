@@ -15,7 +15,10 @@ const LanguageSelect = () => {
   };
   return (
     <div className="cursor-pointer flex items-center">
-      <div onClick={handleClick} className="flex items-center border-x px-2">
+      <div
+        onClick={handleClick}
+        className="flex items-center border-s xs:border-x ps-2 xs:px-2"
+      >
         <span className="text-gray-500">{lng}</span>
         <img
           className="rounded w-7 h-5 ms-2 me-1"

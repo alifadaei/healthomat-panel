@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+import Heading from "../UI/Heading/Heading";
+
 const Appointments = () => {
-  return <p>appointment</p>;
+  const { t } = useTranslation("appointments");
+  return <Heading str={t("appointments")} />;
 };
 
 export default Appointments;

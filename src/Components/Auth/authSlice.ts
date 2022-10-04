@@ -16,14 +16,14 @@ export interface AuthType {
 }
 
 const initialState: AuthType = {
-  isAuthenticated: "?",
+  isAuthenticated: "YES",
   role: "Patient",
-  username: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  id: "",
+  username: "alifadaei",
+  firstName: "ali",
+  lastName: "fadaei",
+  email: "d",
+  phone: "a",
+  id: "ds",
 };
 
 export const authSlice = createSlice({
@@ -56,7 +56,7 @@ export const authSlice = createSlice({
       state.isAuthenticated = "NO";
       localStorage.removeItem("token");
       localStorage.removeItem("id");
-      window.location.replace(API_ROUTES.Pull_Token);
+      window.location.replace(API_ROUTES.Logout);
     },
     login: (state) => {
       state.isAuthenticated = "YES";

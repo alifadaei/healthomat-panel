@@ -12,10 +12,20 @@
     "dashboard": "Dashboard",
     "profile": "Profile",
     "appointments": "My Appointments",
-    "babies": "My Babies",
+    "babies": {
+      "babies": "My Babies",
+      "report": "Report",
+      "new_baby": "New Baby"
+    },
     "reminder": "Appointment Reminder",
     "cities": "My Cities",
     "lab_results": "Lab Results",
     "health_calculator": "Health Calculator"
+  },
+  "validators": {
+    "email": "please enter a valid email",
+    "pass": "password must have 6 characters and one uppercase and lowercase character",
+    "not_empty": "field must not be empty",
+    "date": "the format must be like YYYY/MM/DD"
   }
 }

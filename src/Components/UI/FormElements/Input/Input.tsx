@@ -1,35 +1,54 @@
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, KeyboardEvent } from "react";
 type InputProps = {
-  id: string;
-  name: string;
   type: string;
   className: string;
-  hideLabel?: boolean;
+  containerClasses?: string;
   placeholder?: string;
+  label?: string;
   onChange?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  onKeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  state?: "OK" | "NOT_VALIDATED" | "ERROR";
+  error?: string;
 };
 export type Ref = HTMLInputElement;
 const Input = forwardRef<Ref, InputProps>((props, ref) => {
-  const { id, name, type, className, hideLabel, placeholder, onChange } = props;
+  const {
+    error,
+    state,
+    onKeydown,
+    type,
+    label,
+    className,
+    placeholder,
+    onChange,
+    containerClasses,
+    onBlur,
+    onFocus,
+  } = props;
   return (
-    <div className="flex flex-col mx-0">
-      {!hideLabel && (
-        <label className="text-md" htmlFor={id}>
-          {name}
-        </label>
-      )}
+    <div className={`flex flex-col mx-0 mb-3 ${containerClasses}`}>
+      {label && <label className="text-xs text-gray-600">{label}</label>}
 
       <input
+        onKeyDown={onKeydown}
+        onBlur={onBlur}
+        onFocus={onFocus}
         onChange={onChange}
         ref={ref}
         placeholder={`${placeholder ? placeholder : ""}`}
-        id={id}
         type={type}
-        className={`border-b border-[rgb(114, 114, 114)] 
-        ps-4 transition
-        focus-visible:outline-none focus-visible:border-accent
+        className={`border ${
+          state === "ERROR" ? "border-red-500  " : "border-gray-200"
+        }
+        ps-4 transition outline-none 
+         focus-visible:border-primary
         ${className}`}
       />
+      {state === "ERROR" && (
+        <span className="text-xs pt-1 text-red-500">{error}</span>
+      )}
     </div>
   );
 });

@@ -4,7 +4,7 @@ import Icon, { IconList } from "../Icon/Icon";
 
 interface AccordionProps {
   children: React.ReactNode;
-  titleName: string;
+  titleName: string | React.ReactElement;
   className?: string;
   titleLabelClasses?: string;
   defaultOpen?: boolean;
@@ -39,7 +39,7 @@ const Accordion = ({
     <div className={`${className} w-full`}>
       {/* ============ accordion top title and chevron icon ============= */}
       <div
-        className="flex justify-between py-1 cursor-pointer items-center select-none"
+        className="flex justify-between py-1 cursor-pointer items-center select-none hover:bg-gray-100"
         onClick={handleToggleAccordion}
       >
         <div className={`font-dana ${titleLabelClasses}`}>{titleName}</div>
@@ -54,7 +54,7 @@ const Accordion = ({
             <span className="text-xs text-gray-600 ms-1">{showNumber}</span>
           )}
           <Icon
-            className={`text-accent ${
+            className={`text-primary-500 me-3 ${
               showNumber ? "text-xs" : "text-lg"
             }  transition-all duration-300 ease-in-out ${
               openAccordion ? "rotate-180" : ""

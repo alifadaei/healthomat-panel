@@ -14,12 +14,16 @@ import {
 } from "react-icons/bs";
 
 import {
+  IoCloudOutline,
   IoLocationSharp,
   IoClose,
   IoChevronDown,
+  IoChevronBackOutline,
+  IoChevronForwardOutline,
   IoFilterOutline,
   IoExitOutline,
   IoSettingsOutline,
+  IoCloud,
 } from "react-icons/io5";
 import { TiLocationOutline } from "react-icons/ti";
 import { FaBaby } from "react-icons/fa";
@@ -32,6 +36,10 @@ import { MdOutlineDashboard } from "react-icons/md";
 
 import { HiOutlineMenu } from "react-icons/hi";
 export enum IconList {
+  CloudFilled,
+  Cloud,
+  ChevronLeft,
+  ChevronRight,
   Settings,
   Exit,
   Calendar,
@@ -73,6 +81,14 @@ const Icon = (props: IconProps): React.ReactElement => {
   const { icon, className, style, onClick } = props;
   const renderIcon = () => {
     switch (icon) {
+      case IconList.Cloud:
+        return <IoCloudOutline />;
+      case IconList.CloudFilled:
+        return <IoCloud />;
+      case IconList.ChevronLeft:
+        return <IoChevronBackOutline />;
+      case IconList.ChevronRight:
+        return <IoChevronForwardOutline />;
       case IconList.Settings:
         return <IoSettingsOutline />;
       case IconList.Exit:

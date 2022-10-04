@@ -9,7 +9,6 @@ module.exports = {
       xs: "425px",
       ...defaultTheme.screens,
     },
-    fontFamily: {},
     extend: {
       colors: {
         back: "#f9f9f9",

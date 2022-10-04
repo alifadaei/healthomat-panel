@@ -25,7 +25,9 @@ const Modal = ({
 }: ModalProps) => {
   useEffect(() => {
     if (isOpen) document.body.classList.add("overflow-hidden");
-    else document.body.classList.remove("overflow-hidden");
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
   }, [isOpen]);
   const { mount, state } = useTransition(300, isOpen);
   if (mount)

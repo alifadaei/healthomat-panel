@@ -4,7 +4,7 @@ import { logout } from "./authSlice";
 
 const Logout = () => {
   const dispatch = useDispatch();
-  dispatch(logout());
+  dispatch(logout()); 
   return null;
 };
 export default Logout;

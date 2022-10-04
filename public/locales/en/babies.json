@@ -1,4 +1,17 @@
 {
   "babies": "My Babies",
-  "new_baby": "New baby"
+  "new_baby": "New baby",
+  "baby_questions": {
+    "gender": "Is she a girl or boy?",
+    "name": "What's the name of your lovely child?",
+    "old": "How old is {{name}}?",
+    "weight": "How much does {{name}} weigh?",
+    "cut_off_milk": "When did you stop breastfeeding {{name}}?"
+  },
+  "gender": {
+    "boy": "Boy",
+    "girl": "Girl"
+  },
+  "next": "Next",
+  "finish": "Finish"
 }
