@@ -4,13 +4,18 @@
   "baby_questions": {
     "gender": "Is she a girl or boy?",
     "name": "What's the name of your lovely child?",
+    "weight": "How much did {{name}} weigh after born?",
+    "feed": "What did you feed {{name}} on her early 6 month?",
     "old": "How old is {{name}}?",
-    "weight": "How much does {{name}} weigh?",
     "cut_off_milk": "When did you stop breastfeeding {{name}}?"
   },
   "gender": {
     "boy": "Boy",
     "girl": "Girl"
+  },
+  "feed": {
+    "mother_milk": "Mother Milk",
+    "milk_powder": "Milk Powder"
   },
   "next": "Next",
   "finish": "Finish"

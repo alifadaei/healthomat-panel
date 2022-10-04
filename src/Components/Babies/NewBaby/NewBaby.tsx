@@ -50,6 +50,7 @@ const NewBaby = () => {
         </div>
         {
           <Question
+            multipleChoices={currentContext.multipleChoices || false}
             finish={step === NewBabyQuestions.length - 1}
             nextStep={handleDataInput}
             question={t(currentContext.question, { name })}

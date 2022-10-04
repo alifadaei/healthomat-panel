@@ -9,6 +9,7 @@ import useFormat from "../../../hooks/useFormat";
 export type QType = "RadioIcons" | "Text" | "Date" | "Number";
 type QuestionProps = {
   nextStep: (data: string) => void;
+  multipleChoices: boolean;
   type: QType;
   question: string;
   icons?: { name: string; src: string }[];
@@ -20,6 +21,7 @@ const Question = ({
   question,
   icons,
   finish,
+  multipleChoices,
 }: QuestionProps) => {
   const { error, fieldState, onBlur, ref } = useValidation(
     type === "Date" ? "DATE" : type === "Number" ? "NUMBER" : "NOT_EMPTY"
@@ -42,7 +44,9 @@ const Question = ({
       </span>
       {type === "RadioIcons" ? (
         <RadioIcons
+          multipleChoices={multipleChoices}
           onClickIcon={(text) => {
+            console.log(text);
             setData(text);
           }}
           icons={icons!}
