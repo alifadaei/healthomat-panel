@@ -99,6 +99,9 @@ const RTL = () => {
         }
 
         @layer utilities {
+          input {
+            unicode-bidi: isolate;
+          }
           body {
             font-family: Iransans;
           }

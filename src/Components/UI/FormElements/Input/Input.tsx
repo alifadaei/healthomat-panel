@@ -5,7 +5,7 @@ type InputProps = {
   containerClasses?: string;
   placeholder?: string;
   label?: string;
-  onChange?: () => void;
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
   onKeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;

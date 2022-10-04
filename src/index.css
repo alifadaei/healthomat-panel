@@ -21,7 +21,9 @@ a {
   main {
     min-height: 80vh;
   }
-
+  .ltr {
+    direction: ltr;
+  }
   a,
   button {
     cursor: pointer;

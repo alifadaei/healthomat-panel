@@ -9,15 +9,11 @@ import { NewBabyQuestions } from "../../../utils/Babies";
 const NewBaby = () => {
   const { t } = useTranslation("babies");
   const [step, setStep] = useState(0);
-  console.log(step);
   const [name, setName] = useState("");
   const [data, setData] = useState(Array(NewBabyQuestions.length).fill(""));
   const currentContext = NewBabyQuestions[step];
   const nextStep = () => {
     setStep(step < NewBabyQuestions.length - 1 ? step + 1 : step);
-    if (step === NewBabyQuestions.length - 1) {
-      console.log(data);
-    }
   };
   const prevStep = () => setStep(step > 0 ? step - 1 : step);
   const handleDataInput = (text: string) => {

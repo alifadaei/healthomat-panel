@@ -4,8 +4,9 @@ import useValidation from "../../../hooks/useValidation";
 import Button from "../../UI/Button/Button";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import useFormat from "../../../hooks/useFormat";
 
-export type QType = "RadioIcons" | "Text" | "Date";
+export type QType = "RadioIcons" | "Text" | "Date" | "Number";
 type QuestionProps = {
   nextStep: (data: string) => void;
   type: QType;
@@ -21,16 +22,16 @@ const Question = ({
   finish,
 }: QuestionProps) => {
   const { error, fieldState, onBlur, ref } = useValidation(
-    type === "Date" ? "DATE" : "NOT_EMPTY"
+    type === "Date" ? "DATE" : type === "Number" ? "NUMBER" : "NOT_EMPTY"
   );
   const [data, setData] = useState("");
   const { t } = useTranslation("babies");
-
+  const formatOnChange = useFormat();
   const handleNextButtonClick = () => {
-    if (type === "Text" && fieldState === "OK") {
+    if (type !== "RadioIcons" && fieldState === "OK") {
       ref.current!.value = "";
       nextStep(data);
-    } else if (type === "RadioIcons" && data) {
+    } else if (data) {
       nextStep(data);
     }
   };
@@ -48,10 +49,13 @@ const Question = ({
         />
       ) : (
         <Input
-          onChange={() => {
+          onChange={(e: React.FormEvent<HTMLInputElement>) => {
+            if (type === "Date") formatOnChange(e);
             setData(ref.current!.value);
           }}
-          className="rounded-md px-3 py-2 mx-auto max-w-[10rem]"
+          className={`rounded-md px-3 py-2 mx-auto max-w-[10rem] ${
+            type === "Date" ? "ltr text-center" : ""
+          }`}
           error={error}
           ref={ref}
           onBlur={onBlur}

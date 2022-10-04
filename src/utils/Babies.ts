@@ -23,11 +23,11 @@ export const NewBabyQuestions: NewbabyQuestionFormat[] = [
   },
   {
     question: "baby_questions.old",
-    type: "Text",
+    type: "Number",
   },
   {
     question: "baby_questions.weight",
-    type: "Text",
+    type: "Number",
   },
   {
     question: "baby_questions.cut_off_milk",

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useState, useRef } from "react";
 
 type FieldState = "OK" | "ERROR" | "NOT_VALIDATED";
-type FieldType = "EMAIL" | "NOT_EMPTY" | "PASS" | "NAME" | "DATE";
+type FieldType = "EMAIL" | "NOT_EMPTY" | "PASS" | "NAME" | "DATE" | "NUMBER";
 const Validators = {
   NOT_EMPTY: (s: string) => Boolean(s),
   EMAIL: (email: string) =>
@@ -16,6 +16,7 @@ const Validators = {
   PASS: (pass: string) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(pass),
   DATE: (date: string) =>
     /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(date),
+  NUMBER: (number: string) => /^\d*$/.test(number),
 };
 
 const useValidation = (validator: FieldType) => {
@@ -24,13 +25,10 @@ const useValidation = (validator: FieldType) => {
   const error = t(`validators.${validator.toLowerCase()}`);
   const [fieldState, setState] = useState<FieldState>("NOT_VALIDATED");
   const ref = useRef<HTMLInputElement>(null);
-  const clearValidation = () => {
-    setState("NOT_VALIDATED");
-  };
   const onBlur = () => {
     if (validatorFunction(ref.current!.value)) setState("OK");
     else setState("ERROR");
   };
-  return { onBlur, fieldState, ref, error, clearValidation };
+  return { onBlur, fieldState, ref, error };
 };
 export default useValidation;
