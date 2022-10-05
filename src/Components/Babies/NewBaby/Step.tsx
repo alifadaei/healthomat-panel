@@ -23,7 +23,7 @@ const Step = ({ steps, currentStep, onSetStep }: StepProps) => {
         <Icon
           onClick={onSetStep.bind(null, key)}
           key={key}
-          icon={key === currentStep ? IconList.CloudFilled : IconList.Cloud}
+          icon={key <= currentStep ? IconList.CloudFilled : IconList.Cloud}
           className="cursor-pointer"
         />
       ))}
