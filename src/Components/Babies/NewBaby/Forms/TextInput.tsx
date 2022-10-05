@@ -10,8 +10,7 @@ const TextInput = ({ type, setData }: TextInputProps) => {
   );
   return (
     <Input
-      pattern={type === "Number" ? "[0-9]+" : ""}
-      type="text"
+      type={type === "Number" ? "number" : "text"}
       onChange={() => {
         setData(ref.current!.value);
       }}
