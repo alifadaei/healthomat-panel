@@ -1,26 +1,18 @@
+import { IconType, NewbabyQuestionFormat } from "../../../../utils/Babies";
 import { useState } from "react";
-type RadioIconsProps = {
-  multipleChoices?: boolean;
-  icons: { src: string; name: string }[];
-  onClickIcon: (text: string) => void;
+
+type MultipleIconsProps = {
+  icons: IconType[];
+  setData: (text: string) => void;
 };
-const RadioIcons = ({
-  icons,
-  onClickIcon,
-  multipleChoices,
-}: RadioIconsProps) => {
+const MultipleIcons = ({ icons, setData }: MultipleIconsProps) => {
   const [selected, setSelected] = useState(Array(icons.length).fill(false));
+
   const handleClickIcon = (key: number) => {
     const newSelected = [...selected];
-    if (!multipleChoices) {
-      newSelected.fill(false);
-      newSelected[key] = true;
-      onClickIcon(newSelected.indexOf(true)!.toString());
-    } else {
-      newSelected[key] = !newSelected[key];
-      onClickIcon(JSON.stringify(newSelected));
-    }
+    newSelected[key] = !newSelected[key];
     setSelected(newSelected);
+    setData(newSelected.join(";"));
   };
   return (
     <form className="mt-5 xs:mt-10 flex gap-x-3 sm:gap-x-6 justify-center">
@@ -42,4 +34,4 @@ const RadioIcons = ({
     </form>
   );
 };
-export default RadioIcons;
+export default MultipleIcons;

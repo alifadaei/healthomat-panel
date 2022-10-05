@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useState, useRef } from "react";
+import React from "react";
 
 type FieldState = "OK" | "ERROR" | "NOT_VALIDATED";
 type FieldType = "EMAIL" | "NOT_EMPTY" | "PASS" | "NAME" | "DATE" | "NUMBER";
@@ -26,7 +27,8 @@ const useValidation = (validator: FieldType) => {
   const [fieldState, setState] = useState<FieldState>("NOT_VALIDATED");
   const ref = useRef<HTMLInputElement>(null);
   const onBlur = () => {
-    if (validatorFunction(ref.current!.value)) setState("OK");
+    if (ref.current!.value && validatorFunction(ref.current!.value))
+      setState("OK");
     else setState("ERROR");
   };
   return { onBlur, fieldState, ref, error };

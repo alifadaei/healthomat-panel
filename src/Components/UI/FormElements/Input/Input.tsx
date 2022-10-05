@@ -1,13 +1,14 @@
 import { forwardRef, KeyboardEvent } from "react";
 type InputProps = {
   type: string;
+  pattern?: string;
   className: string;
   containerClasses?: string;
   placeholder?: string;
   label?: string;
   onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
-  onBlur?: () => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onKeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   state?: "OK" | "NOT_VALIDATED" | "ERROR";
   error?: string;

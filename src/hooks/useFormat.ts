@@ -7,12 +7,10 @@ const useFormat = () => {
     if (step === 1) {
       if (val.length === 4) {
         e.currentTarget.value = val + "/";
-        console.log(val + "/");
         setStep(2);
       }
     } else if (step === 2) {
       if (val.length === 7) {
-        console.log(val + "/");
         e.currentTarget.value = val + "/";
         setStep(3);
       }
