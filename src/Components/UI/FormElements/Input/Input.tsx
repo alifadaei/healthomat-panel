@@ -24,6 +24,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     className,
     placeholder,
     onChange,
+    pattern,
     containerClasses,
     onBlur,
     onFocus,
@@ -33,6 +34,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
       {label && <label className="text-xs text-gray-600">{label}</label>}
 
       <input
+        pattern={pattern}
         onKeyDown={onKeydown}
         onBlur={onBlur}
         onFocus={onFocus}

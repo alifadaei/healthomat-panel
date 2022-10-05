@@ -13,15 +13,14 @@ import TextInput from "./Forms/TextInput";
 export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
 
 const NewBaby = () => {
+  const [answers, setAnswers] = useState(Array(NBQ.length));
   const { t } = useTranslation("babies");
-  const [name, setName] = useState("");
   const NewBabyQuestions = NBQ.map((item) => ({
     ...item,
-    question: t(item.question, { name }),
+    question: t(item.question, { name: answers[1] }),
     icons: item.icons?.map((icon) => ({ ...icon, name: t(icon.name) })),
   }));
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState(Array(NewBabyQuestions.length));
   const filledUntilStep = (step: number) => {
     for (let i = 0; i <= step; i++) {
       if (!answers[i]) {

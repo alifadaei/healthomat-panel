@@ -9,19 +9,18 @@ const TextInput = ({ type, setData }: TextInputProps) => {
     type === "Number" ? "NUMBER" : "NOT_EMPTY"
   );
   return (
-    <form>
-      <Input
-        type="text"
-        onChange={() => {
-          setData(ref.current!.value);
-        }}
-        ref={ref}
-        onBlur={onBlur}
-        state={fieldState}
-        error={error}
-        className="rounded-md px-3 py-2 mx-auto max-w-[10rem] mt-6"
-      />
-    </form>
+    <Input
+      pattern={type === "Number" ? "[0-9]+" : ""}
+      type="text"
+      onChange={() => {
+        setData(ref.current!.value);
+      }}
+      ref={ref}
+      onBlur={onBlur}
+      state={fieldState}
+      error={error}
+      className="rounded-md px-3 py-2 mx-auto max-w-[10rem] mt-6"
+    />
   );
 };
 export default TextInput;
