@@ -1,6 +1,16 @@
 import { forwardRef, KeyboardEvent } from "react";
 type InputProps = {
   type: string;
+  inputMode:
+    | "email"
+    | "search"
+    | "text"
+    | "none"
+    | "tel"
+    | "url"
+    | "numeric"
+    | "decimal"
+    | undefined;
   pattern?: string;
   className: string;
   containerClasses?: string;
@@ -16,6 +26,7 @@ type InputProps = {
 export type Ref = HTMLInputElement;
 const Input = forwardRef<Ref, InputProps>((props, ref) => {
   const {
+    inputMode,
     error,
     state,
     onKeydown,
@@ -34,6 +45,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
       {label && <label className="text-xs text-gray-600">{label}</label>}
 
       <input
+        inputMode={inputMode}
         pattern={pattern}
         onKeyDown={onKeydown}
         onBlur={onBlur}

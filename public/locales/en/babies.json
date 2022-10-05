@@ -4,7 +4,7 @@
   "baby_questions": {
     "gender": "Is she a girl or boy?",
     "name": "What's the name of your lovely child?",
-    "weight": "How much did {{name}} weigh after born?",
+    "weight": "How much did {{name}} weigh after born (Grams)? ",
     "feed": "What did you feed {{name}} on her early 6 month?",
     "old": "How old is {{name}}?",
     "cut_off_milk": "When did you stop breastfeeding {{name}}?"

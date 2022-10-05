@@ -11,6 +11,7 @@ const TextInput = ({ type, setData }: TextInputProps) => {
   return (
     <Input
       type={type === "Number" ? "number" : "text"}
+      inputMode={type === "Number" ? "numeric" : "text"}
       onChange={() => {
         setData(ref.current!.value);
       }}
