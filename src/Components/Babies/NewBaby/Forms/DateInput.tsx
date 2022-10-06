@@ -1,13 +1,18 @@
+import { useEffect } from "react";
 import useValidation from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
 type DateInputProps = {
   setData: (data: string) => void;
+  active: boolean;
 };
-const DateInput = ({ setData }: DateInputProps) => {
+const DateInput = ({ setData, active }: DateInputProps) => {
   const { error, fieldState, onBlur, ref } = useValidation("NUMBER", setData);
+  useEffect(() => {
+    if (active) ref.current!.focus();
+  }, [active]);
   return (
     <Input
-      inputMode="text"
+      inputMode="numeric"
       pattern="\d*"
       ref={ref}
       onBlur={onBlur}

@@ -18,6 +18,19 @@
     "fathers_height": "قد پدر چقدر است؟",
     "mothers_height": "قد مادر چقدر است؟"
   },
+  "labels": {
+    "name": "نام:",
+    "weight": "وزن (گرم)",
+    "suplement_when": "تاریخ:",
+    "cut_off_milk": "تاریخ:",
+    "birth_interval": "ماه:",
+    "family_dimention": "تعداد اعضای خانواده:",
+    "mothers_education": "تحصیلات مادر:",
+    "mothers_career": "شغل مادر:",
+    "special_diet": "رژیم غذایی:",
+    "fathers_height": "قد پدر:",
+    "mothers_height": "قد مادر:"
+  },
   "gender": {
     "boy": "پسر",
     "girl": "دختر"

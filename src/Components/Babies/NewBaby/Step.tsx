@@ -35,7 +35,9 @@ const Step = ({ steps, onSetStep, stepsDone }: StepProps) => {
           className={`cursor-pointer ${
             stepsDone[key] === "OK"
               ? "text-green-400"
-              : stepsDone[key] === "NOT_VALIDATED" || stepsDone[key] === "FILL"
+              : stepsDone[key] === "NOT_VALIDATED"
+              ? "text-gray-500"
+              : stepsDone[key] === "FILL"
               ? "text-primary"
               : "text-accent"
           }`}

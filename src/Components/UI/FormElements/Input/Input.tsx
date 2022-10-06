@@ -42,7 +42,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
   } = props;
   return (
     <div className={`flex flex-col mx-0 mb-3 ${containerClasses}`}>
-      {label && <label className="text-xs text-gray-600">{label}</label>}
+      {label && <label className="text-xs text-gray-600 mb-2">{label}</label>}
 
       <input
         inputMode={inputMode}

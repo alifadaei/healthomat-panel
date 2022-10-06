@@ -14,12 +14,18 @@ export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
 
 const NewBaby = () => {
   const [answers, setAnswers] = useState(Array(NBQ.length).fill(""));
-  const { t } = useTranslation("babies");
-  const NewBabyQuestions = NBQ.map((item) => ({
-    ...item,
-    question: t(item.question, { name: answers[1] }),
-    icons: item.icons?.map((icon) => ({ ...icon, name: t(icon.name) })),
-  }));
+  const { t, i18n } = useTranslation("babies");
+  const [NewBabyQuestions, setNBQ] = useState(NBQ);
+  useEffect(() => {
+    setNBQ(
+      NBQ.map((item) => ({
+        ...item,
+        label: item.label ? t(item.label) : undefined,
+        question: t(item.question, { name: answers[1] }),
+        icons: item.icons?.map((icon) => ({ ...icon, name: t(icon.name) })),
+      }))
+    );
+  }, [i18n.language]);
   const [step, setStep] = useState(0);
   const [lastStep, setLastStep] = useState(0);
   const [stepsDone, setDoneSteps] = useState(Array<StepType>);
@@ -117,9 +123,14 @@ const NewBaby = () => {
                 icons={item.icons!}
               />
             ) : item.type === "Number" || item.type === "Text" ? (
-              <TextInput type={item.type} setData={setData} />
+              <TextInput
+                label={item.label!}
+                active={step === key}
+                type={item.type}
+                setData={setData}
+              />
             ) : item.type === "Date" ? (
-              <DateInput setData={setData} />
+              <DateInput active={step === key} setData={setData} />
             ) : null}
           </div>
         ))}

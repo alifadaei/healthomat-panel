@@ -18,6 +18,20 @@
     "fathers_height": "How tall is {{name}}'s father?",
     "mothers_height": "How tall is {{name}}'s mother?"
   },
+
+  "labels": {
+    "name": "Name:",
+    "weight": "Weight(Gram):",
+    "suplement_when": "Date:",
+    "cut_off_milk": "Date:",
+    "birth_interval": "Months:",
+    "family_dimention": "Family members:",
+    "mothers_education": "Mother's education:",
+    "mothers_career": "Mother's career:",
+    "special_diet": "Special diets:",
+    "fathers_height": "Father's height:",
+    "mothers_height": "Mother's height:"
+  },
   "gender": {
     "boy": "Boy",
     "girl": "Girl"
