@@ -6,8 +6,17 @@
     "name": "What's the name of your lovely child?",
     "weight": "How much did {{name}} weigh after born (Grams)? ",
     "feed": "What did you feed {{name}} on her early 6 month?",
-    "old": "How old is {{name}}?",
-    "cut_off_milk": "When did you stop breastfeeding {{name}}?"
+    "suplement": "What nutritional supplements did you use? ",
+    "suplement_when": "When did you start nutritional supplements for {{name}}? ",
+    "cut_off_milk": "When did you stop breastfeeding {{name}}?",
+    "child_order": "Which child is {{name}} in your family?",
+    "birth_interval": "How many months is there between her older sibling birth?",
+    "family_dimention": "How many people are there in your family?",
+    "mothers_education": "Write about {{name}}'s educational background.",
+    "mothers_career": "What is mother's career?",
+    "special_diet": "Write down {{name}}'s special diet.",
+    "fathers_height": "How tall is {{name}}'s father?",
+    "mothers_height": "How tall is {{name}}'s mother?"
   },
   "gender": {
     "boy": "Boy",
@@ -16,6 +25,11 @@
   "feed": {
     "mother_milk": "Mother Milk",
     "milk_powder": "Milk Powder"
+  },
+  "suplement": {
+    "fe": "Fe",
+    "ad": "AD Vitamin",
+    "none": "None"
   },
   "next": "Next",
   "finish": "Finish"

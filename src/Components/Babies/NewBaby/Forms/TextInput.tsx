@@ -1,20 +1,21 @@
 import useValidation from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
+
 type TextInputProps = {
   type: "Number" | "Text";
   setData: (data: string) => void;
 };
 const TextInput = ({ type, setData }: TextInputProps) => {
-  const { error, fieldState, onBlur, ref } = useValidation(
-    type === "Number" ? "NUMBER" : "NOT_EMPTY"
+  const { error, fieldState, onBlur, ref, onChange } = useValidation(
+    type === "Number" ? "NUMBER" : "NOT_EMPTY",
+    setData
   );
   return (
     <Input
       type={type === "Number" ? "number" : "text"}
       inputMode={type === "Number" ? "numeric" : "text"}
-      onChange={() => {
-        setData(ref.current!.value);
-      }}
+      pattern={type === "Number" ? "[0-9]*" : "text"}
+      onChange={onChange}
       ref={ref}
       onBlur={onBlur}
       state={fieldState}

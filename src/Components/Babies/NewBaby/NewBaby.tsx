@@ -1,19 +1,19 @@
 import { useTranslation } from "react-i18next";
 import Heading from "../../UI/Heading/Heading";
 import cloudy from "../../../assets/img/baby/cloudy.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon, { IconList } from "../../UI/Icon/Icon";
-import Step from "./Step";
+import Step, { StepType } from "./Step";
 import { NewBabyQuestions as NBQ } from "../../../utils/Babies";
 import Button from "../../UI/Button/Button";
-import MultipleIcons from "./Forms/MultipleIcons";
-import RadioIcons from "./Forms/RadioIcons";
+import IconChoices from "./Forms/IconChoices";
 import TextInput from "./Forms/TextInput";
+import DateInput from "./Forms/DateInput";
 
 export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
 
 const NewBaby = () => {
-  const [answers, setAnswers] = useState(Array(NBQ.length));
+  const [answers, setAnswers] = useState(Array(NBQ.length).fill(""));
   const { t } = useTranslation("babies");
   const NewBabyQuestions = NBQ.map((item) => ({
     ...item,
@@ -21,31 +21,54 @@ const NewBaby = () => {
     icons: item.icons?.map((icon) => ({ ...icon, name: t(icon.name) })),
   }));
   const [step, setStep] = useState(0);
+  const [lastStep, setLastStep] = useState(0);
+  const [stepsDone, setDoneSteps] = useState(Array<StepType>);
+  const [seen, setSeen] = useState(Array(NBQ.length).fill(false));
+  useEffect(() => {
+    const newStepsDone = answers.map((answer, stepIndex) => {
+      if (step === stepIndex) {
+        return "FILL";
+      } else if (answer) {
+        return "OK";
+      } else if (!seen[stepIndex]) {
+        return "NOT_VALIDATED";
+      } else if (NBQ[stepIndex].required) {
+        return "ERROR";
+      } else return "OK";
+    });
+    console.log(answers);
+    console.log(seen);
+    console.log(newStepsDone);
+    setDoneSteps(newStepsDone);
+  }, [step, seen]);
+
+  useEffect(() => {
+    if (lastStep !== step)
+      setSeen((seen) => {
+        const newSeen = [...seen];
+        newSeen[lastStep] = true;
+        setLastStep(step);
+        return newSeen;
+      });
+  }, [step]);
   const filledUntilStep = (step: number) => {
     for (let i = 0; i <= step; i++) {
-      if (!answers[i]) {
+      if (!answers[i] && NBQ[i].required) {
         return false;
       }
     }
     return true;
   };
   const goNextStep = () => {
-    filledUntilStep(step) &&
-      setStep(step < NewBabyQuestions.length - 1 ? step + 1 : step);
+    setStep(step < NewBabyQuestions.length - 1 ? step + 1 : step);
   };
   const goToStep = (step: number) => {
-    if (
-      step >= 0 &&
-      step < NewBabyQuestions.length &&
-      filledUntilStep(step - 1)
-    )
-      setStep(step);
+    if (step >= 0 && step < NewBabyQuestions.length) setStep(step);
   };
   const goPrevStep = () => {
     const returnStep = step > 0 ? step - 1 : step;
     setStep(returnStep);
   };
-  console.log(answers);
   const setData = (data: string) => {
     setAnswers((answers) => {
       const newAnswers = [...answers];
@@ -65,7 +88,7 @@ const NewBaby = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
         }}
-        className="h-[18rem] xs:h-[22rem] sm:h-[24rem] w-full flex flex-col justify-center items-center text-center relative text-gray-700 text-sm xs:text-base"
+        className="h-[19rem] xs:h-[22rem] sm:h-[24rem] w-full flex flex-col justify-center items-center text-center relative text-gray-700 text-sm xs:text-base"
       >
         {/* ========== left right icons =========== */}
         <div className="text-primary">
@@ -84,22 +107,25 @@ const NewBaby = () => {
         {/* ======= input fields ======== */}
         {NewBabyQuestions.map((item, key) => (
           <div key={key} className={`${key === step ? "" : "hidden"}`}>
-            <span className="bg-[rgba(255,255,255,0.7)] p-3 rounded-t-2xl border-b-2 border-primary-500 shadow-md">
+            <span className="inline-block bg-[rgba(255,255,255,0.7)] text-start p-3 rounded-t-2xl border-b-2 border-primary-500 shadow-md">
               {item.question}
             </span>
-            {item.type === "RadioIcons" ? (
-              <RadioIcons setData={setData} icons={item.icons!} />
-            ) : item.type === "MultipleIcons" ? (
-              <MultipleIcons setData={setData} icons={item.icons!} />
+            {item.type === "RadioIcons" || item.type === "MultipleIcons" ? (
+              <IconChoices
+                type={item.type}
+                setData={setData}
+                icons={item.icons!}
+              />
             ) : item.type === "Number" || item.type === "Text" ? (
               <TextInput type={item.type} setData={setData} />
-            ) : // type === "Text" ? <TextInput/> : type==="Date" ? <DateInput/>
-            null}
+            ) : item.type === "Date" ? (
+              <DateInput setData={setData} />
+            ) : null}
           </div>
         ))}
         <Button
           neutral
-          className="px-4 py-2 mb-5 xs:mb-4 sm:mb-3 "
+          className="mt-1 px-4 py-2 mb-5 xs:mb-4 sm:mb-3 "
           onClick={goNextStep}
         >
           {step === NewBabyQuestions.length - 1 ? t("finish") : t("next")}
@@ -107,8 +133,8 @@ const NewBaby = () => {
 
         {/* ========= step ======== */}
         <Step
+          stepsDone={stepsDone}
           onSetStep={goToStep}
-          currentStep={step}
           steps={NewBabyQuestions.length}
         />
       </div>

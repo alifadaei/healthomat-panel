@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useState, useRef } from "react";
-import React from "react";
 
 type FieldState = "OK" | "ERROR" | "NOT_VALIDATED";
 type FieldType = "EMAIL" | "NOT_EMPTY" | "PASS" | "NAME" | "DATE" | "NUMBER";
@@ -20,17 +19,32 @@ const Validators = {
   NUMBER: (number: string) => /^\d*$/.test(number),
 };
 
-const useValidation = (validator: FieldType) => {
+const useValidation = (
+  validator: FieldType,
+  setData: (data: string) => void
+) => {
   const { t } = useTranslation("common");
   const validatorFunction = Validators[validator];
   const error = t(`validators.${validator.toLowerCase()}`);
   const [fieldState, setState] = useState<FieldState>("NOT_VALIDATED");
+  const [visited, setVisited] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
-  const onBlur = () => {
-    if (ref.current!.value && validatorFunction(ref.current!.value))
+  const validate = () => {
+    if (ref.current!.value && validatorFunction(ref.current!.value)) {
       setState("OK");
-    else setState("ERROR");
+      setData(ref.current!.value);
+    } else {
+      setState("ERROR");
+      setData("");
+    }
   };
-  return { onBlur, fieldState, ref, error };
+  const onBlur = () => {
+    validate();
+    setVisited(true);
+  };
+  const onChange = () => {
+    if (visited) validate();
+  };
+  return { onBlur, fieldState, ref, error, onChange };
 };
 export default useValidation;

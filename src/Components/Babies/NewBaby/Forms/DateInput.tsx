@@ -1,10 +1,13 @@
 import useValidation from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
-type DateInputProps = {};
-const DateInput = () => {
-  const { error, fieldState, onBlur, ref } = useValidation("NUMBER");
+type DateInputProps = {
+  setData: (data: string) => void;
+};
+const DateInput = ({ setData }: DateInputProps) => {
+  const { error, fieldState, onBlur, ref } = useValidation("NUMBER", setData);
   return (
     <Input
+      inputMode="text"
       pattern="\d*"
       ref={ref}
       onBlur={onBlur}

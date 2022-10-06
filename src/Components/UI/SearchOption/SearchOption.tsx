@@ -65,6 +65,7 @@ const SearchOption = ({
   return (
     <div className="px-1">
       <Input
+        inputMode="search"
         onChange={handleChangeInput}
         ref={inputRef}
         className="py-2 border rounded-xl ps-2 my-2"

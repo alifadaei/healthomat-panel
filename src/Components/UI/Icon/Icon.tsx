@@ -1,4 +1,5 @@
 import React from "react";
+import { GiPoisonCloud } from "react-icons/gi";
 import {
   BsCheckLg,
   BsInstagram,
@@ -15,6 +16,7 @@ import {
 
 import {
   IoCloudOutline,
+  IoCloudDone,
   IoLocationSharp,
   IoClose,
   IoChevronDown,
@@ -36,6 +38,8 @@ import { MdOutlineDashboard } from "react-icons/md";
 
 import { HiOutlineMenu } from "react-icons/hi";
 export enum IconList {
+  CloudError,
+  CloudDone,
   CloudFilled,
   Cloud,
   ChevronLeft,
@@ -81,6 +85,10 @@ const Icon = (props: IconProps): React.ReactElement => {
   const { icon, className, style, onClick } = props;
   const renderIcon = () => {
     switch (icon) {
+      case IconList.CloudError:
+        return <GiPoisonCloud />;
+      case IconList.CloudDone:
+        return <IoCloudDone />;
       case IconList.Cloud:
         return <IoCloudOutline />;
       case IconList.CloudFilled:
