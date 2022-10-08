@@ -38,6 +38,13 @@ export const NewBabyQuestions: NewbabyQuestionFormat[] = [
     required: true,
   },
   {
+    id: 31,
+    question: "baby_questions.birthday",
+    type: "Date",
+    label: "labels.birthday",
+    required: true,
+  },
+  {
     id: 3,
     question: "baby_questions.weight",
     label: "labels.weight",
@@ -83,13 +90,13 @@ export const NewBabyQuestions: NewbabyQuestionFormat[] = [
     id: 6,
     question: "baby_questions.suplement_when",
     label: "labels.suplement_when",
-    type: "Date",
+    type: "Number",
   },
   {
     id: 7,
     question: "baby_questions.cut_off_milk",
     label: "labels.cut_off_milk",
-    type: "Date",
+    type: "Number",
     required: true,
   },
   {

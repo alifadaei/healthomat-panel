@@ -84,7 +84,7 @@ const NewBaby = () => {
   };
 
   return (
-    <>
+    <div className="">
       <Heading str={t("new_baby")} />
       {/* ====== cloudy container ====== */}
       <div
@@ -94,7 +94,7 @@ const NewBaby = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
         }}
-        className="h-[19rem] xs:h-[22rem] sm:h-[24rem] w-full flex flex-col justify-center items-center text-center relative text-gray-700 text-sm xs:text-base"
+        className="h-[16rem] xs:h-[22rem] sm:h-[24rem] w-full flex flex-col justify-center items-center text-center relative text-gray-700 text-sm xs:text-base"
       >
         {/* ========== left right icons =========== */}
         <div className="text-primary">
@@ -130,7 +130,11 @@ const NewBaby = () => {
                 setData={setData}
               />
             ) : item.type === "Date" ? (
-              <DateInput active={step === key} setData={setData} />
+              <DateInput
+                label={item.label!}
+                active={step === key}
+                setData={setData}
+              />
             ) : null}
           </div>
         ))}
@@ -141,15 +145,14 @@ const NewBaby = () => {
         >
           {step === NewBabyQuestions.length - 1 ? t("finish") : t("next")}
         </Button>
-
-        {/* ========= step ======== */}
-        <Step
-          stepsDone={stepsDone}
-          onSetStep={goToStep}
-          steps={NewBabyQuestions.length}
-        />
       </div>
-    </>
+      {/* ========= step ======== */}
+      <Step
+        stepsDone={stepsDone}
+        onSetStep={goToStep}
+        steps={NewBabyQuestions.length}
+      />
+    </div>
   );
 };
 export default NewBaby;

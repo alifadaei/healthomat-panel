@@ -4,6 +4,7 @@
   "baby_questions": {
     "gender": "Is she a girl or boy?",
     "name": "What's the name of your lovely child?",
+    "birthday": "When does {{name}}'s birthday fall?",
     "weight": "How much did {{name}} weigh after born (Grams)? ",
     "feed": "What did you feed {{name}} on her early 6 month?",
     "suplement": "What nutritional supplements did you use? ",
@@ -20,6 +21,7 @@
   },
   "labels": {
     "name": "Name:",
+    "birthday": "Birthday:",
     "weight": "Weight(Gram):",
     "suplement_when": "Date:",
     "cut_off_milk": "Date:",

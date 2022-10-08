@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import useFormat from "../../../../hooks/useFormat";
 import useValidation from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
-import { IconList } from "../../../UI/Icon/Icon";
 type DateInputProps = {
   setData: (data: string) => void;
   active: boolean;
+  label: string;
 };
-const DateInput = ({ setData, active }: DateInputProps) => {
+const DateInput = ({ setData, active, label }: DateInputProps) => {
   const {
     error,
     fieldState,
@@ -21,6 +21,7 @@ const DateInput = ({ setData, active }: DateInputProps) => {
   }, [active]);
   return (
     <Input
+      label={label}
       inputMode="text"
       type="text"
       ref={ref}

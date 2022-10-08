@@ -46,7 +46,14 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
   return (
     <div className={`flex flex-col mx-0 mb-3 ${containerClasses}`}>
       {label && <label className="text-xs text-gray-600 mb-2">{label}</label>}
-      <div className="flex items-center mx-auto">
+      <div
+        className="flex items-center mx-auto justify-center "
+        style={{
+          transform: `translateX(${
+            document.body.dir === "ltr" ? "-" : ""
+          }.7rem)`,
+        }}
+      >
         <Icon
           icon={
             iconName === "date"
