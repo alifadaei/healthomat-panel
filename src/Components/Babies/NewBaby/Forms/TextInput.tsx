@@ -1,6 +1,7 @@
 import useValidation from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
 import { useEffect } from "react";
+import { IconList } from "../../../UI/Icon/Icon";
 type TextInputProps = {
   type: "Number" | "Text";
   setData: (data: string) => void;
@@ -19,6 +20,7 @@ const TextInput = ({ type, setData, active, label }: TextInputProps) => {
   return (
     <Input
       label={label}
+      iconName={type === "Number" ? "number" : "text"}
       type={type === "Number" ? "number" : "text"}
       inputMode={type === "Number" ? "numeric" : "text"}
       pattern={type === "Number" ? "[0-9]*" : "text"}
@@ -27,7 +29,7 @@ const TextInput = ({ type, setData, active, label }: TextInputProps) => {
       onBlur={onBlur}
       state={fieldState}
       error={error}
-      className="rounded-md py-1 mx-auto max-w-[10rem]"
+      className="rounded-md py-1 max-w-[10rem]"
       containerClasses="mt-3"
     />
   );

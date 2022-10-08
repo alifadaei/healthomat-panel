@@ -18,7 +18,6 @@
     "fathers_height": "How tall is {{name}}'s father?",
     "mothers_height": "How tall is {{name}}'s mother?"
   },
-
   "labels": {
     "name": "Name:",
     "weight": "Weight(Gram):",

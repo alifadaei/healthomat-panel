@@ -5,7 +5,7 @@ import mother_milk from "../assets/img/baby/mother-milk.png";
 import milk_powder from "../assets/img/baby/milk-powder.png";
 import fe from "../assets/img/baby/fe.png";
 import ad from "../assets/img/baby/ad.png";
-import nothing from "../assets/img/baby/nothing.png";
+import { IconList } from "../Components/UI/Icon/Icon";
 export type IconType = {
   src: string;
   name: string;

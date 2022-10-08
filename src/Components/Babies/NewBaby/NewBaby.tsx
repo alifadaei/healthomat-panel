@@ -25,7 +25,7 @@ const NewBaby = () => {
         icons: item.icons?.map((icon) => ({ ...icon, name: t(icon.name) })),
       }))
     );
-  }, [i18n.language]);
+  }, [i18n.language, answers]);
   const [step, setStep] = useState(0);
   const [lastStep, setLastStep] = useState(0);
   const [stepsDone, setDoneSteps] = useState(Array<StepType>);

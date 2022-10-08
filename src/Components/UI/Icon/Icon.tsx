@@ -1,5 +1,5 @@
 import React from "react";
-import { GiPoisonCloud } from "react-icons/gi";
+import { GiPoisonCloud, GiBodyHeight } from "react-icons/gi";
 import {
   BsCheckLg,
   BsInstagram,
@@ -12,9 +12,13 @@ import {
   BsEye,
   BsPerson,
   BsClipboardData,
+  BsTextParagraph,
 } from "react-icons/bs";
-
+import { RiScales2Line } from "react-icons/ri";
+import { TbNumbers } from "react-icons/tb";
 import {
+  IoTextOutline,
+  IoPeopleOutline,
   IoCloudOutline,
   IoCloudDone,
   IoLocationSharp,
@@ -28,17 +32,19 @@ import {
   IoCloud,
 } from "react-icons/io5";
 import { TiLocationOutline } from "react-icons/ti";
-import { FaBaby } from "react-icons/fa";
+import { FaBaby, FaGraduationCap } from "react-icons/fa";
 import { BiCalendarCheck, BiTimeFive, BiHeart } from "react-icons/bi";
-
+import { GiFruitBowl } from "react-icons/gi";
 import { GoSearch } from "react-icons/go";
 import { AiOutlinePhone, AiOutlineStar, AiFillStar } from "react-icons/ai";
-
-import { MdOutlineDashboard } from "react-icons/md";
-
+import { MdOutlineDashboard, MdWorkOutline } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
+
 export enum IconList {
+  Text,
+  Numbers,
   CloudError,
+  Diet,
   CloudDone,
   CloudFilled,
   Cloud,
@@ -72,6 +78,10 @@ export enum IconList {
   Clock,
   ClipBoard,
   Heart,
+  Scale,
+  People,
+  Graduation,
+  Work,
 }
 
 type IconProps = {
@@ -85,6 +95,18 @@ const Icon = (props: IconProps): React.ReactElement => {
   const { icon, className, style, onClick } = props;
   const renderIcon = () => {
     switch (icon) {
+      case IconList.Text:
+        return <BsTextParagraph />;
+      case IconList.Numbers:
+        return <TbNumbers />;
+      case IconList.Work:
+        return <MdWorkOutline />;
+      case IconList.Graduation:
+        return <FaGraduationCap />;
+      case IconList.People:
+        return <IoPeopleOutline />;
+      case IconList.Scale:
+        return <RiScales2Line />;
       case IconList.CloudError:
         return <GiPoisonCloud />;
       case IconList.CloudDone:
