@@ -42,9 +42,6 @@ const NewBaby = () => {
         return "ERROR";
       } else return "OK";
     });
-    console.log(answers);
-    console.log(seen);
-    console.log(newStepsDone);
     setDoneSteps(newStepsDone);
   }, [step, seen]);
 

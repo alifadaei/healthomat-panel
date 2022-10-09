@@ -7,9 +7,13 @@ type ButtonProps = {
   disabled?: boolean;
 };
 
-const Button = (props: ButtonProps) => {
-  const { onClick, children, neutral, disabled, className } = props;
-
+const Button = ({
+  onClick,
+  children,
+  neutral,
+  disabled,
+  className,
+}: ButtonProps) => {
   const [coords, setCoords] = useState({ x: -1, y: -1 });
   const [isRippling, setIsRippling] = useState(false);
 

@@ -35,6 +35,8 @@ import { TiLocationOutline } from "react-icons/ti";
 import { FaBaby, FaGraduationCap } from "react-icons/fa";
 import { BiCalendarCheck, BiTimeFive, BiHeart } from "react-icons/bi";
 import { GiFruitBowl } from "react-icons/gi";
+import { TbRuler2 } from "react-icons/tb";
+
 import { GoSearch } from "react-icons/go";
 import { AiOutlinePhone, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { MdOutlineDashboard, MdWorkOutline } from "react-icons/md";
@@ -82,6 +84,7 @@ export enum IconList {
   People,
   Graduation,
   Work,
+  Ruler,
 }
 
 type IconProps = {
@@ -97,6 +100,8 @@ const Icon = (props: IconProps): React.ReactElement => {
     switch (icon) {
       case IconList.Text:
         return <BsTextParagraph />;
+      case IconList.Ruler:
+        return <TbRuler2 />;
       case IconList.Numbers:
         return <TbNumbers />;
       case IconList.Work:
