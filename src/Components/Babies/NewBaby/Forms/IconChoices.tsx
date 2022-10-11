@@ -1,4 +1,4 @@
-import { IconType } from "../../../../utils/Babies";
+import { IconType } from "../../../../utils/Babies/Babies";
 import { useState } from "react";
 
 type IconChoicesProps = {

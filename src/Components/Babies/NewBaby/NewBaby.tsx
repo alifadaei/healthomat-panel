@@ -4,7 +4,7 @@ import cloudy from "../../../assets/img/baby/cloudy.svg";
 import { useState, useEffect } from "react";
 import Icon, { IconList } from "../../UI/Icon/Icon";
 import Step, { StepType } from "./Step";
-import { NewBabyQuestions as NBQ } from "../../../utils/Babies";
+import { NewBabyQuestions as NBQ } from "../../../utils/Babies/Babies";
 import Button from "../../UI/Button/Button";
 import IconChoices from "./Forms/IconChoices";
 import TextInput from "./Forms/TextInput";

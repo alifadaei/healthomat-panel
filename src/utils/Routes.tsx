@@ -1,5 +1,5 @@
 import React from "react";
-import BabyReport from "../Components/Babies/NewBaby/BabyReport";
+import BabyReport from "../Components/Babies/NewBaby/BabyReport/BabyReport";
 const Baby = React.lazy(() => import("../Components/Babies/Baby"));
 const Logout = React.lazy(() => import("../Components/Auth/Logout"));
 const MyBabies = React.lazy(() => import("../Components/Babies/MyBabies"));

@@ -1,11 +1,10 @@
-import { Qtype } from "../Components/Babies/NewBaby/NewBaby";
-import boy from "../assets/img/baby/boy.png";
-import girl from "../assets/img/baby/girl.png";
-import mother_milk from "../assets/img/baby/mother-milk.png";
-import milk_powder from "../assets/img/baby/milk-powder.png";
-import fe from "../assets/img/baby/fe.png";
-import ad from "../assets/img/baby/ad.png";
-import { IconList } from "../Components/UI/Icon/Icon";
+import { Qtype } from "../../Components/Babies/NewBaby/NewBaby";
+import boy from "../../assets/img/baby/boy.png";
+import girl from "../../assets/img/baby/girl.png";
+import mother_milk from "../../assets/img/baby/mother-milk.png";
+import milk_powder from "../../assets/img/baby/milk-powder.png";
+import fe from "../../assets/img/baby/fe.png";
+import ad from "../../assets/img/baby/ad.png";
 export type IconType = {
   src: string;
   name: string;

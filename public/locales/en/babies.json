@@ -47,5 +47,8 @@
     "none": "None"
   },
   "next": "Next",
-  "finish": "Finish"
+  "finish": "Finish",
+  "report": {
+    "heading": "Child's Growth Chart"
+  }
 }
