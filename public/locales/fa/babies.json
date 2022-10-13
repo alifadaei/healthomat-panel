@@ -53,6 +53,8 @@
     "heading": "نمودار رشد کودک"
   },
   "new_record": {
+    "new_record": "افزودن داده جدید",
+    "add_record": "افزودن داده",
     "weight": { "label": "وزن: (کیلوگرم)", "placeholder": "وزن" },
     "length": { "label": "قد: (سانتی متر)", "placeholder": "قد" },
     "circumference": {

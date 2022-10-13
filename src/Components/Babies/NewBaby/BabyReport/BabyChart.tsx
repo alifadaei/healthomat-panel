@@ -70,6 +70,7 @@ const BabyChart = ({
         .map((nth, key) => ({
           label: nth,
           borderColor: colors[key],
+          backgroundColor: colors[key],
           data: dataSet.map((item) => Number(item[nth as keyof typeof item])),
           order: 4,
         }))
@@ -77,6 +78,7 @@ const BabyChart = ({
           {
             label: "Baby",
             borderColor: "red",
+            backgroundColor: "red",
             data: flatChildDataSet,
             order: 0,
           },
@@ -99,6 +101,7 @@ const BabyChart = ({
       type: "line",
       data: data,
       options: {
+        responsive: true,
         scales: {
           x: {
             title: {
@@ -121,13 +124,10 @@ const BabyChart = ({
     return () => {
       chart.destroy();
     };
-  }, [dataSet]);
+  }, [dataSet, childOwnDataSet]);
   return (
     <>
-      <div className="text-center text-gray-700">
-        {name.name.replaceAll("-", " ")}{" "}
-      </div>
-      <div className="relative w-full sm:w-[35rem] md:w-[40rem] lg:w-[50rem] mx-auto">
+      <div className="relative w-full sm:w-[35rem] md:w-[40rem] lg:w-[60rem] mx-auto">
         <canvas ref={ref}></canvas>
       </div>
     </>

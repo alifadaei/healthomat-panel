@@ -52,6 +52,8 @@
     "heading": "Child's Growth Chart"
   },
   "new_record": {
+    "new_record": "New record",
+    "add_record": "Add Record",
     "weight": { "label": "Weight:(kg)", "placeholder": "Weight" },
     "length": { "label": "Length:(cm)", "placeholder": "Length" },
     "circumference": {

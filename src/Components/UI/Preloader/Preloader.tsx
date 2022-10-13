@@ -5,7 +5,7 @@ type PreloaderProps = {
 };
 const Preloader = ({ isOpen }: PreloaderProps) => {
   return (
-    <Modal isOpen={isOpen} onBackdropClick={() => null} modalSize="MINI" raw>
+    <Modal isOpen={isOpen} onBackdropClick={() => null} raw>
       <img
         src={logo}
         alt="logo"
