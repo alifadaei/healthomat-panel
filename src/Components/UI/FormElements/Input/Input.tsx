@@ -44,17 +44,11 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     onFocus,
   } = props;
   return (
-    <div className={`flex flex-col mx-0 mb-3 ${containerClasses}`}>
+    <div className={`flex flex-col mb-3 ${containerClasses}`}>
       {label && <label className="text-xs text-gray-600 mb-2">{label}</label>}
-      <div
-        className="flex items-center mx-auto justify-center "
-        style={{
-          transform: `translateX(${
-            document.body.dir === "ltr" ? "-" : ""
-          }.7rem)`,
-        }}
-      >
+      <div className="relative flex item-center">
         <Icon
+          style={{ top: "calc(50% - 8px)" }}
           icon={
             iconName === "date"
               ? IconList.Calendar
@@ -62,12 +56,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
               ? IconList.Numbers
               : IconList.Text
           }
-          style={{
-            transform: `translateX(${
-              document.body.dir === "ltr" ? "" : "-"
-            }1.7rem)`,
-          }}
-          className=" text-gray-600 border-e pe-1"
+          className=" text-gray-600 border-e pe-2 absolute start-2"
         />
         <input
           inputMode={inputMode}
@@ -81,7 +70,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
           type={type}
           className={`border ${
             state === "ERROR" ? "border-red-500  " : "border-gray-200"
-          } ps-8 transition outline-none focus-visible:border-primary
+          } ps-9 transition outline-none focus-visible:border-primary
         ${className}`}
         />
       </div>

@@ -20,22 +20,24 @@ const DateInput = ({ setData, active, label }: DateInputProps) => {
     if (active) ref.current!.focus();
   }, [active]);
   return (
-    <Input
-      label={label}
-      inputMode="text"
-      type="text"
-      ref={ref}
-      onBlur={onBlur}
-      iconName="date"
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(e);
-        validationChange();
-      }}
-      state={fieldState}
-      error={error}
-      className="rounded-md py-1 max-w-[10rem]"
-      containerClasses="mt-3"
-    />
+    <div className="flex justify-center">
+      <Input
+        label={label}
+        inputMode="text"
+        type="text"
+        ref={ref}
+        onBlur={onBlur}
+        iconName="date"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange(e);
+          validationChange();
+        }}
+        state={fieldState}
+        error={error}
+        className="rounded-md py-1 max-w-[10rem]"
+        containerClasses="mt-3"
+      />
+    </div>
   );
 };
 export default DateInput;

@@ -50,5 +50,15 @@
   "finish": "Finish",
   "report": {
     "heading": "Child's Growth Chart"
+  },
+  "new_record": {
+    "weight": { "label": "Weight:(kg)", "placeholder": "Weight" },
+    "length": { "label": "Length:(cm)", "placeholder": "Length" },
+    "circumference": {
+      "label": "Head circumference:(cm)",
+      "placeholder": "Circumference"
+    },
+    "date": { "label": "Date:", "placeholder": "YYYY-MM-DD" },
+    "submit": "Submit"
   }
 }

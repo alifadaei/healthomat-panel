@@ -2,7 +2,13 @@ import { useTranslation } from "react-i18next";
 import { useState, useRef } from "react";
 
 type FieldState = "OK" | "ERROR" | "NOT_VALIDATED";
-type FieldType = "EMAIL" | "NOT_EMPTY" | "PASS" | "NAME" | "DATE" | "NUMBER";
+export type FieldType =
+  | "EMAIL"
+  | "NOT_EMPTY"
+  | "PASS"
+  | "NAME"
+  | "DATE"
+  | "NUMBER";
 const Validators = {
   NOT_EMPTY: (s: string) => Boolean(s),
   EMAIL: (email: string) =>
@@ -16,7 +22,7 @@ const Validators = {
   PASS: (pass: string) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(pass),
   DATE: (date: string) =>
     /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(date),
-  NUMBER: (number: string) => /^\d*$/.test(number),
+  NUMBER: (number: string) => /^[0-9]+([.][0-9]+)?$/.test(number),
 };
 
 const useValidation = (

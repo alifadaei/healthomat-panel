@@ -9,7 +9,7 @@ import {
 } from "chart.js";
 Chart.register(...registerables);
 
-type DataSetType = {
+export type DataSetType = {
   Month?: string;
   Length?: string;
   L: string;
@@ -43,12 +43,16 @@ const colors = [
 const BabyChart = ({
   dataSet,
   name,
-  originalDS,
+  childOwnDataSet,
 }: {
   dataSet: DataSetType;
-  name: string;
-  originalDS: number[];
+  name: { name: string; x: string; y: string };
+  childOwnDataSet: number[][];
 }) => {
+  let flatChildDataSet = Array(dataSet.length);
+  childOwnDataSet.forEach((item) => {
+    flatChildDataSet[item[0]] = item[1];
+  });
   const datasets: ChartDataset[] = React.useMemo(
     () =>
       [
@@ -67,15 +71,17 @@ const BabyChart = ({
           label: nth,
           borderColor: colors[key],
           data: dataSet.map((item) => Number(item[nth as keyof typeof item])),
+          order: 4,
         }))
         .concat([
           {
             label: "Baby",
-            borderColor: "#ff9b9a",
-            data: originalDS,
+            borderColor: "red",
+            data: flatChildDataSet,
+            order: 0,
           },
         ]),
-    [originalDS]
+    [childOwnDataSet, dataSet]
   );
   const ref = useRef<HTMLCanvasElement>(null);
   const labels = dataSet.map((item) =>
@@ -92,15 +98,35 @@ const BabyChart = ({
     const config: ChartConfiguration = {
       type: "line",
       data: data,
+      options: {
+        scales: {
+          x: {
+            title: {
+              color: "#2999c6",
+              display: true,
+              text: name.x,
+            },
+          },
+          y: {
+            title: {
+              color: "#2999c6",
+              display: true,
+              text: name.y,
+            },
+          },
+        },
+      },
     };
     const chart = new Chart(ref.current!, config);
     return () => {
       chart.destroy();
     };
-  }, []);
+  }, [dataSet]);
   return (
     <>
-      <div className="text-center text-gray-700">{name} </div>
+      <div className="text-center text-gray-700">
+        {name.name.replaceAll("-", " ")}{" "}
+      </div>
       <div className="relative w-full sm:w-[35rem] md:w-[40rem] lg:w-[50rem] mx-auto">
         <canvas ref={ref}></canvas>
       </div>

@@ -51,5 +51,15 @@
   "finish": "اتمام",
   "report": {
     "heading": "نمودار رشد کودک"
+  },
+  "new_record": {
+    "weight": { "label": "وزن: (کیلوگرم)", "placeholder": "وزن" },
+    "length": { "label": "قد: (سانتی متر)", "placeholder": "قد" },
+    "circumference": {
+      "label": "دور سر: (سانتی متر)",
+      "placeholder": "دور سر"
+    },
+    "date": { "label": "تاریخ:", "placeholder": "1401-01-01" },
+    "submit": "تایید"
   }
 }

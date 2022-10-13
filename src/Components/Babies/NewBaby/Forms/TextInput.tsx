@@ -18,20 +18,22 @@ const TextInput = ({ type, setData, active, label }: TextInputProps) => {
     if (active) ref.current!.focus();
   }, [active]);
   return (
-    <Input
-      label={label}
-      iconName={type === "Number" ? "number" : "text"}
-      type={type === "Number" ? "number" : "text"}
-      inputMode={type === "Number" ? "numeric" : "text"}
-      pattern={type === "Number" ? "[0-9]*" : "text"}
-      onChange={onChange}
-      ref={ref}
-      onBlur={onBlur}
-      state={fieldState}
-      error={error}
-      className="rounded-md py-1 max-w-[10rem]"
-      containerClasses="mt-3"
-    />
+    <div className="flex justify-center">
+      <Input
+        label={label}
+        iconName={type === "Number" ? "number" : "text"}
+        type={type === "Number" ? "number" : "text"}
+        inputMode={type === "Number" ? "numeric" : "text"}
+        pattern={type === "Number" ? "[0-9]*" : "text"}
+        onChange={onChange}
+        ref={ref}
+        onBlur={onBlur}
+        state={fieldState}
+        error={error}
+        className="rounded-md py-1 max-w-[10rem]"
+        containerClasses="mt-3"
+      />
+    </div>
   );
 };
 export default TextInput;
