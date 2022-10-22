@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-type FieldState = "OK" | "ERROR" | "NOT_VALIDATED";
+export type FieldState = "OK" | "ERROR" | "NOT_VALIDATED";
 export type FieldType =
   | "EMAIL"
   | "NOT_EMPTY"
@@ -27,7 +27,8 @@ const Validators = {
 
 const useValidation = (
   validator: FieldType,
-  setData: (data: string) => void
+  forceValidate?: boolean,
+  reset?: boolean
 ) => {
   const { t } = useTranslation("common");
   const validatorFunction = Validators[validator];
@@ -35,15 +36,24 @@ const useValidation = (
   const [fieldState, setState] = useState<FieldState>("NOT_VALIDATED");
   const [visited, setVisited] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
+
   const validate = () => {
     if (ref.current!.value && validatorFunction(ref.current!.value)) {
       setState("OK");
-      setData(ref.current!.value);
     } else {
       setState("ERROR");
-      setData("");
     }
   };
+  useEffect(() => {
+    if (forceValidate) {
+      validate();
+    }
+  }, [forceValidate]);
+  useEffect(() => {
+    if (reset) {
+      setState("NOT_VALIDATED");
+    }
+  }, [reset]);
   const onBlur = () => {
     validate();
     setVisited(true);

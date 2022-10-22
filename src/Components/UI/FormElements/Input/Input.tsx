@@ -24,6 +24,7 @@ type InputProps = {
   state?: "OK" | "NOT_VALIDATED" | "ERROR";
   error?: string;
   iconName?: "number" | "date" | "text";
+  disabled?: boolean;
 };
 export type Ref = HTMLInputElement;
 const Input = forwardRef<Ref, InputProps>((props, ref) => {
@@ -42,11 +43,16 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     containerClasses,
     onBlur,
     onFocus,
+    disabled,
   } = props;
   return (
-    <div className={`flex flex-col mb-3 ${containerClasses}`}>
+    <div className={`flex flex-col mb-3 ${containerClasses} }`}>
       {label && <label className="text-xs text-gray-600 mb-2">{label}</label>}
-      <div className="relative flex item-center">
+      <div
+        className={`relative flex item-center ${
+          disabled ? "cursor-not-allowed" : ""
+        } `}
+      >
         <Icon
           style={{ top: "calc(50% - 8px)" }}
           icon={
@@ -59,6 +65,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
           className=" text-gray-600 border-e pe-2 absolute start-2"
         />
         <input
+          disabled={disabled}
           inputMode={inputMode}
           pattern={pattern}
           onKeyDown={onKeydown}
@@ -68,7 +75,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
           ref={ref}
           placeholder={`${placeholder ? placeholder : ""}`}
           type={type}
-          className={`border ${
+          className={`border ${disabled ? "cursor-not-allowed" : ""}  ${
             state === "ERROR" ? "border-red-500  " : "border-gray-200"
           } ps-9 transition outline-none focus-visible:border-primary
         ${className}`}

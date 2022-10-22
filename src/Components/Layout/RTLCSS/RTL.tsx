@@ -98,19 +98,14 @@ const RTL = () => {
           font-display: swap;
         }
 
-        @layer utilities {
-          input {
-            unicode-bidi: isolate;
-          }
-          body {
-            font-family: Iransans;
-          }
-          .font-dana {
-            font-family: dana;
-          }
-          .font-iransans {
-            font-family: Iransans;
-          }
+        body {
+          font-family: Iransans;
+        }
+        .font-dana {
+          font-family: dana;
+        }
+        .font-iransans {
+          font-family: Iransans;
         }
         @keyframes progress-loading {
           0% {

@@ -1,19 +1,22 @@
-import useValidation from "../../../../hooks/useValidation";
+import useValidation, { FieldState } from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
 import { useEffect } from "react";
 import { IconList } from "../../../UI/Icon/Icon";
 type TextInputProps = {
   type: "Number" | "Text";
-  setData: (data: string) => void;
+  setData: (newData: { value: string; state: FieldState }) => void;
   active: boolean;
   label: string;
 };
 const TextInput = ({ type, setData, active, label }: TextInputProps) => {
   const { error, fieldState, onBlur, ref, onChange } = useValidation(
-    type === "Number" ? "NUMBER" : "NOT_EMPTY",
-    setData
+    type === "Number" ? "NUMBER" : "NOT_EMPTY"
   );
 
+  const totalOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange();
+    setData({ state: fieldState, value: e.target.value });
+  };
   useEffect(() => {
     if (active) ref.current!.focus();
   }, [active]);
@@ -25,7 +28,7 @@ const TextInput = ({ type, setData, active, label }: TextInputProps) => {
         type={type === "Number" ? "number" : "text"}
         inputMode={type === "Number" ? "numeric" : "text"}
         pattern={type === "Number" ? "[0-9]*" : "text"}
-        onChange={onChange}
+        onChange={totalOnChange}
         ref={ref}
         onBlur={onBlur}
         state={fieldState}

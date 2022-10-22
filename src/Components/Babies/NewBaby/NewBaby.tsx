@@ -9,11 +9,14 @@ import Button from "../../UI/Button/Button";
 import IconChoices from "./Forms/IconChoices";
 import TextInput from "./Forms/TextInput";
 import DateInput from "./Forms/DateInput";
+import { FieldState } from "../../../hooks/useValidation";
 
 export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
 
 const NewBaby = () => {
-  const [answers, setAnswers] = useState(Array(NBQ.length).fill(""));
+  const [answers, setAnswers] = useState<
+    { value: string; state: FieldState }[]
+  >(Array(NBQ.length).fill({ value: "", state: "NOT_VALIDATED" }));
   const { t, i18n } = useTranslation("babies");
   const [NewBabyQuestions, setNBQ] = useState(NBQ);
   useEffect(() => {
@@ -31,18 +34,19 @@ const NewBaby = () => {
   const [stepsDone, setDoneSteps] = useState(Array<StepType>);
   const [seen, setSeen] = useState(Array(NBQ.length).fill(false));
   useEffect(() => {
-    const newStepsDone = answers.map((answer, stepIndex) => {
-      if (step === stepIndex) {
-        return "FILL";
-      } else if (answer) {
-        return "OK";
-      } else if (!seen[stepIndex]) {
-        return "NOT_VALIDATED";
-      } else if (NBQ[stepIndex].required) {
-        return "ERROR";
-      } else return "OK";
-    });
-    setDoneSteps(newStepsDone);
+    setDoneSteps(
+      answers.map((answer, stepIndex) => {
+        if (step === stepIndex) {
+          return "FILL";
+        } else if (answer.state === "OK") {
+          return "OK";
+        } else if (!seen[stepIndex]) {
+          return "NOT_VALIDATED";
+        } else if (NBQ[stepIndex].required) {
+          return "ERROR";
+        } else return "NOT_VALIDATED";
+      })
+    );
   }, [step, seen]);
 
   useEffect(() => {
@@ -72,10 +76,10 @@ const NewBaby = () => {
     const returnStep = step > 0 ? step - 1 : step;
     setStep(returnStep);
   };
-  const setData = (data: string) => {
+  const setData = (newData: { value: string; state: FieldState }) => {
     setAnswers((answers) => {
       const newAnswers = [...answers];
-      newAnswers[step] = data;
+      newAnswers[step] = newData;
       return newAnswers;
     });
   };

@@ -61,6 +61,17 @@
       "placeholder": "Circumference"
     },
     "date": { "label": "Date:", "placeholder": "YYYY-MM-DD" },
-    "submit": "Submit"
+    "submit": "Submit",
+    "error": "Please provide required fields"
+  },
+  "table": {
+    "delete": "Delete",
+    "Edit": "Edit",
+    "number": "No.",
+    "date": "Date",
+    "weight": "weight (kg)",
+    "length": "Length (cm)",
+    "head": "Head circumference (cm)",
+    "functions": "Functions"
   }
 }

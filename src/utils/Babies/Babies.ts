@@ -11,7 +11,7 @@ export type IconType = {
   id: number;
 };
 export type NewbabyQuestionFormat = {
-  id: number;
+  title: string;
   question: string;
   type: Qtype;
   label?: string;
@@ -20,7 +20,7 @@ export type NewbabyQuestionFormat = {
 };
 export const NewBabyQuestions: NewbabyQuestionFormat[] = [
   {
-    id: 1,
+    title: "gender",
     question: "baby_questions.gender",
     type: "RadioIcons",
     icons: [
@@ -30,28 +30,28 @@ export const NewBabyQuestions: NewbabyQuestionFormat[] = [
     required: true,
   },
   {
-    id: 2,
+    title: "name",
     question: "baby_questions.name",
     type: "Text",
     label: "labels.name",
     required: true,
   },
   {
-    id: 31,
+    title: "birthday",
     question: "baby_questions.birthday",
     type: "Date",
     label: "labels.birthday",
     required: true,
   },
   {
-    id: 3,
+    title: "born_weight",
     question: "baby_questions.weight",
     label: "labels.weight",
     type: "Number",
     required: true,
   },
   {
-    id: 4,
+    title: "feed",
     question: "baby_questions.feed",
     type: "RadioIcons",
     icons: [
@@ -69,7 +69,7 @@ export const NewBabyQuestions: NewbabyQuestionFormat[] = [
     required: true,
   },
   {
-    id: 5,
+    title: "suplement",
     question: "baby_questions.suplement",
     type: "MultipleIcons",
     icons: [
@@ -86,56 +86,56 @@ export const NewBabyQuestions: NewbabyQuestionFormat[] = [
     ],
   },
   {
-    id: 6,
+    title: "suplement_when",
     question: "baby_questions.suplement_when",
     label: "labels.suplement_when",
     type: "Number",
   },
   {
-    id: 7,
+    title: "cut_off_milk",
     question: "baby_questions.cut_off_milk",
     label: "labels.cut_off_milk",
     type: "Number",
     required: true,
   },
   {
-    id: 8,
+    title: "birth_interval",
     question: "baby_questions.birth_interval",
     label: "labels.birth_interval",
     type: "Number",
   },
   {
-    id: 9,
+    title: "family_dimention",
     question: "baby_questions.family_dimention",
     label: "labels.family_dimention",
     type: "Number",
   },
   {
-    id: 10,
+    title: "mothers_education",
     question: "baby_questions.mothers_education",
     label: "labels.mothers_education",
     type: "Text",
   },
   {
-    id: 11,
+    title: "fathers_education",
     question: "baby_questions.mothers_career",
     label: "labels.mothers_career",
     type: "Text",
   },
   {
-    id: 12,
+    title: "special_diet",
     question: "baby_questions.special_diet",
     label: "labels.special_diet",
     type: "Text",
   },
   {
-    id: 13,
+    title: "fathers_height",
     question: "baby_questions.fathers_height",
     label: "labels.fathers_height",
     type: "Number",
   },
   {
-    id: 14,
+    title: "mothers_height",
     question: "baby_questions.mothers_height",
     label: "labels.mothers_height",
     type: "Number",

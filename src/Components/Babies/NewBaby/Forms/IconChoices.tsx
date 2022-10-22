@@ -1,10 +1,11 @@
 import { IconType } from "../../../../utils/Babies/Babies";
 import { useState } from "react";
+import { FieldState } from "../../../../hooks/useValidation";
 
 type IconChoicesProps = {
   type: "MultipleIcons" | "RadioIcons";
   icons: IconType[];
-  setData: (text: string) => void;
+  setData: (newData: { value: string; state: FieldState }) => void;
 };
 const IconChoices = ({ icons, setData, type }: IconChoicesProps) => {
   const [selected, setSelected] = useState(
@@ -17,10 +18,10 @@ const IconChoices = ({ icons, setData, type }: IconChoicesProps) => {
       const newSelected = [...selected];
       newSelected[key] = !newSelected[key];
       setSelected(newSelected);
-      setData(newSelected.join(";"));
+      setData({ value: newSelected.join(","), state: "OK" });
     } else {
       setSelected(key);
-      setData(key.toString());
+      setData({ value: key.toString(), state: "OK" });
     }
   };
   return (

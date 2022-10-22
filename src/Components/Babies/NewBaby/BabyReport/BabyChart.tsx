@@ -64,8 +64,7 @@ const BabyChart = ({
         "75th",
         "90th",
         "95th",
-        "98th",
-        "(97.7th)",
+        "98th (97.7th)",
       ]
         .map((nth, key) => ({
           label: nth,
@@ -77,8 +76,8 @@ const BabyChart = ({
         .concat([
           {
             label: "Baby",
-            borderColor: "red",
-            backgroundColor: "red",
+            borderColor: "#ff7370",
+            backgroundColor: "#ff7370",
             data: flatChildDataSet,
             order: 0,
           },

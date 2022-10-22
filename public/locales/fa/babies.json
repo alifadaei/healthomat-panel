@@ -63,5 +63,15 @@
     },
     "date": { "label": "تاریخ:", "placeholder": "1401-01-01" },
     "submit": "تایید"
+  },
+  "table": {
+    "delete": "حذف",
+    "edit": "ویرایش",
+    "number": "شماره",
+    "date": "تاریخ",
+    "weight": "وزن (kg) ",
+    "length": "قد (cm) ",
+    "head": " دور سر (cm)",
+    "functions": " توابع"
   }
 }

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import useFormat from "../../../../hooks/useFormat";
-import useValidation from "../../../../hooks/useValidation";
+import useValidation, { FieldState } from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
 type DateInputProps = {
-  setData: (data: string) => void;
+  setData: (newData: { value: string; state: FieldState }) => void;
   active: boolean;
   label: string;
 };
@@ -14,8 +14,8 @@ const DateInput = ({ setData, active, label }: DateInputProps) => {
     onBlur,
     ref,
     onChange: validationChange,
-  } = useValidation("DATE", setData);
-  const onChange = useFormat();
+  } = useValidation("DATE");
+  const formatOnChange = useFormat();
   useEffect(() => {
     if (active) ref.current!.focus();
   }, [active]);
@@ -29,8 +29,9 @@ const DateInput = ({ setData, active, label }: DateInputProps) => {
         onBlur={onBlur}
         iconName="date"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          onChange(e);
+          formatOnChange(e);
           validationChange();
+          setData({ state: fieldState, value: e.target.value });
         }}
         state={fieldState}
         error={error}
