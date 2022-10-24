@@ -69,7 +69,7 @@ const NewRecord = () => {
     <form
       id="NewRecord"
       className={`
-      bg-back px-8 pt-6 pb-4 border mx-auto flex flex-col justify-center items-center rounded-2xl`}
+      bg-back px-8 pt-6 pb-4 border mx-auto flex flex-col justify-center items-center`}
       onSubmit={(e: React.FormEvent) => e.preventDefault()}
     >
       <div className="flex items-center w-full mb-3">

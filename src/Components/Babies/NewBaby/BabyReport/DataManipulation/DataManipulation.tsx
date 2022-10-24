@@ -10,7 +10,7 @@ const DataManipulation = () => {
   const formState = useAppSelector((state) => state.babyReport.babyDataSet);
   const childDataSet = useAppSelector((state) => state.babyReport.babyDataSet);
   return (
-    <div className="flex flex-col sm:flex-row mt-3 items-start">
+    <div className="flex flex-col gap-3 sm:flex-row mt-3 items-start">
       <NewRecord />
       <DataTable
         // onEdit={handleStartEdit}
