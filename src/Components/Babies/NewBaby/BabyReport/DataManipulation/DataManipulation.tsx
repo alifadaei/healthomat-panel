@@ -1,20 +1,30 @@
 import { useTranslation } from "react-i18next";
 import DataTable from "./DataTable";
 import NewRecord from "./NewRecord";
-import { useState, useEffect } from "react";
-import { BabyRecordDataStructure } from "../BabyReport";
 import { useAppSelector } from "../../../../../hooks/useSelector";
+import Modal from "../../../../UI/Modal/Modal";
+import { useDispatch } from "react-redux";
+import { cancelAction } from "../babyReportSlice";
+import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
 const DataManipulation = () => {
   const { i18n } = useTranslation();
-  const formState = useAppSelector((state) => state.babyReport.babyDataSet);
   const childDataSet = useAppSelector((state) => state.babyReport.babyDataSet);
+  const formState = useAppSelector((state) => state.babyReport.formState);
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col gap-3 sm:flex-row mt-3 items-start">
-      <NewRecord />
+      <Modal
+        isOpen={formState.state !== "None"}
+        onBackdropClick={() => dispatch(cancelAction())}
+      >
+        {formState.state === "Edit" || formState.state === "New" ? (
+          <NewRecord />
+        ) : (
+          <ConfirmDeleteModal />
+        )}
+      </Modal>
       <DataTable
-        // onEdit={handleStartEdit}
-        // onDelete={handleDeleteRecord}
         content={childDataSet.map((item) => ({
           ...item,
           date:

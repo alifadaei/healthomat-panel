@@ -54,7 +54,7 @@
   "new_record": {
     "new_record": "New record",
     "add_record": "Add Record",
-    "weight": { "label": "Weight:(kg)", "placeholder": "Weight" },
+    "weight": { "label": "Weight:(g)", "placeholder": "Weight" },
     "length": { "label": "Length:(cm)", "placeholder": "Length" },
     "circumference": {
       "label": "Head circumference:(cm)",
@@ -73,5 +73,10 @@
     "length": "Length (cm)",
     "head": "Head circumference (cm)",
     "functions": "Functions"
+  },
+  "confirm_delete": {
+    "yes": "Proceed",
+    "no": "Cancel",
+    "msg": "Are you sure you want to delete this entity?"
   }
 }

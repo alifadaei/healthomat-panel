@@ -3,16 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { BabyRecordDataStructure } from "./BabyReport";
 
-type FormStateType = "Edit" | "New" | "Confirm_Delete";
+type FormStateType = {
+  state: "Edit" | "New" | "Confirm_Delete" | "None";
+  editDelID: string | null;
+};
 type FormFieldState = { value: string; state: FieldState };
 export interface BabyReportType {
   babyDataSet: BabyRecordDataStructure[];
-  formData: {
-    date: FormFieldState;
-    weight: FormFieldState;
-    length: FormFieldState;
-    headCircumference: FormFieldState;
-  };
   formState: FormStateType;
 }
 
@@ -20,102 +17,84 @@ const initialState: BabyReportType = {
   babyDataSet: [
     {
       date: "2022-10-02",
-      weight: 3.2,
+      weight: 3200,
       length: 50,
       headCircumference: 41,
       id: "1",
     },
     {
       date: "2022-11-02",
-      weight: 3.5,
+      weight: 3500,
       length: 52,
       headCircumference: 42,
       id: "2",
     },
     {
       date: "2022-12-13",
-      weight: 5.2,
+      weight: 5200,
       length: 54,
       headCircumference: 43,
       id: "3",
     },
     {
       date: "2022-12-13",
-      weight: 5.2,
+      weight: 5200,
       length: 54,
       headCircumference: 43,
       id: "4",
     },
   ],
-  formData: {
-    date: { value: "", state: "NOT_VALIDATED" },
-    weight: { value: "", state: "NOT_VALIDATED" },
-    length: { value: "", state: "NOT_VALIDATED" },
-    headCircumference: { value: "", state: "NOT_VALIDATED" },
-  },
-  formState: "New",
+  formState: { state: "None", editDelID: null },
 };
 
 export const babyReportSlice = createSlice({
   name: "babyReport",
   initialState,
   reducers: {
-    addBabayData: (state, action: PayloadAction<BabyRecordDataStructure>) => {
+    addBabyData: (state, action: PayloadAction<BabyRecordDataStructure>) => {
       const data = state.babyDataSet;
       data.push(action.payload);
+      state.formState.state = "None";
     },
     editBabyData: (state, action: PayloadAction<BabyRecordDataStructure>) => {
-      state.babyDataSet.forEach((item) => {
-        if (item.id === action.payload.id) {
-          item = action.payload;
-        }
-      });
+      const index = state.babyDataSet.findIndex(
+        (item) => item.id === state.formState.editDelID!
+      )!;
+      state.babyDataSet[index] = action.payload;
+      state.formState.state = "None";
     },
-    deleteBabyData: (state, action: PayloadAction<string>) => {
+    deleteBabyData: (state) => {
       state.babyDataSet = state.babyDataSet.filter(
-        (item) => item.id !== action.payload
+        (item) => item.id !== state.formState.editDelID
       );
+      state.formState.state = "None";
     },
-    setFormDataDate: (state, action: PayloadAction<FormFieldState>) => {
-      state.formData.date = action.payload;
+    startEdit: (state, action: PayloadAction<string>) => {
+      state.formState.state = "Edit";
+      state.formState.editDelID = action.payload;
     },
-    setFormDataHead: (state, action: PayloadAction<FormFieldState>) => {
-      state.formData.headCircumference = action.payload;
+    startDelete: (state, action: PayloadAction<string>) => {
+      state.formState.state = "Confirm_Delete";
+      state.formState.editDelID = action.payload;
     },
-    setFormDataLength: (state, action: PayloadAction<FormFieldState>) => {
-      state.formData.length = action.payload;
+    startNew: (state) => {
+      state.formState.state = "New";
     },
-    setFormDataWeight: (state, action: PayloadAction<FormFieldState>) => {
-      state.formData.weight = action.payload;
-    },
-    resetFormData: (state) => {
-      state.formData.date = { value: "", state: "NOT_VALIDATED" };
-      state.formData.headCircumference = { value: "", state: "NOT_VALIDATED" };
-      state.formData.weight = { value: "", state: "NOT_VALIDATED" };
-      state.formData.length = { value: "", state: "NOT_VALIDATED" };
-    },
-    setFormState: (state, action: PayloadAction<FormStateType>) => {
-      state.formState = action.payload;
-    },
-    tryEdit: (state) => {
-      state.formState = "Edit";
-    },
-    tryDelete: (state) => {
-      state.formState = "Confirm_Delete";
+    cancelAction: (state) => {
+      state.formState.state = "None";
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  addBabayData,
+  addBabyData,
   deleteBabyData,
   editBabyData,
-  setFormDataDate,
-  setFormDataHead,
-  setFormDataLength,
-  setFormDataWeight,
-  setFormState,
+  startDelete,
+  startEdit,
+  cancelAction,
+  startNew,
 } = babyReportSlice.actions;
 
 export default babyReportSlice.reducer;

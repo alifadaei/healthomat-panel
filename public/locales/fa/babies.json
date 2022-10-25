@@ -55,7 +55,7 @@
   "new_record": {
     "new_record": "افزودن داده جدید",
     "add_record": "افزودن داده",
-    "weight": { "label": "وزن: (کیلوگرم)", "placeholder": "وزن" },
+    "weight": { "label": "وزن: (گرم)", "placeholder": "وزن" },
     "length": { "label": "قد: (سانتی متر)", "placeholder": "قد" },
     "circumference": {
       "label": "دور سر: (سانتی متر)",
@@ -73,5 +73,10 @@
     "length": "قد (cm) ",
     "head": " دور سر (cm)",
     "functions": " توابع"
+  },
+  "confirm_delete": {
+    "yes": "تایید",
+    "no": "انصراف",
+    "msg": "آیا مطمئن هستید از حذف داده؟"
   }
 }

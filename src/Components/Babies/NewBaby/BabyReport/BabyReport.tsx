@@ -8,6 +8,8 @@ import _ from "lodash";
 import Button from "../../../UI/Button/Button";
 import DataManipulation from "./DataManipulation/DataManipulation";
 import { useAppSelector } from "../../../../hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { startNew } from "./babyReportSlice";
 
 export type BabyRecordDataStructure = {
   id: string;
@@ -48,11 +50,14 @@ const BabyReport = () => {
   const correspondingBabyDataSet = useMemo(
     () =>
       showItem === 3
-        ? childOwnDataSet.map((item) => [Math.round(item.length), item.weight])
+        ? childOwnDataSet.map((item) => [
+            Math.round(item.length),
+            Number((item.weight / 1000).toFixed(3)),
+          ])
         : showItem === 2
         ? childOwnDataSet.map((item) => [
             Interval.fromISO(childBirthDate + "/" + item.date).count("months"),
-            item.weight,
+            Number((item.weight / 1000).toFixed(3)),
           ])
         : showItem === 1
         ? childOwnDataSet.map((item) => [
@@ -66,19 +71,12 @@ const BabyReport = () => {
           ]),
     [showItem, childOwnDataSet]
   );
-
+  const dispatch = useDispatch();
   return (
     <>
       <Heading str={t("report.heading")} />
       <div className="flex items-center justify-start my-2 text-sm">
-        <Button
-          className="px-3 py-2 me-5"
-          onClick={() =>
-            document
-              .getElementById("NewRecord")!
-              .scrollIntoView({ behavior: "smooth" })
-          }
-        >
+        <Button className="px-3 py-2 me-5" onClick={() => dispatch(startNew())}>
           {t("new_record.new_record")}
         </Button>
         <select className="block ltr text-sm rounded-md p-2 bg-gray-100">
