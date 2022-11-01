@@ -1,8 +1,7 @@
 import React from "react";
 import BabyReport from "../Components/Babies/NewBaby/BabyReport/BabyReport";
 const Baby = React.lazy(() => import("../Components/Babies/Baby"));
-const Logout = React.lazy(() => import("../Components/Auth/Logout"));
-const MyBabies = React.lazy(() => import("../Components/Babies/MyBabies"));
+const MyBabies = React.lazy(() => import("../Components/Babies/Babies"));
 const NewBaby = React.lazy(
   () => import("../Components/Babies/NewBaby/NewBaby")
 );
@@ -18,11 +17,11 @@ export const RouteNames = {
     new_baby: "/babies/newbaby",
     baby: "/babies/baby/:id",
     baby_report: "/babies/baby/:id/report",
+    edit: "/babies/baby/edit/:id",
   },
   dashboard: "/dashboard",
   profile: "/profile",
   appointments: "/my-appointments",
-  logout: "/logout",
 };
 export const Routes = [
   { path: RouteNames.dashboard, element: <Dashboard /> },
@@ -32,5 +31,5 @@ export const Routes = [
   { path: RouteNames.my_babies.new_baby, element: <NewBaby /> },
   { path: RouteNames.my_babies.baby, element: <Baby /> },
   { path: RouteNames.my_babies.baby_report, element: <BabyReport /> },
-  { path: RouteNames.logout, element: <Logout /> },
+  { path: RouteNames.my_babies.edit, element: <NewBaby edit={true} /> },
 ];

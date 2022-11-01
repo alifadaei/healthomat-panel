@@ -1,5 +1,6 @@
 import React from "react";
 import { GiPoisonCloud, GiBodyHeight } from "react-icons/gi";
+import { ImSpinner6 } from "react-icons/im";
 import {
   BsCheckLg,
   BsInstagram,
@@ -85,6 +86,7 @@ export enum IconList {
   Graduation,
   Work,
   Ruler,
+  Spinner,
 }
 
 type IconProps = {
@@ -98,6 +100,8 @@ const Icon = (props: IconProps): React.ReactElement => {
   const { icon, className, style, onClick } = props;
   const renderIcon = () => {
     switch (icon) {
+      case IconList.Spinner:
+        return <ImSpinner6 />;
       case IconList.Text:
         return <BsTextParagraph />;
       case IconList.Ruler:

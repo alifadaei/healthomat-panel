@@ -20,8 +20,9 @@ const IconChoices = ({ icons, setData, type }: IconChoicesProps) => {
       setSelected(newSelected);
       setData({ value: newSelected.join(","), state: "OK" });
     } else {
+      //one choice
       setSelected(key);
-      setData({ value: key.toString(), state: "OK" });
+      setData({ value: (key + 1).toString(), state: "OK" });
     }
   };
   return (

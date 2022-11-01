@@ -8,7 +8,7 @@ type ResType = {
     username: string;
     firstName: string;
     lastName: string;
-    objectId: string;
+    patientId: string;
     group: UserRole;
   };
   succeeded: true;
@@ -22,37 +22,45 @@ const GetUser = () => {
     const param_token = params.get("token");
 
     if (param_token) {
-      // redirect from get token page condition
+      // a token is given through URL
+      // redirect to base
       localStorage.setItem("token", param_token);
       window.location.replace("/");
     }
 
     const localToken = localStorage.getItem("token");
     if (localToken) {
+      // a token found
       fetch(API_ROUTES.API.GetCurrentUser, {
         headers: { Authorization: "Bearer " + localToken },
       })
         .then((res) => {
-          if (res.ok) return res.json();
-          else throw Error("Problem!");
+          if (res.ok) {
+            //token is fresh
+            return res.json();
+          } else {
+            //token is not fresh
+            localStorage.removeItem("token");
+            window.location.reload();
+          }
         })
         .then((res: ResType) => {
+          // get and set user profile data
           const authPayload = {
             role: res.data.group,
             email: "",
             firstName: res.data.firstName,
             lastName: res.data.lastName,
-            id: res.data.objectId,
+            id: res.data.patientId,
             username: res.data.username,
             phone: "",
           };
           dispatch(setUserInfo(authPayload));
           dispatch(login());
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(console.log);
     } else {
+      //no token found
       window.location.replace(API_ROUTES.Pull_Token);
     }
   }, []);

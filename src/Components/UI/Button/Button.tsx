@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import Icon, { IconList } from "../Icon/Icon";
 type ButtonProps = {
   children: React.ReactNode;
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   neutral?: boolean;
   disabled?: boolean;
+  loading?: boolean;
 };
 
 const Button = ({
   onClick,
+  loading,
   children,
   neutral,
   disabled,
@@ -39,7 +42,7 @@ const Button = ({
   return (
     <button
       disabled={disabled}
-      className={`transition-all outline-none rounded-2xl m-2 ${colorClasses} ripple-button ${className}`}
+      className={` transition-all outline-none rounded-2xl m-2 ${colorClasses} ripple-button ${className}`}
       onClick={(e: React.MouseEvent<HTMLElement>) => {
         const elem = e.target as Element;
         const rect = elem.getBoundingClientRect();
@@ -59,11 +62,15 @@ const Button = ({
         ""
       )}
       <span
-        className={`content flex gap-1 ${
+        className={`content flex justify-center items-center ${
           disabled ? "cursor-not-allowed" : "cursor-pointer"
         }`}
       >
-        {children}
+        {loading ? (
+          <Icon className="animate-spin text-lg" icon={IconList.Spinner} />
+        ) : (
+          children
+        )}
       </span>
     </button>
   );

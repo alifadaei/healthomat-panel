@@ -24,7 +24,7 @@ export const sidebarContentPatient = [
 ];
 
 export const bottom_icons = [
-  { name: "sidebar.exit", icon: IconList.Exit, path: RouteNames.logout },
+  { name: "sidebar.exit", icon: IconList.Exit, path: "" },
   {
     name: "sidebar.settings",
     icon: IconList.Settings,

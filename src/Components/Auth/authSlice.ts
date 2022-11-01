@@ -16,7 +16,7 @@ export interface AuthType {
 }
 
 const initialState: AuthType = {
-  isAuthenticated: "YES",
+  isAuthenticated: "?",
   role: "Patient",
   username: "alifadaei",
   firstName: "ali",

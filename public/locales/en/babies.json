@@ -78,5 +78,24 @@
     "yes": "Proceed",
     "no": "Cancel",
     "msg": "Are you sure you want to delete this entity?"
-  }
+  },
+  "baby_profile": {
+    "profile": "Baby Profile",
+    "delete": "Delete baby",
+    "edit": "Edit baby",
+    "plot": "See growth chart"
+  },
+  "no_baby": "No baby added!",
+  "baby_data": {
+    "": "",
+    "name": "Baby name",
+    "age": "Baby age",
+    "weight": "Baby weight",
+    "height": "Baby length",
+    "no_data": "No data",
+    "weight_suffix": "gram",
+    "height_suffix": "centimeter",
+    "age_suffix": "months"
+  },
+  "edit_baby": "Edit Baby"
 }

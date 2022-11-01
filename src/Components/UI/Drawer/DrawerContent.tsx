@@ -24,7 +24,7 @@ const DrawerContent = ({
   return (
     <div
       style={style}
-      className={`z-50 p-4 bg-white absolute top-0 h-full transition-all duration-400 overflow-auto`}
+      className={`z-50 p-4 w-[14rem] bg-white absolute top-0 h-full transition-all duration-400 overflow-auto`}
     >
       {children}
     </div>

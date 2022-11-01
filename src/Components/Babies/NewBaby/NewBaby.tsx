@@ -10,21 +10,47 @@ import IconChoices from "./Forms/IconChoices";
 import TextInput from "./Forms/TextInput";
 import DateInput from "./Forms/DateInput";
 import { FieldState } from "../../../hooks/useValidation";
+import useHTTP from "../../../hooks/useHTTP";
+import { API_ROUTES } from "../../../utils/API_Routes";
+import { useNavigate } from "react-router-dom";
+import { RouteNames } from "../../../utils/Routes";
+import Preloader from "../../UI/Preloader/Preloader";
 
 export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
 
-const NewBaby = () => {
+const NewBaby = ({ edit }: { edit?: boolean }) => {
+  const navigate = useNavigate();
+  const [pageLoading, setPageLoading] = useState(false);
+  const [ID, setID] = useState("");
   const [answers, setAnswers] = useState<
     { value: string; state: FieldState }[]
   >(Array(NBQ.length).fill({ value: "", state: "NOT_VALIDATED" }));
   const { t, i18n } = useTranslation("babies");
   const [NewBabyQuestions, setNBQ] = useState(NBQ);
   useEffect(() => {
+    if (edit) {
+      setPageLoading(true);
+      const URL = window.location.href;
+      const id = URL.substring(URL.lastIndexOf("/") + 1);
+      setID(id);
+      send(API_ROUTES.PatientChild.GetById + "?id=" + ID, "GET").then(
+        (res: resType) => {
+          setPageLoading(false);
+          if (res.succeeded) {
+            setAnswers();
+          } else {
+            alert("SOMETHING BAD HAPPEND!");
+          }
+        }
+      );
+    }
+  }, []);
+  useEffect(() => {
     setNBQ(
       NBQ.map((item) => ({
         ...item,
         label: item.label ? t(item.label) : undefined,
-        question: t(item.question, { name: answers[1] }),
+        question: t(item.question, { name: answers[1].value }),
         icons: item.icons?.map((icon) => ({ ...icon, name: t(icon.name) })),
       }))
     );
@@ -33,6 +59,38 @@ const NewBaby = () => {
   const [lastStep, setLastStep] = useState(0);
   const [stepsDone, setDoneSteps] = useState(Array<StepType>);
   const [seen, setSeen] = useState(Array(NBQ.length).fill(false));
+  const { loading, send } = useHTTP();
+
+  const sendData = () => {
+    if (answers.every((item) => item.state === "OK")) {
+      send(API_ROUTES.PatientChild.Add, "POST", {
+        patientId: 23,
+        gender: Number(answers[0].value),
+        name: answers[1].value,
+        birthDay: answers[2].value,
+        weighAfterBorn: Number(answers[3].value),
+        feed: Number(answers[4].value),
+        suplement: answers[5].value,
+        suplementWhen: Number(answers[6].value),
+        cutOfMilk: Number(answers[7].value),
+        birthInterval: Number(answers[8].value),
+        familyDimention: Number(answers[9].value),
+        motherEducation: answers[10].value,
+        fatherEducation: answers[11].value,
+        specialDie: answers[12].value,
+        fatherHeight: Number(answers[13].value),
+        motherHeight: Number(answers[14].value),
+      }).then((res) => {
+        if (res.succeeded) {
+          // console.log(res);
+          navigate(RouteNames.my_babies.baby.replace(":id", res.data.id));
+        } else {
+          alert("A problem occured!");
+        }
+      });
+    }
+  };
+
   useEffect(() => {
     setDoneSteps(
       answers.map((answer, stepIndex) => {
@@ -86,7 +144,8 @@ const NewBaby = () => {
 
   return (
     <div className="">
-      <Heading str={t("new_baby")} />
+      <Heading str={!edit ? t("new_baby") : t("edit_baby")} />
+      <Preloader isOpen={pageLoading} />
       {/* ====== cloudy container ====== */}
       <div
         style={{
@@ -142,7 +201,8 @@ const NewBaby = () => {
         <Button
           neutral
           className="mt-1 px-4 py-2 mb-5 xs:mb-4 sm:mb-3 "
-          onClick={goNextStep}
+          onClick={step < NewBabyQuestions.length - 1 ? goNextStep : sendData}
+          loading={loading}
         >
           {step === NewBabyQuestions.length - 1 ? t("finish") : t("next")}
         </Button>
@@ -157,3 +217,27 @@ const NewBaby = () => {
   );
 };
 export default NewBaby;
+
+type resType = {
+  data: {
+    patientChild: {
+      name: string;
+      gender: number;
+      birthDay: string;
+      feed: number;
+      suplement: string;
+      weighAfterBorn: number;
+      suplementWhen: number;
+      cutOfMilk: number;
+      birthInterval: number;
+      familyDimention: number;
+      motherEducation: string;
+      fatherEducation: string;
+      specialDie: string;
+      fatherHeight: number;
+      motherHeight: number;
+      // avatar: string;
+    };
+  };
+  succeeded: true;
+};

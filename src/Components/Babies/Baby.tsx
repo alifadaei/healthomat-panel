@@ -1,54 +1,135 @@
 import { useTranslation } from "react-i18next";
 import Heading from "../UI/Heading/Heading";
-import baby from "../../assets/img/baby/baby-profile.jpg";
-import Icon, { IconList } from "../UI/Icon/Icon";
+import { useState, useEffect } from "react";
+import babyGirl from "../../assets/img/baby/girl-baby.png";
+import babyBoy from "../../assets/img/baby/boy-baby.jpg";
+import Icon from "../UI/Icon/Icon";
 import { BabyProfile } from "./_BabyProfile";
 import Button from "../UI/Button/Button";
-import { Link } from "react-router-dom";
-import { RouteNames, Routes } from "../../utils/Routes";
+import { Link, useNavigate } from "react-router-dom";
+import { RouteNames } from "../../utils/Routes";
+import Modal from "../UI/Modal/Modal";
+import useHTTP from "../../hooks/useHTTP";
+import { API_ROUTES } from "../../utils/API_Routes";
+import Preloader from "../UI/Preloader/Preloader";
 const Baby = () => {
   const { t } = useTranslation("babies");
-  return (
-    <>
-      <Heading str={t("baby_profile")} />
-      <div className=" border rounded-2xl p-5 mt-2 xs:max-w-[40rem] text-gray-600 xs:my-5">
-        <img
-          className="rounded-full w-[8rem] xs:w-[11rem] shadow-sm mx-auto"
-          src={baby}
-          alt="baby"
-        />
-        <div className="mt-3 border px-2 pt-2 rounded-2xl text-xs flex-col justify-center flex">
-          {BabyProfile.map((item, key) => (
-            <div
-              key={key}
-              className=" flex  items-center rounded-lg justify-between odd:bg-gray-100 px-4 py-3 "
-            >
-              <div className="rounded-lg font-bold flex items-center">
-                <Icon className="me-1" icon={item.icon} />
-                <span>{item.name}</span>
-              </div>
-              <div className="">{item.val}</div>
+  const { errors, loading, send, setError } = useHTTP();
+  const navigate = useNavigate();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [babyData, setBabyData] = useState<BabyType | "Loading">("Loading");
+  const [ID, setID] = useState<string | null>(null);
+  useEffect(() => {
+    const URL = window.location.href;
+    const id = URL.substring(URL.lastIndexOf("/") + 1);
+    setID(id);
+    send(API_ROUTES.PatientChild.GetChildsById + "?id=" + id, "GET").then(
+      (res: ResponseType) => {
+        if (res.succeeded) {
+          setBabyData(res.data);
+        } else {
+          alert("something went wrong!");
+        }
+      }
+    );
+  }, []);
+  if (babyData !== "Loading")
+    return (
+      <>
+        <Modal
+          isOpen={deleteModalOpen}
+          onBackdropClick={() => setDeleteModalOpen(false)}
+        >
+          <div className="p-5 flex flex-col items-center">
+            <p className="mt-2"> {t("confirm_delete.msg")}</p>
+            <div className="flex w-full">
+              <Button
+                loading={loading}
+                onClick={() => {
+                  send(
+                    API_ROUTES.PatientChild.Delete + "?id=" + ID,
+                    "POST"
+                  ).then((res) => {
+                    if (res.succeeded) {
+                      navigate(RouteNames.my_babies.root);
+                    } else alert("something went wrong!");
+                  });
+                }}
+                className="w-full px-3 py-2"
+              >
+                {t("confirm_delete.yes")}
+              </Button>
+              <Button
+                onClick={() => {
+                  setDeleteModalOpen(false);
+                }}
+                neutral
+                className="w-full text-center px-3 py-2"
+              >
+                {t("confirm_delete.no")}
+              </Button>
             </div>
-          ))}
-        </div>
-        <div className="mt-2 flex flex-col gap-2  sm:flex-row text-xs">
-          <Button
-            neutral
-            className=" border-red-400 hover:bg-none p-2 text-center m-0 justify-center flex items-center"
-          >
-            حذف کودک
-          </Button>
-          <Button className="flex items-center justify-center p-2 m-0 bg-slate-400">
-            ویرایش کودک
-          </Button>
-          <Link to={RouteNames.my_babies.baby_report.replace(":id", "3")}>
-            <Button className="flex items-center justify-center p-2 m-0">
-              مشاهده نمودار رشد
+          </div>
+        </Modal>
+        <Heading str={t("baby_profile.profile")} />
+        <div className=" border rounded-2xl p-5 mt-2 xs:max-w-[40rem] text-gray-600 xs:my-5">
+          <img
+            className="rounded-full w-[8rem] xs:w-[11rem] shadow-sm mx-auto"
+            src={babyData.gender === 1 ? babyBoy : babyGirl}
+            alt="baby"
+          />
+          <div className="mt-3 border px-2 pt-2 rounded-2xl text-xs flex-col justify-center flex">
+            {BabyProfile.map((item, key) => (
+              <div
+                key={key}
+                className=" flex  items-center rounded-lg justify-between odd:bg-gray-100 px-4 py-3 "
+              >
+                <div className="rounded-lg font-bold flex items-center">
+                  <Icon className="me-1" icon={item.icon} />
+                  <span>{t("baby_data." + item.name)}</span>
+                </div>
+                <div className="">
+                  {babyData![item.name as keyof typeof babyData]
+                    ? babyData![item.name as keyof typeof babyData] +
+                      " " +
+                      t("baby_data." + item.suffix)
+                    : t("baby_data.no_data")}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 flex sm:items-center flex-col gap-2  sm:flex-row text-xs">
+            <Button
+              onClick={() => setDeleteModalOpen(true)}
+              neutral
+              className=" border-red-400 hover:bg-none p-2 text-center m-0"
+            >
+              {t("baby_profile.delete")}
             </Button>
-          </Link>
+            <Link to={RouteNames.my_babies.edit.replace(":id", ID!)}>
+              <Button className="flex items-center justify-center p-2 m-0 bg-slate-400">
+                {t("baby_profile.edit")}
+              </Button>
+            </Link>
+            <Button className="flex items-center justify-center p-2 m-0">
+              <Link to={RouteNames.my_babies.baby_report.replace(":id", "3")}>
+                {t("baby_profile.plot")}
+              </Link>
+            </Button>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  else return <Preloader isOpen={true} />;
 };
 export default Baby;
+
+type BabyType = {
+  id: string;
+  age: number;
+  height: string;
+  weight: string;
+  gender: number;
+};
+
+type ResponseType = { data: BabyType; succeeded: boolean };

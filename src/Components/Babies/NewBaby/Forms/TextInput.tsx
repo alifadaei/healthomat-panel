@@ -12,7 +12,9 @@ const TextInput = ({ type, setData, active, label }: TextInputProps) => {
   const { error, fieldState, onBlur, ref, onChange } = useValidation(
     type === "Number" ? "NUMBER" : "NOT_EMPTY"
   );
-
+  useEffect(() => {
+    setData({ state: fieldState, value: ref.current!.value });
+  }, [fieldState]);
   const totalOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange();
     setData({ state: fieldState, value: e.target.value });

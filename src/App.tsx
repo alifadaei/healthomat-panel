@@ -32,12 +32,11 @@ function App() {
     dispatch(setPhsyicalSidebarOpen(setPhycicalSidebarStat()));
     updatePageDirection();
   }, []);
-
   return (
     <>
       <Preloader isOpen={!auth} />
       <FontLoader />
-      {/* <GetUser /> */}
+      <GetUser />
       {auth && (
         <ScrollToTop>
           <>

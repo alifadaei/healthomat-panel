@@ -15,6 +15,9 @@ const DateInput = ({ setData, active, label }: DateInputProps) => {
     ref,
     onChange: validationChange,
   } = useValidation("DATE");
+  useEffect(() => {
+    setData({ state: fieldState, value: ref.current!.value });
+  }, [fieldState]);
   const formatOnChange = useFormat();
   useEffect(() => {
     if (active) ref.current!.focus();
