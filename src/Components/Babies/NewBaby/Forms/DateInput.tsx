@@ -1,20 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import useFormat from "../../../../hooks/useFormat";
+import { useAppSelector } from "../../../../hooks/useSelector";
 import useValidation, { FieldState } from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
+import { userEnteredData } from "../newBabySlice";
 type DateInputProps = {
-  setData: (newData: { value: string; state: FieldState }) => void;
-  active: boolean;
+  active: number;
   label: string;
 };
-const DateInput = ({ setData, active, label }: DateInputProps) => {
+const DateInput = ({ active: active_key, label }: DateInputProps) => {
+  const formType = useAppSelector((state) => state.newBaby.type);
+  const answers = useAppSelector((state) => state.newBaby.answers);
+  const [doValidate, setDoValidate] = useState(false);
+  useEffect(() => {
+    if (formType === "Edit") {
+      const value = answers[active_key].value;
+      ref.current!.value = value;
+      setDoValidate(true);
+    }
+  }, [formType]);
+  const step = useAppSelector((state) => state.newBaby.step);
+  const active = active_key === step;
+  const dispatch = useDispatch();
+  const setData = (data: { state: FieldState; value: string }) => {
+    dispatch(userEnteredData(data));
+  };
+  const { t } = useTranslation("babies");
   const {
     error,
     fieldState,
     onBlur,
     ref,
     onChange: validationChange,
-  } = useValidation("DATE");
+  } = useValidation("DATE", doValidate);
   useEffect(() => {
     setData({ state: fieldState, value: ref.current!.value });
   }, [fieldState]);
@@ -25,7 +45,7 @@ const DateInput = ({ setData, active, label }: DateInputProps) => {
   return (
     <div className="flex justify-center">
       <Input
-        label={label}
+        label={t(label)}
         inputMode="text"
         type="text"
         ref={ref}

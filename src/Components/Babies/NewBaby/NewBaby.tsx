@@ -3,84 +3,109 @@ import Heading from "../../UI/Heading/Heading";
 import cloudy from "../../../assets/img/baby/cloudy.svg";
 import { useState, useEffect } from "react";
 import Icon, { IconList } from "../../UI/Icon/Icon";
-import Step, { StepType } from "./Step";
-import { NewBabyQuestions as NBQ } from "../../../utils/Babies/Babies";
+import Step from "./Step";
+import { NewBabyQuestions } from "../../../utils/Babies/Babies";
 import Button from "../../UI/Button/Button";
 import IconChoices from "./Forms/IconChoices";
 import TextInput from "./Forms/TextInput";
 import DateInput from "./Forms/DateInput";
-import { FieldState } from "../../../hooks/useValidation";
 import useHTTP from "../../../hooks/useHTTP";
 import { API_ROUTES } from "../../../utils/API_Routes";
 import { useNavigate } from "react-router-dom";
 import { RouteNames } from "../../../utils/Routes";
 import Preloader from "../../UI/Preloader/Preloader";
+import { useAppSelector } from "../../../hooks/useSelector";
+import { useDispatch } from "react-redux";
+import {
+  changeStep,
+  editOn,
+  goNextStep,
+  goPrevStep,
+  presetEditData,
+} from "./newBabySlice";
+import { range } from "lodash";
+import { FieldState } from "../../../hooks/useValidation";
 
 export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
 
 const NewBaby = ({ edit }: { edit?: boolean }) => {
   const navigate = useNavigate();
   const [pageLoading, setPageLoading] = useState(false);
+  const { t } = useTranslation("babies");
+  const answers = useAppSelector((state) => state.newBaby.answers);
   const [ID, setID] = useState("");
-  const [answers, setAnswers] = useState<
-    { value: string; state: FieldState }[]
-  >(Array(NBQ.length).fill({ value: "", state: "NOT_VALIDATED" }));
-  const { t, i18n } = useTranslation("babies");
-  const [NewBabyQuestions, setNBQ] = useState(NBQ);
   useEffect(() => {
     if (edit) {
       setPageLoading(true);
       const URL = window.location.href;
       const id = URL.substring(URL.lastIndexOf("/") + 1);
       setID(id);
-      send(API_ROUTES.PatientChild.GetById + "?id=" + ID, "GET").then(
+      send(API_ROUTES.PatientChild.GetById + "?id=" + id, "GET").then(
         (res: resType) => {
           setPageLoading(false);
           if (res.succeeded) {
-            setAnswers();
+            const data = res.data.patientChild;
+            const editData = [
+              data.gender,
+              data.name,
+              data.birthDay,
+              data.weighAfterBorn,
+              data.feed,
+              data.suplement,
+              data.suplementWhen,
+              data.cutOfMilk,
+              data.birthInterval,
+              data.familyDimention,
+              data.motherEducation,
+              data.fatherEducation,
+              data.specialDie,
+              data.motherHeight,
+              data.fatherHeight,
+            ].map(
+              (item) =>
+                ({ value: item, state: item ? "OK" : "NOT_VALIDATED" } as {
+                  value: string;
+                  state: FieldState;
+                })
+            );
+            dispatch(presetEditData(editData));
+            dispatch(editOn());
           } else {
-            alert("SOMETHING BAD HAPPEND!");
+            window.location.replace("/");
           }
         }
       );
     }
   }, []);
-  useEffect(() => {
-    setNBQ(
-      NBQ.map((item) => ({
-        ...item,
-        label: item.label ? t(item.label) : undefined,
-        question: t(item.question, { name: answers[1].value }),
-        icons: item.icons?.map((icon) => ({ ...icon, name: t(icon.name) })),
-      }))
-    );
-  }, [i18n.language, answers]);
-  const [step, setStep] = useState(0);
-  const [lastStep, setLastStep] = useState(0);
-  const [stepsDone, setDoneSteps] = useState(Array<StepType>);
-  const [seen, setSeen] = useState(Array(NBQ.length).fill(false));
+  const step = useAppSelector((state) => state.newBaby.step);
   const { loading, send } = useHTTP();
-
+  const formType = useAppSelector((state) => state.newBaby.type);
   const sendData = () => {
     if (answers.every((item) => item.state === "OK")) {
-      send(API_ROUTES.PatientChild.Add, "POST", {
-        patientId: 23,
-        gender: Number(answers[0].value),
-        name: answers[1].value,
-        birthDay: answers[2].value,
-        weighAfterBorn: Number(answers[3].value),
-        feed: Number(answers[4].value),
-        suplement: answers[5].value,
-        suplementWhen: Number(answers[6].value),
-        cutOfMilk: Number(answers[7].value),
-        birthInterval: Number(answers[8].value),
-        familyDimention: Number(answers[9].value),
-        motherEducation: answers[10].value,
-        fatherEducation: answers[11].value,
-        specialDie: answers[12].value,
-        fatherHeight: Number(answers[13].value),
-        motherHeight: Number(answers[14].value),
-      }).then((res) => {
+      send(
+        formType === "New"
+          ? API_ROUTES.PatientChild.Add
+          : API_ROUTES.PatientChild.Edit,
+        formType === "New" ? "POST" : "PUT",
+        {
+          id: Number(ID),
+          gender: Number(answers[0].value),
+          name: answers[1].value,
+          birthDay: answers[2].value,
+          weighAfterBorn: Number(answers[3].value),
+          feed: Number(answers[4].value),
+          suplement: answers[5].value,
+          suplementWhen: Number(answers[6].value),
+          cutOfMilk: Number(answers[7].value),
+          birthInterval: Number(answers[8].value),
+          familyDimention: Number(answers[9].value),
+          motherEducation: answers[10].value,
+          fatherEducation: answers[11].value,
+          specialDie: answers[12].value,
+          fatherHeight: Number(answers[13].value),
+          motherHeight: Number(answers[14].value),
+        }
+      ).then((res) => {
         if (res.succeeded) {
           // console.log(res);
           navigate(RouteNames.my_babies.baby.replace(":id", res.data.id));
@@ -91,56 +116,7 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
     }
   };
 
-  useEffect(() => {
-    setDoneSteps(
-      answers.map((answer, stepIndex) => {
-        if (step === stepIndex) {
-          return "FILL";
-        } else if (answer.state === "OK") {
-          return "OK";
-        } else if (!seen[stepIndex]) {
-          return "NOT_VALIDATED";
-        } else if (NBQ[stepIndex].required) {
-          return "ERROR";
-        } else return "NOT_VALIDATED";
-      })
-    );
-  }, [step, seen]);
-
-  useEffect(() => {
-    if (lastStep !== step)
-      setSeen((seen) => {
-        const newSeen = [...seen];
-        newSeen[lastStep] = true;
-        setLastStep(step);
-        return newSeen;
-      });
-  }, [step]);
-  const filledUntilStep = (step: number) => {
-    for (let i = 0; i <= step; i++) {
-      if (!answers[i] && NBQ[i].required) {
-        return false;
-      }
-    }
-    return true;
-  };
-  const goNextStep = () => {
-    setStep(step < NewBabyQuestions.length - 1 ? step + 1 : step);
-  };
-  const goToStep = (step: number) => {
-    if (step >= 0 && step < NewBabyQuestions.length) setStep(step);
-  };
-  const goPrevStep = () => {
-    const returnStep = step > 0 ? step - 1 : step;
-    setStep(returnStep);
-  };
-  const setData = (newData: { value: string; state: FieldState }) => {
-    setAnswers((answers) => {
-      const newAnswers = [...answers];
-      newAnswers[step] = newData;
-      return newAnswers;
-    });
-  };
+  const dispatch = useDispatch();
 
   return (
     <div className="">
@@ -159,12 +135,20 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
         {/* ========== left right icons =========== */}
         <div className="text-primary">
           <Icon
-            onClick={document.body.dir === "rtl" ? goNextStep : goPrevStep}
+            onClick={() =>
+              document.body.dir === "rtl"
+                ? dispatch(goNextStep())
+                : dispatch(goPrevStep())
+            }
             icon={IconList.ChevronLeft}
             className="absolute left-0 2xs:left-3 md:left-20 top-[50%] text-2xl cursor-pointer"
           />
           <Icon
-            onClick={document.body.dir === "rtl" ? goPrevStep : goNextStep}
+            onClick={() =>
+              document.body.dir === "rtl"
+                ? dispatch(goPrevStep())
+                : dispatch(goNextStep())
+            }
             icon={IconList.ChevronRight}
             className="absolute right-0 2xs:right-3 md:right-20 top-[50%] text-2xl cursor-pointer"
           />
@@ -174,45 +158,32 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
         {NewBabyQuestions.map((item, key) => (
           <div key={key} className={`${key === step ? "" : "hidden"}`}>
             <span className="inline-block bg-[rgba(255,255,255,0.7)] text-start p-3 rounded-t-2xl border-b-2 border-primary-500 shadow-md">
-              {item.question}
+              {t(item.question, { name: answers[1].value })}
             </span>
             {item.type === "RadioIcons" || item.type === "MultipleIcons" ? (
-              <IconChoices
-                type={item.type}
-                setData={setData}
-                icons={item.icons!}
-              />
+              <IconChoices active={key} type={item.type} icons={item.icons!} />
             ) : item.type === "Number" || item.type === "Text" ? (
-              <TextInput
-                label={item.label!}
-                active={step === key}
-                type={item.type}
-                setData={setData}
-              />
+              <TextInput active={key} label={item.label!} type={item.type} />
             ) : item.type === "Date" ? (
-              <DateInput
-                label={item.label!}
-                active={step === key}
-                setData={setData}
-              />
+              <DateInput active={key} label={item.label!} />
             ) : null}
           </div>
         ))}
         <Button
           neutral
           className="mt-1 px-4 py-2 mb-5 xs:mb-4 sm:mb-3 "
-          onClick={step < NewBabyQuestions.length - 1 ? goNextStep : sendData}
+          onClick={
+            step < NewBabyQuestions.length - 1
+              ? () => dispatch(goNextStep())
+              : sendData
+          }
           loading={loading}
         >
           {step === NewBabyQuestions.length - 1 ? t("finish") : t("next")}
         </Button>
       </div>
       {/* ========= step ======== */}
-      <Step
-        stepsDone={stepsDone}
-        onSetStep={goToStep}
-        steps={NewBabyQuestions.length}
-      />
+      <Step />
     </div>
   );
 };

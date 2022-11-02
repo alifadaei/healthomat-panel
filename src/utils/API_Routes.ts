@@ -17,5 +17,6 @@ export const API_ROUTES = {
     GetChildsById: timeseries_base + "PatientChild/GetChildsById",
     Add: timeseries_base + "PatientChild/Add",
     Delete: timeseries_base + "PatientChild/Delete",
+    Edit: timeseries_base + "PatientChild/Edit",
   },
 };

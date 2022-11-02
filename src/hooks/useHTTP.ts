@@ -12,7 +12,7 @@ const useHTTP = () => {
   const [errors, setError] = useState("");
   const send = async (
     url: string,
-    method: "POST" | "GET",
+    method: "POST" | "GET" | "PUT",
     body?: any,
     headers?: any
   ) => {
@@ -22,7 +22,7 @@ const useHTTP = () => {
       method,
       body: body ? JSON.stringify(body) : null,
       headers: {
-        ...CommonHeaders.EhsanAPI,
+        // ...CommonHeaders.EhsanAPI,
         ...headers,
         Authorization: "Bearer " + localStorage.getItem("token"),
       },

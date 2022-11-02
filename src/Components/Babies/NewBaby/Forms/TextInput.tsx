@@ -1,23 +1,42 @@
 import useValidation, { FieldState } from "../../../../hooks/useValidation";
 import Input from "../../../UI/FormElements/Input/Input";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IconList } from "../../../UI/Icon/Icon";
+import { useDispatch } from "react-redux";
+import { userEnteredData } from "../newBabySlice";
+import { useAppSelector } from "../../../../hooks/useSelector";
+import { useTranslation } from "react-i18next";
 type TextInputProps = {
   type: "Number" | "Text";
-  setData: (newData: { value: string; state: FieldState }) => void;
-  active: boolean;
   label: string;
+  active: number;
 };
-const TextInput = ({ type, setData, active, label }: TextInputProps) => {
-  const { error, fieldState, onBlur, ref, onChange } = useValidation(
-    type === "Number" ? "NUMBER" : "NOT_EMPTY"
-  );
+const TextInput = ({ type, label, active: active_key }: TextInputProps) => {
+  const step = useAppSelector((state) => state.newBaby.step);
+  const active = active_key === step;
+  const formType = useAppSelector((state) => state.newBaby.type);
+  const answers = useAppSelector((state) => state.newBaby.answers);
   useEffect(() => {
-    setData({ state: fieldState, value: ref.current!.value });
+    if (formType === "Edit") {
+      const value = answers[active_key].value;
+      ref.current!.value = value;
+      setDoValidate(true);
+    }
+  }, [formType]);
+  const [doValidate, setDoValidate] = useState(false);
+  const { error, fieldState, onBlur, ref, onChange } = useValidation(
+    type === "Number" ? "NUMBER" : "NOT_EMPTY",
+    doValidate
+  );
+  const { t } = useTranslation("babies");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userEnteredData({ state: fieldState, value: ref.current!.value }));
   }, [fieldState]);
+
   const totalOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange();
-    setData({ state: fieldState, value: e.target.value });
+    dispatch(userEnteredData({ state: fieldState, value: e.target.value }));
   };
   useEffect(() => {
     if (active) ref.current!.focus();
@@ -25,7 +44,7 @@ const TextInput = ({ type, setData, active, label }: TextInputProps) => {
   return (
     <div className="flex justify-center">
       <Input
-        label={label}
+        label={t(label)}
         iconName={type === "Number" ? "number" : "text"}
         type={type === "Number" ? "number" : "text"}
         inputMode={type === "Number" ? "numeric" : "text"}

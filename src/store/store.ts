@@ -3,6 +3,7 @@ import authSlice from "./../Components/Auth/authSlice";
 import sidebarSlice from "../Components/Layout/Sidebar/sidebarSlice";
 import babyReportSlice from "./../Components/Babies/NewBaby/BabyReport/babyReportSlice";
 import layoutSlice from "../Components/Layout/LayoutSlice";
+import newBabySlice from "../Components/Babies/NewBaby/newBabySlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     auth: authSlice,
     babyReport: babyReportSlice,
     layout: layoutSlice,
+    newBaby: newBabySlice,
   },
 });
 

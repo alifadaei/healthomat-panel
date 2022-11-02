@@ -1,28 +1,46 @@
 import { IconType } from "../../../../utils/Babies/Babies";
-import { useState } from "react";
-import { FieldState } from "../../../../hooks/useValidation";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { userEnteredData } from "../newBabySlice";
+import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../../../hooks/useSelector";
 
 type IconChoicesProps = {
   type: "MultipleIcons" | "RadioIcons";
   icons: IconType[];
-  setData: (newData: { value: string; state: FieldState }) => void;
+  active: number;
 };
-const IconChoices = ({ icons, setData, type }: IconChoicesProps) => {
+const IconChoices = ({ icons, type, active }: IconChoicesProps) => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation("babies");
   const [selected, setSelected] = useState(
     type === "MultipleIcons" ? Array<boolean>(icons.length).fill(false) : -1
   );
-
+  const formType = useAppSelector((state) => state.newBaby.type);
+  const answers = useAppSelector((state) => state.newBaby.answers);
+  useEffect(() => {
+    if (formType === "Edit") {
+      const value = answers[active].value;
+      if (type === "RadioIcons") {
+        setSelected(Number(value) - 1);
+      } else {
+        setSelected(
+          value.split(",").map((item) => item.toLowerCase() === "true")
+        );
+      }
+    }
+  }, [formType]);
   const handleClickIcon = (key: number) => {
     if (Array.isArray(selected)) {
       //multiple choices
       const newSelected = [...selected];
       newSelected[key] = !newSelected[key];
       setSelected(newSelected);
-      setData({ value: newSelected.join(","), state: "OK" });
+      dispatch(userEnteredData({ value: newSelected.join(","), state: "OK" }));
     } else {
       //one choice
       setSelected(key);
-      setData({ value: (key + 1).toString(), state: "OK" });
+      dispatch(userEnteredData({ value: (key + 1).toString(), state: "OK" }));
     }
   };
   return (
@@ -38,11 +56,11 @@ const IconChoices = ({ icons, setData, type }: IconChoicesProps) => {
                   : ""
               }`}
               src={item.src}
-              alt={item.name}
+              alt={t(item.name)}
             />
           </span>
           <span className="drop-shadow-lg text-xs sm:text-sm ">
-            {item.name}
+            {t(item.name)}
           </span>
         </div>
       ))}
