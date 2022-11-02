@@ -21,7 +21,8 @@ const Header = () => {
           <Button className="p-2 px-5 me-2">{t("header.enter")}</Button>
         ) : (
           <Button
-            className="px-4 py-2 text-lg cursor-pointer"
+            neutral
+            className="px-3 py-2 text-lg cursor-pointer"
             onClick={() => dispatch(openDrawerSidebar())}
           >
             <Icon icon={IconList.Hamburger} />
@@ -31,11 +32,11 @@ const Header = () => {
           to={"/"}
           className="flex flex-row gap-x-2 justify-center items-center text-primary "
         >
-          <img src={Logo} className=" w-7 sm:w-10" alt="logo" />
+          <img src={Logo} className=" w-6 sm:w-8" alt="logo" />
           <h1
             className={` ${
               lng === "fa"
-                ? "font-dana font-bold text-[.8rem] xs:text-[1.3rem] "
+                ? "font-dana font-bold text-[1.2rem] xs:text-[1.5rem] "
                 : "font-cookie text-[1.5rem] 2xs:text-[2rem] sm:text-[2.6rem] leading-5 font-medium"
             } `}
           >

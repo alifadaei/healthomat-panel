@@ -36,7 +36,7 @@ function App() {
     <>
       <Preloader isOpen={!auth} />
       <FontLoader />
-      {/* <GetUser /> */}
+      <GetUser />
       {auth && (
         <ScrollToTop>
           <>

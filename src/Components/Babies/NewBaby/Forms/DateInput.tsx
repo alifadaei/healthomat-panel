@@ -17,7 +17,7 @@ const DateInput = ({ active: active_key, label }: DateInputProps) => {
   useEffect(() => {
     if (formType === "Edit") {
       const value = answers[active_key].value;
-      ref.current!.value = value;
+      ref.current!.value = value.substring(0, 10);
       setDoValidate(true);
     }
   }, [formType]);

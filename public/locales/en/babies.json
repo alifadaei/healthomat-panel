@@ -14,6 +14,7 @@
     "birth_interval": "How many months is there between her older sibling birth?",
     "family_dimention": "How many people are there in your family?",
     "mothers_education": "Write about {{name}}'s educational background.",
+    "fathers_education": "What is father's eduaction?",
     "mothers_career": "What is mother's career?",
     "special_diet": "Write down {{name}}'s special diet.",
     "fathers_height": "How tall is {{name}}'s father?",
@@ -29,6 +30,7 @@
     "family_dimention": "Family members:",
     "mothers_education": "Mother's education:",
     "mothers_career": "Mother's career:",
+    "fathers_education": "Fathers's education:",
     "special_diet": "Special diets:",
     "fathers_height": "Father's height:",
     "mothers_height": "Mother's height:"

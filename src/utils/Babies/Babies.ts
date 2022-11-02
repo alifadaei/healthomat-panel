@@ -117,9 +117,15 @@ export const NewBabyQuestions: NewbabyQuestionFormat[] = [
     type: "Text",
   },
   {
-    title: "fathers_education",
+    title: "mothers_career",
     question: "baby_questions.mothers_career",
     label: "labels.mothers_career",
+    type: "Text",
+  },
+  {
+    title: "fathers_education",
+    question: "baby_questions.fathers_education",
+    label: "labels.fathers_education",
     type: "Text",
   },
   {

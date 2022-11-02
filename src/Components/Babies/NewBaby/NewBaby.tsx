@@ -57,6 +57,7 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
               data.birthInterval,
               data.familyDimention,
               data.motherEducation,
+              data.motherCareer,
               data.fatherEducation,
               data.specialDie,
               data.motherHeight,
@@ -100,10 +101,11 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
           birthInterval: Number(answers[8].value),
           familyDimention: Number(answers[9].value),
           motherEducation: answers[10].value,
-          fatherEducation: answers[11].value,
-          specialDie: answers[12].value,
-          fatherHeight: Number(answers[13].value),
-          motherHeight: Number(answers[14].value),
+          motherCareer: answers[11].value,
+          fatherEducation: answers[12].value,
+          specialDie: answers[13].value,
+          fatherHeight: Number(answers[14].value),
+          motherHeight: Number(answers[15].value),
         }
       ).then((res) => {
         if (res.succeeded) {
@@ -204,6 +206,7 @@ type resType = {
       familyDimention: number;
       motherEducation: string;
       fatherEducation: string;
+      motherCareer: string;
       specialDie: string;
       fatherHeight: number;
       motherHeight: number;

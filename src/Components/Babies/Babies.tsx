@@ -60,9 +60,9 @@ const MyBabies = () => {
                       src={item.gender === 1 ? babyBoy : babyGirl}
                       alt="baby-boy"
                     />
-                    <Button neutral className="font-medium px-3 py-1">
+                    <div className="font-medium px-3 py-1 m-1 text-gray-600">
                       <span>{item.name}</span>
-                    </Button>
+                    </div>
                   </div>
                 </Link>
               ))

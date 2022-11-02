@@ -2,6 +2,7 @@ import { setUserInfo, UserRole, login } from "./authSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { API_ROUTES } from "../../utils/API_Routes";
+import { CommonHeaders } from "../../hooks/useHTTP";
 
 type ResType = {
   data: {
@@ -32,7 +33,10 @@ const GetUser = () => {
     if (localToken) {
       // a token found
       fetch(API_ROUTES.API.GetCurrentUser, {
-        headers: { Authorization: "Bearer " + localToken },
+        headers: {
+          Authorization: "Bearer " + localToken,
+          ...CommonHeaders.EhsanAPI,
+        },
       })
         .then((res) => {
           if (res.ok) {
