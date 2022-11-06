@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
 import man from "../../assets/img/man-profile.jpg";
 import { useAppSelector } from "../../hooks/useSelector";
-import { profile_content } from "../../utils/profile-dropdown";
-import Dropdown from "../UI/Dropdown/Dropdown";
-import Icon from "../UI/Icon/Icon";
+
 const Profile = () => {
   const { firstName, lastName } = useAppSelector((state) => state.auth);
+  const avatar = useAppSelector((state) => state.auth.avatar);
 
   return (
     <div className="flex flex-col items-center py-3">
       <img
-        src={man}
+        src={avatar || man}
         alt="man"
-        className="w-14 rounded-full border border-primary-100 cursor-pointer"
+        className="w-14 h-14 object-cover rounded-full border border-primary-100 cursor-pointer"
       />
       <div className="relative text-xs">
         <div className="text-center">

@@ -8,6 +8,9 @@ export const API_ROUTES = {
   Web: web_base,
   Pull_Token: web_base + "auth/panel-login",
   Logout: web_base + "auth/logout",
+  Profile: {
+    UploadAvatar: webservice_base + "Authentication/UploadAvatar",
+  },
   API: {
     GetCurrentUser: webservice_base + "Authentication/GetCurrentUser",
   },

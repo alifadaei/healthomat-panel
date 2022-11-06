@@ -9,7 +9,11 @@
     "enter": "ورود",
     "exit": "خروج",
     "dashboard": "داشبورد",
-    "profile": "پروفایل",
+    "profile": {
+      "profile": "پروفایل",
+      "my_profile": "پروفایل من",
+      "change_pass": "تغییر رمز عبور"
+    },
     "appointments": "نوبت های من",
     "babies": {
       "babies": "کودکان من",

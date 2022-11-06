@@ -1,3 +1,15 @@
 {
-  "profile": "Profile"
+  "profile": "Profile",
+  "man_profile": {
+    "name": "Name",
+    "email": "Email",
+    "username": "Username"
+  },
+  "avatar": {
+    "file_size_exceeded": "File size must be less than 100KB",
+    "file_format_not_accepted": "File format must be JPG or PNG",
+    "drag_here": "Drag your files here",
+    "or": "or",
+    "select": "Choose Avatar"
+  }
 }

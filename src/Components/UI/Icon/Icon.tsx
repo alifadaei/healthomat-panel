@@ -17,6 +17,7 @@ import {
 } from "react-icons/bs";
 import { RiScales2Line } from "react-icons/ri";
 import { TbNumbers } from "react-icons/tb";
+import { IoMdCloudUpload } from "react-icons/io";
 import {
   IoTextOutline,
   IoPeopleOutline,
@@ -41,9 +42,11 @@ import { TbRuler2 } from "react-icons/tb";
 import { GoSearch } from "react-icons/go";
 import { AiOutlinePhone, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { MdOutlineDashboard, MdWorkOutline } from "react-icons/md";
-import { HiOutlineMenu } from "react-icons/hi";
+import { HiOutlineMenu, HiOutlineMail } from "react-icons/hi";
 
 export enum IconList {
+  Upload,
+  Email,
   Text,
   Numbers,
   CloudError,
@@ -100,6 +103,10 @@ const Icon = (props: IconProps): React.ReactElement => {
   const { icon, className, style, onClick } = props;
   const renderIcon = () => {
     switch (icon) {
+      case IconList.Upload:
+        return <IoMdCloudUpload />;
+      case IconList.Email:
+        return <HiOutlineMail />;
       case IconList.Spinner:
         return <ImSpinner6 />;
       case IconList.Text:
