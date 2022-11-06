@@ -2,7 +2,18 @@ import { IconList } from "../Components/UI/Icon/Icon";
 import { RouteNames } from "./Routes";
 export const sidebarContentPatient = [
   { name: "sidebar.dashboard", icon: IconList.Dashboard, path: "/dashboard" },
-  { name: "sidebar.profile", icon: IconList.Person, path: "/profile" },
+  {
+    name: "sidebar.profile.profile",
+    icon: IconList.Person,
+    path: RouteNames.profile.root,
+    menu: [
+      { name: "sidebar.profile.my_profile", path: RouteNames.profile.root },
+      {
+        name: "sidebar.profile.change_pass",
+        path: RouteNames.profile.change_pass,
+      },
+    ],
+  },
   {
     name: "sidebar.appointments",
     icon: IconList.Calendar,
@@ -25,10 +36,10 @@ export const sidebarContentPatient = [
 
 export const bottom_icons = [
   { name: "sidebar.exit", icon: IconList.Exit, path: "" },
-  {
-    name: "sidebar.settings",
-    icon: IconList.Settings,
-    path: RouteNames.profile,
-  },
-  { name: "sidebar.profile", icon: IconList.Person, path: RouteNames.profile },
+  // {
+  //   name: "sidebar.settings",
+  //   icon: IconList.Settings,
+  //   path: RouteNames.profile,
+  // },
+  // { name: "sidebar.profile", icon: IconList.Person, path: RouteNames.profile },
 ];

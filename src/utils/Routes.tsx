@@ -20,12 +20,13 @@ export const RouteNames = {
     edit: "/babies/baby/edit/:id",
   },
   dashboard: "/dashboard",
-  profile: "/profile",
+  profile: { root: "/profile", change_pass: "/profile/change-password" },
   appointments: "/my-appointments",
 };
 export const Routes = [
   { path: RouteNames.dashboard, element: <Dashboard /> },
-  { path: RouteNames.profile, element: <Profile /> },
+  { path: RouteNames.profile.root, element: <Profile /> },
+  { path: RouteNames.profile.change_pass, element: <Profile /> },
   { path: RouteNames.appointments, element: <Appointments /> },
   { path: RouteNames.my_babies.root, element: <MyBabies /> },
   { path: RouteNames.my_babies.new_baby, element: <NewBaby /> },

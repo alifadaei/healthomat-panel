@@ -9,8 +9,10 @@ type ResType = {
     username: string;
     firstName: string;
     lastName: string;
-    patientId: string;
+    patinetId: string;
     group: UserRole;
+    email: string;
+    avatar: string;
   };
   succeeded: true;
   message: string;
@@ -52,12 +54,13 @@ const GetUser = () => {
           // get and set user profile data
           const authPayload = {
             role: res.data.group,
-            email: "",
+            email: res.data.email,
             firstName: res.data.firstName,
             lastName: res.data.lastName,
-            id: res.data.patientId,
+            id: res.data.patinetId,
             username: res.data.username,
             phone: "",
+            avatar: res.data.avatar,
           };
           dispatch(setUserInfo(authPayload));
           dispatch(login());

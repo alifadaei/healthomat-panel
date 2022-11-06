@@ -10,7 +10,11 @@
     "enter": "Enter",
     "exit": "Exit",
     "dashboard": "Dashboard",
-    "profile": "Profile",
+    "profile": {
+      "profile": "Profile",
+      "my_profile": "My Profile",
+      "change_pass": "Change Password"
+    },
     "appointments": "My Appointments",
     "babies": {
       "babies": "My Babies",
