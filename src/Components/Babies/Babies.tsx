@@ -10,15 +10,17 @@ import useHTTP from "../../hooks/useHTTP";
 import { API_ROUTES } from "../../utils/API_Routes";
 import Loading from "../UI/Loading/Loading";
 import Preloader from "../UI/Preloader/Preloader";
+import { useAppSelector } from "../../hooks/useSelector";
 
 const MyBabies = () => {
   const { t } = useTranslation("babies");
   const { errors, loading, send, setError } = useHTTP();
   const [babies, setBabies] = useState<BabyData[] | "Loading">("Loading");
+  const patientID = useAppSelector((state) => state.auth.id);
   // const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     send(
-      API_ROUTES.PatientChild.GetChildsByPateintId + "?id=23",
+      API_ROUTES.PatientChild.GetChildsByPateintId + "?id=" + patientID,
       "GET",
       null
     ).then((res: responseType) => {
