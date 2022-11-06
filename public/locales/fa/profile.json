@@ -5,7 +5,7 @@
     "email": "ایمیل",
     "username": "نام کاربری"
   },
-  "upload_avatar": {
+  "upload": {
     "file_size_exceeded": "سایز فایل باید کوچک تر از 100 کیلوبایت باشد",
     "file_format_not_accepted": "فرمت فایل PNG یا JPG باید باشد",
     "drag_here": "عکس تان را اینجا رها کنید",
