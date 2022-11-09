@@ -40,11 +40,21 @@ import { GiFruitBowl } from "react-icons/gi";
 import { TbRuler2 } from "react-icons/tb";
 
 import { GoSearch } from "react-icons/go";
-import { AiOutlinePhone, AiOutlineStar, AiFillStar } from "react-icons/ai";
+import {
+  AiOutlinePhone,
+  AiOutlineStar,
+  AiFillStar,
+  AiOutlineLock,
+} from "react-icons/ai";
 import { MdOutlineDashboard, MdWorkOutline } from "react-icons/md";
-import { HiOutlineMenu, HiOutlineMail } from "react-icons/hi";
+import {
+  HiOutlineMenu,
+  HiOutlineMail,
+  HiOutlineLockClosed,
+} from "react-icons/hi";
 
 export enum IconList {
+  Lock,
   Upload,
   Email,
   Text,
@@ -105,6 +115,8 @@ const Icon = (props: IconProps): React.ReactElement => {
     switch (icon) {
       case IconList.Upload:
         return <IoMdCloudUpload />;
+      case IconList.Lock:
+        return <HiOutlineLockClosed />;
       case IconList.Email:
         return <HiOutlineMail />;
       case IconList.Spinner:

@@ -1,5 +1,6 @@
 import React from "react";
 import BabyReport from "../Components/Babies/NewBaby/BabyReport/BabyReport";
+import ChangePassword from "../Components/Profile/ChangePassword/ChangePassword";
 const Baby = React.lazy(() => import("../Components/Babies/Baby"));
 const MyBabies = React.lazy(() => import("../Components/Babies/Babies"));
 const NewBaby = React.lazy(
@@ -26,7 +27,7 @@ export const RouteNames = {
 export const Routes = [
   { path: RouteNames.dashboard, element: <Dashboard /> },
   { path: RouteNames.profile.root, element: <Profile /> },
-  { path: RouteNames.profile.change_pass, element: <Profile /> },
+  { path: RouteNames.profile.change_pass, element: <ChangePassword /> },
   { path: RouteNames.appointments, element: <Appointments /> },
   { path: RouteNames.my_babies.root, element: <MyBabies /> },
   { path: RouteNames.my_babies.new_baby, element: <NewBaby /> },

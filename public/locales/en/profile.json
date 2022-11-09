@@ -11,5 +11,8 @@
     "drag_here": "Drag your files here",
     "or": "or",
     "select": "Choose Avatar"
+  },
+  "change_pass": {
+    "title": "Change Password"
   }
 }

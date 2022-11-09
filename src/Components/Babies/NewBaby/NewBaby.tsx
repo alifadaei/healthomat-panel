@@ -16,14 +16,7 @@ import { RouteNames } from "../../../utils/Routes";
 import Preloader from "../../UI/Preloader/Preloader";
 import { useAppSelector } from "../../../hooks/useSelector";
 import { useDispatch } from "react-redux";
-import {
-  changeStep,
-  editOn,
-  goNextStep,
-  goPrevStep,
-  presetEditData,
-} from "./newBabySlice";
-import { range } from "lodash";
+import { editOn, goNextStep, goPrevStep, presetEditData } from "./newBabySlice";
 import { FieldState } from "../../../hooks/useValidation";
 
 export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
@@ -33,14 +26,15 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
   const [pageLoading, setPageLoading] = useState(false);
   const { t } = useTranslation("babies");
   const answers = useAppSelector((state) => state.newBaby.answers);
-  const [ID, setID] = useState("");
+  const patientID = useAppSelector((state) => state.auth.id);
+  const [childID, setChildID] = useState("");
   useEffect(() => {
     if (edit) {
       setPageLoading(true);
       const URL = window.location.href;
-      const id = URL.substring(URL.lastIndexOf("/") + 1);
-      setID(id);
-      send(API_ROUTES.PatientChild.GetById + "?id=" + id, "GET").then(
+      const childId = URL.substring(URL.lastIndexOf("/") + 1);
+      setChildID(childId);
+      send(API_ROUTES.PatientChild.GetById + "?id=" + childId, "GET").then(
         (res: resType) => {
           setPageLoading(false);
           if (res.succeeded) {
@@ -89,7 +83,8 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
           : API_ROUTES.PatientChild.Edit,
         formType === "New" ? "POST" : "PUT",
         {
-          id: Number(ID),
+          id: Number(childID),
+          patientId: Number(patientID),
           gender: Number(answers[0].value),
           name: answers[1].value,
           birthDay: answers[2].value,

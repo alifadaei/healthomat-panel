@@ -8,7 +8,6 @@ import { RouteNames } from "../../utils/Routes";
 import { useState, useEffect } from "react";
 import useHTTP from "../../hooks/useHTTP";
 import { API_ROUTES } from "../../utils/API_Routes";
-import Loading from "../UI/Loading/Loading";
 import Preloader from "../UI/Preloader/Preloader";
 import { useAppSelector } from "../../hooks/useSelector";
 

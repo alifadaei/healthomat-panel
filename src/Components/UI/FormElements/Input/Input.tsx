@@ -23,7 +23,7 @@ type InputProps = {
   onKeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   state?: "OK" | "NOT_VALIDATED" | "ERROR";
   error?: string;
-  iconName?: "number" | "date" | "text";
+  iconName?: "number" | "date" | "text" | "pass";
   disabled?: boolean;
 };
 export type Ref = HTMLInputElement;
@@ -60,9 +60,11 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
               ? IconList.Calendar
               : iconName === "number"
               ? IconList.Numbers
+              : iconName === "pass"
+              ? IconList.Lock
               : IconList.Text
           }
-          className=" text-gray-600 border-e pe-2 absolute start-2"
+          className=" text-gray-600 border-e pe-1 absolute start-2"
         />
         <input
           disabled={disabled}

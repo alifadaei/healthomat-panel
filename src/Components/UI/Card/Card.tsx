@@ -9,7 +9,7 @@ const Card = (props: CardProps) => {
   return (
     <div
       onClick={onClick}
-      className={`rounded-3xl ${className} ${enableShadow ? "shadow-lg" : ""}`}
+      className={`rounded-3xl ${className} ${enableShadow ? "shadow-sm" : ""}`}
     >
       {children}
     </div>

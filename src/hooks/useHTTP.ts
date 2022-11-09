@@ -28,11 +28,12 @@ const useHTTP = () => {
       },
     });
     setLoading(false);
+    const response = await raw.json();
     if (raw.ok) {
       //token is fresh
-      const response = await raw.json();
       return response;
     } else {
+      setError(response.message);
       //token is not fresh
       // localStorage.removeItem("token");
       // window.location.reload();

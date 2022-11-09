@@ -10,6 +10,7 @@ export const API_ROUTES = {
   Logout: web_base + "auth/logout",
   Profile: {
     UploadAvatar: webservice_base + "Authentication/UploadAvatar",
+    ChangePassword: webservice_base + "Authentication/ChangePassword",
   },
   API: {
     GetCurrentUser: webservice_base + "Authentication/GetCurrentUser",
