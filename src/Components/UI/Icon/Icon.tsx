@@ -3,6 +3,7 @@ import { GiPoisonCloud, GiBodyHeight } from "react-icons/gi";
 import { ImSpinner6 } from "react-icons/im";
 import {
   BsCheckLg,
+  BsGenderMale,
   BsInstagram,
   BsWhatsapp,
   BsTwitter,
@@ -54,6 +55,7 @@ import {
 } from "react-icons/hi";
 
 export enum IconList {
+  Gender,
   Lock,
   Upload,
   Email,
@@ -115,6 +117,8 @@ const Icon = (props: IconProps): React.ReactElement => {
     switch (icon) {
       case IconList.Upload:
         return <IoMdCloudUpload />;
+      case IconList.Gender:
+        return <BsGenderMale />;
       case IconList.Lock:
         return <HiOutlineLockClosed />;
       case IconList.Email:

@@ -10,6 +10,7 @@ import DataManipulation from "./DataManipulation/DataManipulation";
 import { useAppSelector } from "../../../../hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { startNew } from "./babyReportSlice";
+import BabyProfile from "./BabyProfile";
 
 export type BabyRecordDataStructure = {
   id: string;
@@ -87,11 +88,14 @@ const BabyReport = () => {
           ))}
         </select>
       </div>
-      <BabyChart
-        dataSet={selectedDataSet}
-        name={graphTypes[showItem]}
-        childOwnDataSet={correspondingBabyDataSet}
-      />
+      <div className="flex justify-evenly">
+        <BabyProfile />
+        <BabyChart
+          dataSet={selectedDataSet}
+          name={graphTypes[showItem]}
+          childOwnDataSet={correspondingBabyDataSet}
+        />
+      </div>
       <DataManipulation />
     </>
   );

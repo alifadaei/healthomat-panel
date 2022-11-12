@@ -85,13 +85,21 @@
     "profile": "Baby Profile",
     "delete": "Delete baby",
     "edit": "Edit baby",
-    "plot": "See growth chart"
+    "plot": "See growth chart",
+    "avatar": {
+      "file_size_exceeded": "File size must be less than 100KB",
+      "file_format_not_accepted": "File format must be JPG or PNG",
+      "drag_here": "Drag your {{name}}'s picture here",
+      "or": "or",
+      "select": "Choose Avatar"
+    }
   },
   "no_baby": "No baby added!",
   "baby_data": {
     "": "",
     "name": "Baby name",
     "age": "Baby age",
+    "gender": "Gender",
     "weight": "Baby weight",
     "height": "Baby length",
     "no_data": "No data",

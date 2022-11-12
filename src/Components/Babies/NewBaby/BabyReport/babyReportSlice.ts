@@ -9,11 +9,19 @@ type FormStateType = {
 };
 type FormFieldState = { value: string; state: FieldState };
 export interface BabyReportType {
+  name: string | null;
+  age: string | null;
+  avatar: string | null;
+  gender: number;
   babyDataSet: BabyRecordDataStructure[];
   formState: FormStateType;
 }
 
 const initialState: BabyReportType = {
+  name: null,
+  age: null,
+  avatar: null,
+  gender: 1,
   babyDataSet: [
     {
       date: "2022-10-02",

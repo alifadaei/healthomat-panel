@@ -26,7 +26,7 @@ const Profile = () => {
       <div className=" border rounded-2xl p-3 sm:p-5 mt-2 xs:max-w-[40rem] text-gray-600 xs:my-5 text-center">
         <div className="relative inline-block">
           <Modal isOpen={modalOpen} onBackdropClick={handleCloseModal}>
-            <Uploader finish={() => handleCloseModal()} />
+            <Uploader finish={handleCloseModal} />
           </Modal>
           <Icon
             onClick={handleOpenUploadModal}

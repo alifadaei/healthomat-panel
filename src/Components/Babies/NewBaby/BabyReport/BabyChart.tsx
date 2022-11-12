@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import React from "react";
 import {
   Chart,
@@ -103,6 +103,7 @@ const BabyChart = ({
         responsive: true,
         scales: {
           x: {
+            type: "logarithmic",
             title: {
               color: "#2999c6",
               display: true,
@@ -110,6 +111,7 @@ const BabyChart = ({
             },
           },
           y: {
+            type: "logarithmic",
             title: {
               color: "#2999c6",
               display: true,
@@ -126,7 +128,7 @@ const BabyChart = ({
   }, [dataSet, childOwnDataSet]);
   return (
     <>
-      <div className="relative w-full sm:w-[35rem] md:w-[40rem] lg:w-[60rem] mx-auto">
+      <div className="relative w-full lg:w-[45rem]">
         <canvas ref={ref}></canvas>
       </div>
     </>

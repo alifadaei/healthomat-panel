@@ -3,7 +3,7 @@ import Heading from "../UI/Heading/Heading";
 import { useState, useEffect } from "react";
 import babyGirl from "../../assets/img/baby/girl-baby.png";
 import babyBoy from "../../assets/img/baby/boy-baby.jpg";
-import Icon from "../UI/Icon/Icon";
+import Icon, { IconList } from "../UI/Icon/Icon";
 import { BabyProfile } from "./_BabyProfile";
 import Button from "../UI/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,13 +12,20 @@ import Modal from "../UI/Modal/Modal";
 import useHTTP from "../../hooks/useHTTP";
 import { API_ROUTES } from "../../utils/API_Routes";
 import Preloader from "../UI/Preloader/Preloader";
+import useModal from "../../hooks/useModal";
+import BabyAvatarUploader from "./NewBaby/BabyAvatarUploader";
 const Baby = () => {
   const { t } = useTranslation("babies");
-  const { errors, loading, send, setError } = useHTTP();
+  const { loading, send } = useHTTP();
   const navigate = useNavigate();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [babyData, setBabyData] = useState<BabyType | "Loading">("Loading");
   const [ID, setID] = useState<string | null>(null);
+  const {
+    handleCloseModal: handleCloseUploadModal,
+    handleOpenModal: handleOpenUploadmodal,
+    modalOpen: UploadModalOpen,
+  } = useModal();
   useEffect(() => {
     const URL = window.location.href;
     const id = URL.substring(URL.lastIndexOf("/") + 1);
@@ -72,12 +79,32 @@ const Baby = () => {
           </div>
         </Modal>
         <Heading str={t("baby_profile.profile")} />
-        <div className=" border rounded-2xl p-5 mt-2 xs:max-w-[40rem] text-gray-600 xs:my-5">
-          <img
-            className="rounded-full w-[8rem] xs:w-[11rem] shadow-sm mx-auto"
-            src={babyData.gender === 1 ? babyBoy : babyGirl}
-            alt="baby"
-          />
+        <div className="  border rounded-2xl p-3 sm:p-5 mt-2 xs:max-w-[40rem] text-gray-600 xs:my-5 text-center">
+          {/* baby image */}
+          <div className="relative inline-block">
+            <Modal
+              isOpen={UploadModalOpen}
+              onBackdropClick={handleCloseUploadModal}
+            >
+              <BabyAvatarUploader
+                name={babyData.name}
+                babyID={ID}
+                finish={handleCloseUploadModal}
+              />
+            </Modal>
+            <Icon
+              onClick={handleOpenUploadmodal}
+              icon={IconList.Upload}
+              className="absolute bottom-2 text-gray-600 transition-all hover:text-primary right-2 hover:shadow-md rounded-full p-2 cursor-pointer text-2xl bg-white border"
+            />
+            <img
+              className="rounded-full object-cover w-[8rem] h-[8rem] xs:w-[11rem] xs:h-[11rem] shadow-sm border mx-auto"
+              src={
+                babyData.avatar || babyData.gender === 1 ? babyBoy : babyGirl
+              }
+              alt="baby"
+            />
+          </div>
           <div className="mt-3 border px-2 pt-2 rounded-2xl text-xs flex-col justify-center flex">
             {BabyProfile.map((item, key) => (
               <div
@@ -112,7 +139,9 @@ const Baby = () => {
               </Button>
             </Link>
             <Button className="flex items-center justify-center p-2 m-0">
-              <Link to={RouteNames.my_babies.baby_report.replace(":id", "3")}>
+              <Link
+                to={RouteNames.my_babies.baby_report.replace(":id", ID || "")}
+              >
                 {t("baby_profile.plot")}
               </Link>
             </Button>
@@ -125,7 +154,8 @@ const Baby = () => {
 export default Baby;
 
 type BabyType = {
-  id: string;
+  name: string;
+  avatar: null | string;
   age: number;
   height: string;
   weight: string;
