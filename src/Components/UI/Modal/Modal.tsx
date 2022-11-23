@@ -13,10 +13,12 @@ type ModalProps = {
   isOpen: boolean;
   onBackdropClick: () => void;
   raw?: boolean;
+  middle?: boolean;
 };
 const Modal = ({
   raw = false,
   children,
+  middle,
   isOpen,
   onBackdropClick,
 }: ModalProps) => {
@@ -32,8 +34,8 @@ const Modal = ({
       <Tooltip selector="#overlays">
         <div
           className={`fixed top-0 end-0 w-full h-full flex justify-center  ${
-            raw ? "items-center" : "items-start"
-          } z-20 overflow-auto px-2 pt-10`}
+            raw || middle ? "items-center" : "items-start"
+          } z-20 overflow-auto px-2 ${middle ? "pt-0" : "pt-10"}`}
         >
           <ModalOverlay raw={raw} state={state}>
             {children}

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { API_ROUTES } from "../../../utils/API_Routes";
-import { changeAvatar } from "../../Auth/authSlice";
 import Icon, { IconList } from "../../UI/Icon/Icon";
 import Button from "../../UI/Button/Button";
 import ProgressBar from "../../UI/ProgressBar/ProgressBar";
@@ -11,9 +10,11 @@ const FILE_LIMIT = 1024 * 1024; //bytes
 
 const BabyAvatarUploader = ({
   finish,
+  onBabyAvatarChange,
   name,
   babyID,
 }: {
+  onBabyAvatarChange: (avatar: string) => void;
   finish: () => void;
   name: string;
   babyID: string | null;
@@ -24,20 +25,20 @@ const BabyAvatarUploader = ({
   const [errors, setError] = useState("");
   const [dragging, setDragging] = useState(false);
   const { t } = useTranslation("babies");
-  const dispatch = useDispatch();
   const handleInputChange = () => {
     if (ref.current!.files![0]) {
       //file is selected by user
       const file = ref.current!.files![0];
       if (file.size <= FILE_LIMIT) {
         //start uploading
+        setFileName(file.name);
         setError("");
         console.log("start");
         const formData = new FormData();
         formData.set("image", file);
         axios
           .post(
-            API_ROUTES.Profile.UploadAvatar + "?PatientId=" + babyID,
+            API_ROUTES.PatientChild.UploadAvatar + "?PatientChildId=" + babyID,
             formData,
             {
               onUploadProgress: (progressEvent) => {
@@ -53,7 +54,7 @@ const BabyAvatarUploader = ({
           .then((res) => {
             // finish
             const avatar = res.data.data.avatar;
-            dispatch(changeAvatar(avatar));
+            onBabyAvatarChange(avatar);
             finish();
           })
           .catch(() => {
@@ -89,7 +90,6 @@ const BabyAvatarUploader = ({
     e.stopPropagation();
     e.preventDefault();
     const files = e.dataTransfer.files;
-    setFileName(files[0].name);
     ref.current!.files = files;
     handleInputChange();
   };

@@ -3,22 +3,22 @@ const timeseries_base = "https://timeseries-service.healthomat.com/api/";
 const web_base =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3001/"
-    : "https://healthomat-web.vercel.app/";
+    : "https://healthomat.com/";
 export const API_ROUTES = {
   Web: web_base,
-  Pull_Token: web_base + "auth/panel-login",
+  GetCurrentUser: webservice_base + "Authentication/GetCurrentUser",
+  RefreshToken: webservice_base + "RefreshToken",
   Logout: web_base + "auth/logout",
+  Login: web_base + "auth/login",
   Profile: {
     UploadAvatar: webservice_base + "Authentication/UploadAvatar",
     ChangePassword: webservice_base + "Authentication/ChangePassword",
   },
-  API: {
-    GetCurrentUser: webservice_base + "Authentication/GetCurrentUser",
-  },
   PatientChild: {
-    GetChildsByPateintId: timeseries_base + "PatientChild/GetChildsByPateintId",
+    GetChildsByID: timeseries_base + "PatientChild/GetChildsById",
+    UploadAvatar: timeseries_base + "PatientChild/UploadAvatar",
     GetById: timeseries_base + "PatientChild/GetById",
-    GetChildsById: timeseries_base + "PatientChild/GetChildsById",
+    GetChilds: timeseries_base + "PatientChild/GetChilds",
     Add: timeseries_base + "PatientChild/Add",
     Delete: timeseries_base + "PatientChild/Delete",
     Edit: timeseries_base + "PatientChild/Edit",

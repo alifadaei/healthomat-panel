@@ -11,21 +11,19 @@ export interface AuthType {
   lastName: string;
   email: string;
   phone: string;
-  id: string;
   avatar: string | null;
   username: string;
 }
 
 const initialState: AuthType = {
-  isAuthenticated: "?",
+  isAuthenticated: "YES",
   role: null,
   avatar: null,
-  username: "",
-  firstName: "",
-  lastName: "",
-  email: "d",
+  username: "alifadaei",
+  firstName: "علی",
+  lastName: "فدائی منش",
+  email: "alifadaeimanesh@gmail.com",
   phone: "a",
-  id: "ds",
 };
 
 export const authSlice = createSlice({
@@ -41,26 +39,21 @@ export const authSlice = createSlice({
         username: string;
         email: string;
         phone: string;
-        id: string;
         avatar: string | null;
       }>
     ) => {
-      const { firstName, lastName, username, email, phone, id, role, avatar } =
+      const { firstName, lastName, username, email, phone, role, avatar } =
         action.payload;
       state.email = email;
       state.firstName = firstName;
       state.lastName = lastName;
-
       state.username = username;
       state.phone = phone;
-      state.id = id;
       state.role = role;
       state.avatar = avatar;
     },
     logout: (state) => {
       state.isAuthenticated = "NO";
-      localStorage.removeItem("token");
-      localStorage.removeItem("id");
       window.location.replace(API_ROUTES.Logout);
     },
     login: (state) => {

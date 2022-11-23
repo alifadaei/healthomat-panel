@@ -9,7 +9,6 @@ import Button from "../../UI/Button/Button";
 import IconChoices from "./Forms/IconChoices";
 import TextInput from "./Forms/TextInput";
 import DateInput from "./Forms/DateInput";
-import useHTTP from "../../../hooks/useHTTP";
 import { API_ROUTES } from "../../../utils/API_Routes";
 import { useNavigate } from "react-router-dom";
 import { RouteNames } from "../../../utils/Routes";
@@ -18,6 +17,7 @@ import { useAppSelector } from "../../../hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { editOn, goNextStep, goPrevStep, presetEditData } from "./newBabySlice";
 import { FieldState } from "../../../hooks/useValidation";
+import useAPI from "../../../hooks/useAPI";
 
 export type Qtype = "Number" | "Text" | "RadioIcons" | "MultipleIcons" | "Date";
 
@@ -25,91 +25,90 @@ const NewBaby = ({ edit }: { edit?: boolean }) => {
   const navigate = useNavigate();
   const [pageLoading, setPageLoading] = useState(false);
   const { t } = useTranslation("babies");
+  const { loading, setLoading, client } = useAPI();
   const answers = useAppSelector((state) => state.newBaby.answers);
-  const patientID = useAppSelector((state) => state.auth.id);
   const [childID, setChildID] = useState("");
   useEffect(() => {
     if (edit) {
       setPageLoading(true);
       const URL = window.location.href;
-      const childId = URL.substring(URL.lastIndexOf("/") + 1);
-      setChildID(childId);
-      send(API_ROUTES.PatientChild.GetById + "?id=" + childId, "GET").then(
-        (res: resType) => {
+      const childID = URL.substring(URL.lastIndexOf("/") + 1);
+      setChildID(childID);
+      client
+        .get(API_ROUTES.PatientChild.GetById + "?id=" + childID)
+        .then(({ data: res }) => {
           setPageLoading(false);
-          if (res.succeeded) {
-            const data = res.data.patientChild;
-            const editData = [
-              data.gender,
-              data.name,
-              data.birthDay,
-              data.weighAfterBorn,
-              data.feed,
-              data.suplement,
-              data.suplementWhen,
-              data.cutOfMilk,
-              data.birthInterval,
-              data.familyDimention,
-              data.motherEducation,
-              data.motherCareer,
-              data.fatherEducation,
-              data.specialDie,
-              data.motherHeight,
-              data.fatherHeight,
-            ].map(
-              (item) =>
-                ({ value: item, state: item ? "OK" : "NOT_VALIDATED" } as {
-                  value: string;
-                  state: FieldState;
-                })
-            );
-            dispatch(presetEditData(editData));
-            dispatch(editOn());
-          } else {
-            window.location.replace("/");
-          }
-        }
-      );
+          const data = res.data.patientChild;
+          const editData = [
+            data.gender,
+            data.name,
+            data.birthDay,
+            data.weighAfterBorn,
+            data.feed,
+            data.suplement,
+            data.suplementWhen,
+            data.cutOfMilk,
+            data.birthInterval,
+            data.familyDimention,
+            data.motherEducation,
+            data.motherCareer,
+            data.fatherEducation,
+            data.specialDie,
+            data.motherHeight,
+            data.fatherHeight,
+          ].map(
+            (item) =>
+              ({ value: item, state: item ? "OK" : "NOT_VALIDATED" } as {
+                value: string;
+                state: FieldState;
+              })
+          );
+          dispatch(presetEditData(editData));
+          dispatch(editOn());
+        })
+        .then(() => setPageLoading(false));
     }
   }, []);
   const step = useAppSelector((state) => state.newBaby.step);
-  const { loading, send } = useHTTP();
   const formType = useAppSelector((state) => state.newBaby.type);
   const sendData = () => {
     if (answers.every((item) => item.state === "OK")) {
-      send(
-        formType === "New"
-          ? API_ROUTES.PatientChild.Add
-          : API_ROUTES.PatientChild.Edit,
-        formType === "New" ? "POST" : "PUT",
-        {
-          id: Number(childID),
-          patientId: Number(patientID),
-          gender: Number(answers[0].value),
-          name: answers[1].value,
-          birthDay: answers[2].value,
-          weighAfterBorn: Number(answers[3].value),
-          feed: Number(answers[4].value),
-          suplement: answers[5].value,
-          suplementWhen: Number(answers[6].value),
-          cutOfMilk: Number(answers[7].value),
-          birthInterval: Number(answers[8].value),
-          familyDimention: Number(answers[9].value),
-          motherEducation: answers[10].value,
-          motherCareer: answers[11].value,
-          fatherEducation: answers[12].value,
-          specialDie: answers[13].value,
-          fatherHeight: Number(answers[14].value),
-          motherHeight: Number(answers[15].value),
-        }
-      ).then((res) => {
-        if (res.succeeded) {
+      setLoading(true);
+      client
+        .request({
+          url:
+            formType === "New"
+              ? API_ROUTES.PatientChild.Add
+              : API_ROUTES.PatientChild.Edit,
+          method: formType === "New" ? "POST" : "PUT",
+          data: {
+            id: Number(childID),
+            gender: Number(answers[0].value),
+            name: answers[1].value,
+            birthDay: answers[2].value,
+            weighAfterBorn: Number(answers[3].value),
+            feed: Number(answers[4].value),
+            suplement: answers[5].value,
+            suplementWhen: Number(answers[6].value),
+            cutOfMilk: Number(answers[7].value),
+            birthInterval: Number(answers[8].value),
+            familyDimention: Number(answers[9].value),
+            motherEducation: answers[10].value,
+            motherCareer: answers[11].value,
+            fatherEducation: answers[12].value,
+            specialDie: answers[13].value,
+            fatherHeight: Number(answers[14].value),
+            motherHeight: Number(answers[15].value),
+          },
+        })
+        .then((res) => {
           // console.log(res);
-          navigate(RouteNames.my_babies.baby.replace(":id", res.data.id));
-        } else {
-          alert("A problem occured!");
-        }
-      });
+          navigate(RouteNames.my_babies.baby.replace(":id", res.data.data.id));
+        })
+        .catch(() => {
+          alert("request failed!");
+        })
+        .then(() => setLoading(false));
     }
   };
 

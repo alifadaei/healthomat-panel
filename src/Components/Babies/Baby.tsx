@@ -9,14 +9,14 @@ import Button from "../UI/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../utils/Routes";
 import Modal from "../UI/Modal/Modal";
-import useHTTP from "../../hooks/useHTTP";
 import { API_ROUTES } from "../../utils/API_Routes";
 import Preloader from "../UI/Preloader/Preloader";
 import useModal from "../../hooks/useModal";
 import BabyAvatarUploader from "./NewBaby/BabyAvatarUploader";
+import useAPI from "../../hooks/useAPI";
 const Baby = () => {
   const { t } = useTranslation("babies");
-  const { loading, send } = useHTTP();
+  const { loading, client, setLoading } = useAPI();
   const navigate = useNavigate();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [babyData, setBabyData] = useState<BabyType | "Loading">("Loading");
@@ -27,23 +27,24 @@ const Baby = () => {
     modalOpen: UploadModalOpen,
   } = useModal();
   useEffect(() => {
+    setLoading(true);
     const URL = window.location.href;
     const id = URL.substring(URL.lastIndexOf("/") + 1);
     setID(id);
-    send(API_ROUTES.PatientChild.GetChildsById + "?id=" + id, "GET").then(
-      (res: ResponseType) => {
-        if (res.succeeded) {
-          setBabyData(res.data);
-        } else {
-          alert("something went wrong!");
-        }
-      }
-    );
+    client
+      .get(API_ROUTES.PatientChild.GetChildsByID + "?id=" + id)
+      .then((res) => {
+        const data = res.data as ResponseType;
+        setBabyData(data.data);
+      })
+      .catch(() => alert("something went wrong!"))
+      .then(() => setLoading(false));
   }, []);
   if (babyData !== "Loading")
     return (
       <>
         <Modal
+          middle
           isOpen={deleteModalOpen}
           onBackdropClick={() => setDeleteModalOpen(false)}
         >
@@ -53,14 +54,14 @@ const Baby = () => {
               <Button
                 loading={loading}
                 onClick={() => {
-                  send(
-                    API_ROUTES.PatientChild.Delete + "?id=" + ID,
-                    "POST"
-                  ).then((res) => {
-                    if (res.succeeded) {
+                  client
+                    .post(API_ROUTES.PatientChild.Delete + "?id=" + ID)
+                    .then(() => {
                       navigate(RouteNames.my_babies.root);
-                    } else alert("something went wrong!");
-                  });
+                    })
+                    .catch(() => {
+                      alert("something went wrong!");
+                    });
                 }}
                 className="w-full px-3 py-2"
               >
@@ -87,6 +88,9 @@ const Baby = () => {
               onBackdropClick={handleCloseUploadModal}
             >
               <BabyAvatarUploader
+                onBabyAvatarChange={(avatar: string) => {
+                  setBabyData({ ...babyData, avatar });
+                }}
                 name={babyData.name}
                 babyID={ID}
                 finish={handleCloseUploadModal}

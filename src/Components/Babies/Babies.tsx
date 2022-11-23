@@ -6,30 +6,29 @@ import babyGirl from "../../assets/img/baby/girl-baby.png";
 import Heading from "../UI/Heading/Heading";
 import { RouteNames } from "../../utils/Routes";
 import { useState, useEffect } from "react";
-import useHTTP from "../../hooks/useHTTP";
 import { API_ROUTES } from "../../utils/API_Routes";
 import Preloader from "../UI/Preloader/Preloader";
 import { useAppSelector } from "../../hooks/useSelector";
+import useAPI from "../../hooks/useAPI";
 
 const MyBabies = () => {
   const { t } = useTranslation("babies");
-  const { errors, loading, send, setError } = useHTTP();
   const [babies, setBabies] = useState<BabyData[] | "Loading">("Loading");
-  const patientID = useAppSelector((state) => state.auth.id);
-  // const [loaded, setLoaded] = useState(false);
+  const { client, loading, setLoading } = useAPI();
   useEffect(() => {
-    send(
-      API_ROUTES.PatientChild.GetChildsByPateintId + "?id=" + patientID,
-      "GET",
-      null
-    ).then((res: responseType) => {
-      if (res.data) {
-        //data exists
-        setBabies(res.data);
-      } else {
-        //no baby found
-      }
-    });
+    setLoading(true);
+    client(API_ROUTES.PatientChild.GetChilds)
+      .then((res) => {
+        const data = res.data as responseType;
+        if (data) {
+          //data exists
+          setBabies(data.data);
+        } else {
+          //no baby found
+        }
+      })
+      .catch(alert)
+      .then(() => setLoading(false));
   }, []);
   if (babies !== "Loading")
     return (

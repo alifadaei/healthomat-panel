@@ -1,6 +1,5 @@
 import { divide } from "lodash";
 import { useTranslation } from "react-i18next";
-import useHTTP from "../../../hooks/useHTTP";
 import useValidation from "../../../hooks/useValidation";
 import { API_ROUTES } from "../../../utils/API_Routes";
 import Button from "../../UI/Button/Button";
@@ -8,10 +7,12 @@ import Card from "../../UI/Card/Card";
 import Input from "../../UI/FormElements/Input/Input";
 import Heading from "../../UI/Heading/Heading";
 import { useState } from "react";
+import axios from "axios";
+import useAPI from "../../../hooks/useAPI";
 
 const ChangePassword = () => {
   const { t } = useTranslation("profile");
-  const { loading, errors, send, setError } = useHTTP();
+  const { loading, httpErrors, setHttpErrors, setLoading } = useAPI();
   const [successMsg, setSuccessMsg] = useState("");
   const {
     error: oldPassError,
@@ -29,19 +30,22 @@ const ChangePassword = () => {
   } = useValidation("PASS");
   const handleSubmit = () => {
     if (oldPassState === "OK" && newPassState === "OK")
-      send(API_ROUTES.Profile.ChangePassword, "POST", {
-        token: localStorage.getItem("token"),
-        previousPassword: oldPassRef.current!.value,
-        proposedPassword: newPassRef.current!.value,
-      }).then((res) => {
-        setSuccessMsg("رمز عبور با موفقیت تغییر یافت");
-      });
+      axios
+        .post(API_ROUTES.Profile.ChangePassword, {
+          previousPassword: oldPassRef.current!.value,
+          proposedPassword: newPassRef.current!.value,
+        })
+        .then((res) => {
+          setSuccessMsg("رمز عبور با موفقیت تغییر یافت");
+        });
   };
   return (
     <>
       <Heading str={t("change_pass.title")} />
       <Card enableShadow className="mt-4 p-4 pt-6 text-sm border max-w-[26rem]">
-        {errors && <Card className="bg-red-300 p-3 mb-2">{errors}</Card>}
+        {httpErrors && (
+          <Card className="bg-red-300 p-3 mb-2">{httpErrors}</Card>
+        )}
         {successMsg && (
           <Card className="bg-green-200 p-3 mb-2">{successMsg}</Card>
         )}

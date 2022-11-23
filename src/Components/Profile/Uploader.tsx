@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { useAppSelector } from "../../hooks/useSelector";
 import { API_ROUTES } from "../../utils/API_Routes";
 import { useTranslation } from "react-i18next";
 import Icon, { IconList } from "../UI/Icon/Icon";
@@ -8,15 +7,16 @@ import ProgressBar from "../UI/ProgressBar/ProgressBar";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { changeAvatar } from "../Auth/authSlice";
+import useAPI from "../../hooks/useAPI";
 const FILE_LIMIT = 1024 * 1024; //bytes
 
 const Uploader = ({ finish }: { finish: () => void }) => {
+  const { client } = useAPI();
   const ref = useRef<HTMLInputElement>(null);
   const [progressRate, setProgressRate] = useState(0);
   const [fileName, setFileName] = useState("");
   const [errors, setError] = useState("");
   const [dragging, setDragging] = useState(false);
-  const patientID = useAppSelector((state) => state.auth.id);
   const { t } = useTranslation("profile");
   const dispatch = useDispatch();
   const handleInputChange = () => {
@@ -29,21 +29,13 @@ const Uploader = ({ finish }: { finish: () => void }) => {
         console.log("start");
         const formData = new FormData();
         formData.set("image", file);
-        axios
-          .post(
-            API_ROUTES.Profile.UploadAvatar + "?PatientId=" + patientID,
-            formData,
-            {
-              onUploadProgress: (progressEvent) => {
-                const rate = progressEvent.loaded / progressEvent.total!;
-                setProgressRate(rate);
-              },
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "",
-              },
-            }
-          )
+        client
+          .post(API_ROUTES.Profile.UploadAvatar, formData, {
+            onUploadProgress: (progressEvent) => {
+              const rate = progressEvent.loaded / progressEvent.total!;
+              setProgressRate(rate);
+            },
+          })
           .then((res) => {
             // finish
             const avatar = res.data.data.avatar;

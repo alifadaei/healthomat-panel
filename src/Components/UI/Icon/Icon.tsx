@@ -1,5 +1,5 @@
 import React from "react";
-import { GiPoisonCloud, GiBodyHeight } from "react-icons/gi";
+import { GiPoisonCloud } from "react-icons/gi";
 import { ImSpinner6 } from "react-icons/im";
 import {
   BsCheckLg,
@@ -20,7 +20,6 @@ import { RiScales2Line } from "react-icons/ri";
 import { TbNumbers } from "react-icons/tb";
 import { IoMdCloudUpload } from "react-icons/io";
 import {
-  IoTextOutline,
   IoPeopleOutline,
   IoCloudOutline,
   IoCloudDone,
@@ -54,6 +53,12 @@ import {
   HiOutlineLockClosed,
 } from "react-icons/hi";
 
+type IconProps = {
+  icon: IconList;
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+};
 export enum IconList {
   Gender,
   Lock,
@@ -103,13 +108,6 @@ export enum IconList {
   Ruler,
   Spinner,
 }
-
-type IconProps = {
-  icon: IconList;
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: () => void;
-};
 
 const Icon = (props: IconProps): React.ReactElement => {
   const { icon, className, style, onClick } = props;

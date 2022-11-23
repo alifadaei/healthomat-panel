@@ -2,74 +2,69 @@ import { setUserInfo, UserRole, login } from "./authSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { API_ROUTES } from "../../utils/API_Routes";
-import { CommonHeaders } from "../../hooks/useHTTP";
+import useAPI from "../../hooks/useAPI";
 
 type ResType = {
   data: {
     username: string;
     firstName: string;
     lastName: string;
-    patinetId: string;
-    group: UserRole;
     email: string;
+    group: string;
     avatar: string;
   };
-  succeeded: true;
+  succeeded: boolean;
   message: string;
 };
 
 const GetUser = () => {
+  const { client } = useAPI();
   const dispatch = useDispatch();
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const param_token = params.get("token");
-
-    if (param_token) {
-      // a token is given through URL
-      // redirect to base
-      localStorage.setItem("token", param_token);
-      window.location.replace("/");
-    }
-
-    const localToken = localStorage.getItem("token");
-    if (localToken) {
-      // a token found
-      fetch(API_ROUTES.API.GetCurrentUser, {
-        headers: {
-          Authorization: "Bearer " + localToken,
-          ...CommonHeaders.EhsanAPI,
-        },
+    client
+      .get(API_ROUTES.GetCurrentUser)
+      .then((res) => {
+        // token is fresh
+        const data = res.data as ResType;
+        const authPayload = {
+          role: data.data.group as UserRole,
+          email: data.data.email,
+          firstName: data.data.firstName,
+          lastName: data.data.lastName,
+          username: data.data.username,
+          phone: "",
+          avatar: data.data.avatar,
+        };
+        dispatch(setUserInfo(authPayload));
+        dispatch(login());
       })
-        .then((res) => {
-          if (res.ok) {
-            //token is fresh
-            return res.json();
-          } else {
-            //token is not fresh
-            localStorage.removeItem("token");
-            window.location.reload();
-          }
-        })
-        .then((res: ResType) => {
-          // get and set user profile data
-          const authPayload = {
-            role: res.data.group,
-            email: res.data.email,
-            firstName: res.data.firstName,
-            lastName: res.data.lastName,
-            id: res.data.patinetId,
-            username: res.data.username,
-            phone: "",
-            avatar: res.data.avatar,
-          };
-          dispatch(setUserInfo(authPayload));
-          dispatch(login());
-        })
-        .catch(console.log);
-    } else {
-      //no token found
-      window.location.replace(API_ROUTES.Pull_Token);
-    }
+      .catch(() => {
+        //token is not fresh
+        // so lets try refreshing it
+        client
+          .post(API_ROUTES.RefreshToken)
+          .then((res) => {
+            //token is fresh by now
+            client.get<ResType>(API_ROUTES.GetCurrentUser).then((res) => {
+              const data = res.data as ResType;
+              const authPayload = {
+                role: data.data.group as UserRole,
+                email: data.data.email,
+                firstName: data.data.firstName,
+                lastName: data.data.lastName,
+                username: data.data.username,
+                phone: "",
+                avatar: data.data.avatar,
+              };
+              dispatch(setUserInfo(authPayload));
+              dispatch(login());
+            });
+          })
+          .catch(() => {
+            //login needed
+            window.location.replace(API_ROUTES.Login);
+          });
+      });
   }, []);
   return null;
 };
