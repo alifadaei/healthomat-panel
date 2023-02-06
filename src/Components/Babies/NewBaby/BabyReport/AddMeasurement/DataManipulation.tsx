@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import DataTable from "./DataTable";
+import DataTable from "../Table/DataTable";
 import NewRecord from "./NewRecord";
 import { useAppSelector } from "../../../../../hooks/useSelector";
 import Modal from "../../../../UI/Modal/Modal";

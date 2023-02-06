@@ -133,15 +133,15 @@ const Baby = () => {
             <Button
               onClick={() => setDeleteModalOpen(true)}
               neutral
-              className=" border-red-400 hover:bg-none p-2 text-center m-0"
+              className="flex items-center justify-center p-2 m-0"
             >
               {t("baby_profile.delete")}
             </Button>
-            <Link to={RouteNames.my_babies.edit.replace(":id", ID!)}>
-              <Button className="flex items-center justify-center p-2 m-0 bg-slate-400">
+            <Button className="flex items-center justify-center p-2 m-0">
+              <Link to={RouteNames.my_babies.edit.replace(":id", ID!)}>
                 {t("baby_profile.edit")}
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <Button className="flex items-center justify-center p-2 m-0">
               <Link
                 to={RouteNames.my_babies.baby_report.replace(":id", ID || "")}

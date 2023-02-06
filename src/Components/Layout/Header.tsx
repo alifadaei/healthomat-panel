@@ -8,11 +8,12 @@ import { useDispatch } from "react-redux";
 import Icon, { IconList } from "../UI/Icon/Icon";
 import LanguageSelect from "./Language";
 import { useTranslation } from "react-i18next";
+import useAuthStore from "../Auth/useAuthStore";
 
 const Header = () => {
   const { t, i18n } = useTranslation("common");
   const lng = i18n.language;
-  const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
+  const isAuth = useAuthStore((state) => state.isAuthenticated);
   const dispatch = useDispatch();
   return (
     <header className="z-10 fixed top-0 w-full bg-white shadow-sm border-b-gray-100">

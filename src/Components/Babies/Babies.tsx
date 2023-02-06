@@ -8,7 +8,6 @@ import { RouteNames } from "../../utils/Routes";
 import { useState, useEffect } from "react";
 import { API_ROUTES } from "../../utils/API_Routes";
 import Preloader from "../UI/Preloader/Preloader";
-import { useAppSelector } from "../../hooks/useSelector";
 import useAPI from "../../hooks/useAPI";
 
 const MyBabies = () => {

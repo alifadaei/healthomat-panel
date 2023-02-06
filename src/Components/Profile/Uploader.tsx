@@ -4,10 +4,8 @@ import { useTranslation } from "react-i18next";
 import Icon, { IconList } from "../UI/Icon/Icon";
 import Button from "../UI/Button/Button";
 import ProgressBar from "../UI/ProgressBar/ProgressBar";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { changeAvatar } from "../Auth/authSlice";
 import useAPI from "../../hooks/useAPI";
+import useAuthStore from "../Auth/useAuthStore";
 const FILE_LIMIT = 1024 * 1024; //bytes
 
 const Uploader = ({ finish }: { finish: () => void }) => {
@@ -18,7 +16,7 @@ const Uploader = ({ finish }: { finish: () => void }) => {
   const [errors, setError] = useState("");
   const [dragging, setDragging] = useState(false);
   const { t } = useTranslation("profile");
-  const dispatch = useDispatch();
+  const changeAvatar = useAuthStore((state) => state.changeAvatar);
   const handleInputChange = () => {
     if (ref.current!.files![0]) {
       //file is selected by user
@@ -39,7 +37,7 @@ const Uploader = ({ finish }: { finish: () => void }) => {
           .then((res) => {
             // finish
             const avatar = res.data.data.avatar;
-            dispatch(changeAvatar(avatar));
+            changeAvatar(avatar);
             finish();
           })
           .catch(() => {

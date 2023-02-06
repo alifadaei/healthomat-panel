@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../../hooks/useSelector";
+import { useAppSelector } from "../../../../../hooks/useSelector";
 import babyGirl from "../../../../assets/img/baby/girl-baby.png";
 import babyBoy from "../../../../assets/img/baby/boy-baby.jpg";
-import Icon from "../../../UI/Icon/Icon";
-import { BabyProfileItems } from "./BabyProfileItems";
+import Icon from "../../../../UI/Icon/Icon";
+import { BabyProfileItems } from "../BabyProfile/BabyProfileItems";
 
 const BabyProfile = () => {
   const { t } = useTranslation("babies");

@@ -103,7 +103,6 @@ const BabyChart = ({
         responsive: true,
         scales: {
           x: {
-            type: "logarithmic",
             title: {
               color: "#2999c6",
               display: true,
@@ -111,7 +110,6 @@ const BabyChart = ({
             },
           },
           y: {
-            type: "logarithmic",
             title: {
               color: "#2999c6",
               display: true,
@@ -128,7 +126,7 @@ const BabyChart = ({
   }, [dataSet, childOwnDataSet]);
   return (
     <>
-      <div className="relative w-full lg:w-[45rem]">
+      <div className="relative w-full lg:w-[60rem]">
         <canvas ref={ref}></canvas>
       </div>
     </>

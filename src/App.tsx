@@ -13,16 +13,16 @@ import Card from "./Components/UI/Card/Card";
 import Preloader from "./Components/UI/Preloader/Preloader";
 import Wrapper from "./Components/UI/Wrapper/Wrapper";
 import { updatePageDirection } from "./functions/language";
-import { useAppSelector } from "./hooks/useSelector";
 import "./i18next";
 import { languages } from "./utils/languages";
 import { RouteNames, Routes } from "./utils/Routes";
 import ScrollToTop from "./Components/Layout/ScrollToTop";
 import GetUser from "./Components/Auth/GetUser";
 import FontLoader from "./Components/Layout/RTLCSS/FontLoader";
+import useAuthStore from "./Components/Auth/useAuthStore";
 
 function App() {
-  const auth = useAppSelector((state) => state.auth.isAuthenticated) === "YES";
+  const isAuth = useAuthStore((state) => state.isAuthenticated);
   const dispatch = useDispatch();
   const savedLng = localStorage.getItem("i18nextLng");
   if (!languages.find((item) => item.name === savedLng)) {
@@ -34,10 +34,10 @@ function App() {
   }, []);
   return (
     <>
-      <Preloader isOpen={!auth} />
+      <Preloader isOpen={!isAuth} />
       <FontLoader />
       <GetUser />
-      {auth && (
+      {isAuth && (
         <ScrollToTop>
           <>
             <Header />

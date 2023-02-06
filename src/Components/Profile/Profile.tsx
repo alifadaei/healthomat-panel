@@ -3,17 +3,14 @@ import Heading from "../UI/Heading/Heading";
 import man from "../../assets/img/man-profile.jpg";
 import Icon, { IconList } from "../UI/Icon/Icon";
 import { ManProfile } from "../../utils/Profile/Profile";
-import { useAppSelector } from "../../hooks/useSelector";
 import Modal from "../UI/Modal/Modal";
 import useModal from "../../hooks/useModal";
 import Uploader from "./Uploader";
+import useAuthStore from "../Auth/useAuthStore";
 
 const Profile = () => {
   const { t } = useTranslation("profile");
-  const { email, firstName, lastName, username, avatar } = useAppSelector(
-    (state) => state.auth
-  );
-
+  const { email, firstName, lastName, username, avatar } = useAuthStore();
   const {
     handleCloseModal,
     handleOpenModal: handleOpenUploadModal,

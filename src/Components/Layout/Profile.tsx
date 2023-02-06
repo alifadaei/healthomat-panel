@@ -1,9 +1,10 @@
 import man from "../../assets/img/man-profile.jpg";
-import { useAppSelector } from "../../hooks/useSelector";
+import useAuthStore from "../Auth/useAuthStore";
 
 const Profile = () => {
-  const { firstName, lastName } = useAppSelector((state) => state.auth);
-  const avatar = useAppSelector((state) => state.auth.avatar);
+  const firstName = useAuthStore((state) => state.firstName);
+  const lastName = useAuthStore((state) => state.lastName);
+  const avatar = useAuthStore((state) => state.avatar);
 
   return (
     <div className="flex flex-col items-center py-3">
